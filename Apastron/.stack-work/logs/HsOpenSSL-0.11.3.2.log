@@ -1,0 +1,14 @@
+[1 of 2] Compiling Main             ( C:\Users\TARDIS\AppData\Local\Temp\stack9684\HsOpenSSL-0.11.3.2\Setup.hs, C:\Users\TARDIS\AppData\Local\Temp\stack9684\HsOpenSSL-0.11.3.2\.stack-work\dist\b7fec021\setup\Main.o )
+[2 of 2] Compiling StackSetupShim   ( C:\sr\setup-exe-src\setup-shim-Z6RU0evB.hs, C:\Users\TARDIS\AppData\Local\Temp\stack9684\HsOpenSSL-0.11.3.2\.stack-work\dist\b7fec021\setup\StackSetupShim.o )
+Linking C:\Users\TARDIS\AppData\Local\Temp\stack9684\HsOpenSSL-0.11.3.2\.stack-work\dist\b7fec021\setup\setup.exe ...
+Configuring HsOpenSSL-0.11.3.2...
+setup.EXE: Missing dependencies on foreign libraries:
+* Missing (or bad) header file: openssl/asn1.h
+* Missing C libraries: eay32, ssl32
+This problem can usually be solved by installing the system packages that
+provide these libraries (you may need the "-dev" versions). If the libraries
+are already installed but in a non-standard location then you can use the
+flags --extra-include-dirs= and --extra-lib-dirs= to specify where they are.
+If the header file does exist, it may contain errors that are caught by the C
+compiler at the preprocessing stage. In this case you can re-run configure
+with the verbosity flag -v3 to see the error messages.

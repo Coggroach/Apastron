@@ -1,0 +1,33 @@
+Configuring wai-cors-0.2.5...
+Building wai-cors-0.2.5...
+Preprocessing library wai-cors-0.2.5...
+[1 of 1] Compiling Network.Wai.Middleware.Cors ( src\Network\Wai\Middleware\Cors.hs, .stack-work\dist\b7fec021\build\Network\Wai\Middleware\Cors.o )
+
+src\Network\Wai\Middleware\Cors.hs:381:5: warning: [-Wredundant-constraints]
+    * Redundant constraint: Functor μ
+    * In the type signature for:
+           preflightHeaders :: (Functor μ, Monad μ) =>
+                               CorsResourcePolicy -> ExceptT String μ HTTP.ResponseHeaders
+      In an equation for `cors':
+          cors policyPattern app r respond
+            | isWebSocketsReq r = runApp
+            | Just policy <- policyPattern r
+            = case hdrOrigin of {
+                Nothing
+                  -> if corsRequireOrigin policy then
+                         res $ corsFailure "Origin header is missing"
+                     else
+                         runApp
+                Just origin -> applyCorsPolicy policy origin }
+            | otherwise = runApp
+            where
+                res = respond
+                runApp = app r respond
+                hdrOrigin = lookup "origin" (WAI.requestHeaders r)
+                applyCorsPolicy policy origin
+                  = do { let ...;
+                         .... }
+                ....
+Installing library in
+C:\sr\snapshots\e1c674d9\lib\x86_64-windows-ghc-8.0.1\wai-cors-0.2.5-IgbcNa7znv7FZ5RL0Pxefr
+Registering wai-cors-0.2.5...

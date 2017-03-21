@@ -1,0 +1,22 @@
+Configuring uuid-1.3.12...
+Building uuid-1.3.12...
+Preprocessing library uuid-1.3.12...
+[1 of 8] Compiling Data.UUID.Named  ( Data\UUID\Named.hs, .stack-work\dist\b7fec021\build\Data\UUID\Named.o )
+[2 of 8] Compiling Data.UUID.V5     ( Data\UUID\V5.hs, .stack-work\dist\b7fec021\build\Data\UUID\V5.o )
+[3 of 8] Compiling Data.UUID.V3     ( Data\UUID\V3.hs, .stack-work\dist\b7fec021\build\Data\UUID\V3.o )
+[4 of 8] Compiling Data.UUID.V1     ( Data\UUID\V1.hs, .stack-work\dist\b7fec021\build\Data\UUID\V1.o )
+[5 of 8] Compiling Data.Word.Util   ( Data\Word\Util.hs, .stack-work\dist\b7fec021\build\Data\Word\Util.o )
+[6 of 8] Compiling Data.UUID.Util   ( Data\UUID\Util.hs, .stack-work\dist\b7fec021\build\Data\UUID\Util.o )
+[7 of 8] Compiling Data.UUID        ( Data\UUID.hs, .stack-work\dist\b7fec021\build\Data\UUID.o )
+[8 of 8] Compiling Data.UUID.V4     ( Data\UUID\V4.hs, .stack-work\dist\b7fec021\build\Data\UUID\V4.o )
+Installing library in
+C:\sr\snapshots\e1c674d9\lib\x86_64-windows-ghc-8.0.1\uuid-1.3.12-7WvBqLAncpZABO2SPjsY9n
+Registering uuid-1.3.12...
+Cabal-simple_Z6RU0evB_1.24.0.0_ghc-8.0.1.exe:
+'C:\Users\TARDIS\AppData\Local\Programs\stack\x86_64-windows\ghc-8.0.1\bin\ghc-pkg.EXE'
+exited with an error:
+uuid-1.3.12: Warning: haddock-interfaces:
+C:\sr\snapshots\e1c674d9\doc\uuid-1.3.12\uuid.haddock doesn't exist or isn't a
+file
+ghc-pkg.EXE: C:\sr\snapshots\e1c674d9\pkgdb\package.cache: you don't have
+permission to modify this file

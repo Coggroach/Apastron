@@ -63,3 +63,54 @@ data User = User {
 data Response = Response {
     rData :: String
 } deriving (Generic, Eq, Show, ToJSON, FromJSON, ToBSON, FromBSON)
+
+-----------------------------------------
+--  Identity
+-----------------------------------------
+
+data Identity = Identity {
+    iAddress :: String,
+    iPort :: String
+} deriving (Generic, Eq, Show, ToJSON, FromJSON, ToBSON, FromBSON)
+
+------------------------------
+--  Common Functions 
+------------------------------
+
+getIdentityPort :: Identity -> Int
+getIdentityPort i = read (port i):: Int
+
+getIdentityString :: Identity -> String
+getIdentityString i = address i ++ ":" ++ port i
+
+getIdentitySafeString :: Identity -> String
+getIdentitySafeString i = address i ++ "_" ++ port i
+
+getIdentityTypeString :: Identity -> String
+getIdentityTypeString i = show (serverType i) ++ "_" ++ port i
+
+------------------------------
+--  Logging Functions 
+------------------------------
+
+logHeading :: String -> IO()
+logHeading s = do
+    let t = "======================"
+    putStrLn t
+    putStrLn s
+    putStrLn t
+
+logTrailing :: IO ()
+logTrailing = putStrLn "======================"
+
+logAction :: String -> String -> String -> IO()
+logAction s a m = putStrLn $ "[" ++ s ++ "]" ++ "[" ++ a ++ "]: " ++ m
+
+logError :: String -> String -> IO()
+logError s m =  putStrLn $ "[" ++ s ++ "]" ++ "[Error]: " ++ m
+
+logDatabase :: String -> String -> String -> String -> IO()
+logDatabase s d a m = putStrLn $ "[" ++ s ++ "]" ++ "[" ++ d ++ ":" ++ a ++ "]: " ++ m
+
+logConnection :: String -> String -> String -> IO()
+logConnection c s m = putStrLn $ "[" ++ c ++ "==>>" ++ s ++ "]:" ++ m

@@ -114,6 +114,7 @@ findCrawl u = liftIO $ do
 upsertCrawl :: Crawl -> IO ()
 upsertCrawl c = liftIO $ do
     let u = cUsername c
+    logDatabase "Crawler" "UserCrawlDb" "upsert" u
     connectToDatabase $ upsert (select ["cUserName" =: u] "UserCrawlDb") $ toBSON c
 
 newVertexMap :: IO VertexMap

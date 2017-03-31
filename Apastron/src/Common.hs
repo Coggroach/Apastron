@@ -23,13 +23,13 @@ import            Data.Text
 --  Data Structures
 -----------------------------------------
 
-instance FromBSON String
-instance ToBSON String
-
 data Vertex = Vertex {
     vId :: String,
     vGroup :: String
 } deriving (Generic, Eq, Show, ToJSON, FromJSON, ToBSON, FromBSON)
+
+instance FromBSON String
+instance ToBSON String
 
 data Edge = Edge {
     eParent :: Vertex,
@@ -37,14 +37,10 @@ data Edge = Edge {
     eData :: String
 } deriving (Generic, Eq, Show, ToJSON, FromJSON, ToBSON, FromBSON)
 
-data Chain = Chain {
-    cEdges :: [Edge]
-} deriving (Generic, Eq, Show, ToJSON, FromJSON, ToBSON, FromBSON)
-
 data Graph = Graph {
     gVertices :: [Vertex],
     gEdges :: [Edge]
-} deriving (Generic, Eq, Show, ToJSON, FromJSON, ToBSON, FromBSON)
+} deriving (Generic, Eq, Show, ToJSON, FromJSON)
 
 -----------------------------------------
 --  User
@@ -54,7 +50,7 @@ data User = User {
     uName :: String,
     uAuthToken :: String,
     uHops :: Int
-} deriving (Generic, Eq, Show, ToJSON, FromJSON, ToBSON, FromBSON)
+} deriving (Generic, Eq, Show, ToJSON, FromJSON)
 
 -----------------------------------------
 --  Response
@@ -78,16 +74,13 @@ data Identity = Identity {
 ------------------------------
 
 getIdentityPort :: Identity -> Int
-getIdentityPort i = read (port i):: Int
+getIdentityPort i = read (iPort i):: Int
 
 getIdentityString :: Identity -> String
-getIdentityString i = address i ++ ":" ++ port i
+getIdentityString i = iAddress i ++ ":" ++ iPort i
 
 getIdentitySafeString :: Identity -> String
-getIdentitySafeString i = address i ++ "_" ++ port i
-
-getIdentityTypeString :: Identity -> String
-getIdentityTypeString i = show (serverType i) ++ "_" ++ port i
+getIdentitySafeString i = iAddress i ++ "_" ++ iPort i
 
 ------------------------------
 --  Logging Functions 

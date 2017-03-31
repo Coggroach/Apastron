@@ -91,6 +91,13 @@
   (major1) == 0 && (major2) <  15 || \
   (major1) == 0 && (major2) == 15 && (minor) <= 0)
 
+/* package hasbolt-0.1.0.9 */
+#define VERSION_hasbolt "0.1.0.9"
+#define MIN_VERSION_hasbolt(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  1 || \
+  (major1) == 0 && (major2) == 1 && (minor) <= 0)
+
 /* package hslogger-1.2.10 */
 #define VERSION_hslogger "1.2.10"
 #define MIN_VERSION_hslogger(major1,major2,minor) (\
@@ -322,7 +329,7 @@
   (major1) == 2 && (major2) <  25 || \
   (major1) == 2 && (major2) == 25 && (minor) <= 0)
 
-#define CURRENT_COMPONENT_ID "Apastron-0.1.0.0-CUgDvruW5LhL6gqlMr3eJY"
+#define CURRENT_COMPONENT_ID "Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A"
 
-#define CURRENT_PACKAGE_KEY "Apastron-0.1.0.0-CUgDvruW5LhL6gqlMr3eJY"
+#define CURRENT_PACKAGE_KEY "Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A"
 

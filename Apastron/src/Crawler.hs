@@ -8,7 +8,7 @@
 {-# LANGUAGE TemplateHaskell      #-}
 {-# LANGUAGE TypeOperators        #-}
 {-# LANGUAGE TypeSynonymInstances #-}
-{-# LANGUAGE RecordWildCards #-} 
+{-# LANGUAGE RecordWildCards      #-}
 
 module Crawler where
 
@@ -27,16 +27,18 @@ import            Data.Bson.Generic
 import            Data.List.Split
 import            Data.List
 import            Data.Text
-import            Data.Maybe (catMaybes, fromJust, fromMaybe)
+import            Data.Maybe (catMaybes, fromJust, fromMaybe, mapMaybe)
 import            Data.ByteString.Char8 hiding (unpack, putStrLn, find)
 import            Data.Time.Clock
 import            Data.Map hiding (split)
+import            Database.MongoDB
 import            Control.Monad.Trans.Except
 import            Control.Monad.Trans.Resource
 import            Control.Monad.IO.Class
 import            Control.Monad (when, liftM)
 import            Control.Concurrent.STM.TVar
 import            Control.Concurrent.STM
+import            Control.Concurrent
 import            Network.Wai hiding (Response)
 import            Network.Wai.Handler.Warp
 import            Network.Wai.Logger
@@ -48,11 +50,15 @@ import            GitHub.Data.Repos
 import            GitHub.Data
 import            GitHub.Endpoints.Repos
 import            GitHub.Endpoints.Users
+import            GHC.Generics
 import            Prelude
 
 -----------------------------------------
 --  Variables
 -----------------------------------------
+
+instance ToBSON Bool
+instance FromBSON Bool
 
 data Crawl = Crawl {
     cUsername :: String,
@@ -60,14 +66,14 @@ data Crawl = Crawl {
 } deriving (Generic, Show, Eq, ToJSON, FromJSON, ToBSON, FromBSON)
 
 data VertexMap = VertexMap{
-    vertices :: TVar (Data.Map Text Common.Vertex)
-} deriving (Generic, Show, Eq, ToJSON, FromJSON, ToBSON, FromBSON)
+    vertices :: TVar (Map Text Common.Vertex)
+}
 
 data CrawlInfo = CrawlInfo {
     cCrawl :: Crawl,
     cUser :: Common.User,
     cAuth :: Maybe GitHub.Data.Auth
-} deriving (Generic, Show, Eq, ToJSON, FromJSON, ToBSON, FromBSON)
+}
 
 -----------------------------------------
 --  Server
@@ -84,21 +90,24 @@ crawlerApp = serve crawlerApi crawlerServer
 mkCrawler :: IO ()
 mkCrawler = do
     logHeading "Crawler"
-    logAction "Crawler" "Starting" $ "on Port: " ++ getIdentityPort crawlerIdentity
+    logAction "Crawler" "Starting" $ "on: " ++ getIdentitySafeString crawlerIdentity
     run (getIdentityPort crawlerIdentity) crawlerApp
 
 initCrawler :: Common.User -> ApiHandler Common.Response
-initCrawler user:(Common.User n t h) = liftIO $ do
+initCrawler user@(Common.User n t h) = liftIO $ do
     logAction "Crawler" "Request" "Creating Crawler Request"
     crawl <- findCrawl n
     case crawl of
-        [Crawl _ True] -> Common.Response "Running"
-        [Crawl _ False] -> Common.Response "Completed"
+        (Crawl _ True) -> return (Common.Response "Running")
+        (Crawl _ False) -> return (Common.Response "Completed")
         _ -> do            
             upsertCrawl (Crawl n True)
-            vMap <- liftIO $ newVertexMap
+            vMap <- newVertexMap
             startCrawl crawl user vMap
-            return Common.Response "Started"
+            return (Common.Response "Started")
+
+killCrawler :: Common.User -> ApiHandler Common.Response
+killCrawler u = return (Common.Response "Not Implemented")
 
 -----------------------------------------
 --  Helping Functions
@@ -107,18 +116,19 @@ initCrawler user:(Common.User n t h) = liftIO $ do
 findCrawl :: String -> IO Crawl
 findCrawl u = liftIO $ do
     logDatabase "Crawler" "UserCrawlDb" "find" u
-    connectToDatabase $ do
-        docs <- find (select ["cUserName" =: u] "UserCrawlDb") >>= drainCursor
-        return $ mayMaybe (\b -> fromBSON :: Maybe Crawl) docs
+    crawl <- connectToDatabase $ do
+        docs <- Database.MongoDB.find (Database.MongoDB.select ["cUserName" =: u] "UserCrawlDb") >>= drainCursor
+        return $ Data.Maybe.mapMaybe (\b -> fromBSON b :: Maybe Crawl) docs
+    return $ Data.List.head crawl
 
 upsertCrawl :: Crawl -> IO ()
 upsertCrawl c = liftIO $ do
     let u = cUsername c
     logDatabase "Crawler" "UserCrawlDb" "upsert" u
-    connectToDatabase $ upsert (select ["cUserName" =: u] "UserCrawlDb") $ toBSON c
+    connectToDatabase $ Database.MongoDB.upsert (Database.MongoDB.select ["cUserName" =: u] "UserCrawlDb") $ toBSON c
 
 newVertexMap :: IO VertexMap
-newVertexMap atomically $ VertexMap <$> newTVar Data.Map.empty
+newVertexMap = atomically $ VertexMap <$> newTVar Data.Map.empty
 
 addVertex :: VertexMap -> Text -> Common.Vertex -> STM ()
 addVertex VertexMap{..} t = modifyTVar vertices . Data.Map.insert t
@@ -127,11 +137,13 @@ lookupVertex :: VertexMap -> Text -> STM (Maybe Common.Vertex)
 lookupVertex VertexMap{..} t = Data.Map.lookup t <$> readTVar vertices
 
 startCrawl :: Crawl -> Common.User -> VertexMap -> IO()
-startCrawl c u v = liftIO $ do
-    let auth = Just $ GitHub.OAuth $ (Data.ByteString.Char8 t)
+startCrawl c u@Common.User{..} v = liftIO $ do
+    let auth = Just $ GitHub.OAuth $ Data.ByteString.Char8.pack uAuthToken
     let crawlInfo = CrawlInfo c u auth
-    liftIO $ forkIO $ crawlRepositories v auth
+    liftIO $ forkIO $ crawlRepositories v crawlInfo
+    return ()
 
 crawlRepositories :: VertexMap -> CrawlInfo -> IO()
 crawlRepositories v ci = do
     let hops = uHops $ cUser ci
+    return ()

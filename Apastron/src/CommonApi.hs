@@ -9,16 +9,17 @@
 
 module CommonApi where
 
+
+import            Common
+import            Control.Monad.Trans.Except
 import            Data.Aeson
-import            Data.Aeson.TH
-import            Data.Bits
-import            Data.Bson.Generic
-import            Data.Char
-import            Data.Time
 import            GHC.Generics
 import            Servant
-import            Data.Text
-import            Common
+import            Servant.API
+import            Servant.Client
+import            Network.Wai
+import            Network.Wai.Handler.Warp
+import            Network.HTTP.Client (newManager, defaultManagerSettings)
 
 -----------------------------------------
 --  Identity Data
@@ -50,6 +51,8 @@ crawlerApi = Proxy
 crawlerClientInit :: Common.User -> ClientM Common.Response
 crawlerClientKill :: Common.User -> ClientM Common.Response
 
+crawlerClientInit :<|> crawlerClientKill = Servant.Client.client crawlerApi
+
 -----------------------------------------
 --  Search
 -----------------------------------------
@@ -65,3 +68,5 @@ searchApi = Proxy
 searchClientVertices :: ClientM [Common.Vertex]
 searchClientEdges :: ClientM [Common.Edge]
 searchClientGraph :: ClientM Common.Graph
+
+searchClientVertices :<|> searchClientEdges :<|> searchClientGraph = Servant.Client.client searchApi

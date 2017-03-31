@@ -8,7 +8,8 @@
 {-# LANGUAGE TemplateHaskell      #-}
 {-# LANGUAGE TypeOperators        #-}
 {-# LANGUAGE TypeSynonymInstances #-}
-{-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE ScopedTypeVariables  #-}
+{-# LANGUAGE RecordWildCards      #-} 
 
 module Boltery where
 
@@ -16,13 +17,17 @@ import            Database.Bolt
 import            Data.Map
 import            Data.Text
 import            Data.List
+import            Data.Maybe
+import            Data.Time.Clock
 import            GitHub
 import            GitHub.Data.URL
 import            GitHub.Data.Name
 import            GitHub.Data.Repos
 import            GitHub.Data
+import            GitHub.Data.Definitions
 import            GitHub.Endpoints.Repos
 import            GitHub.Endpoints.Users
+import            GitHub.Internal.Prelude
 import            Common
 
 -----------------------------------------
@@ -39,25 +44,25 @@ defaultIntNull = 0
 --  Common Functions
 -----------------------------------------
 
-boltStore :: Text -> Map Text Value -> IO Bool
+boltStore :: Text -> Map Text Database.Bolt.Value -> IO Bool
 boltStore c p = do
     let config = Database.Bolt.def { Database.Bolt.user = "neo4j", Database.Bolt.password = "Coggroach" }
     pipe <- Database.Bolt.connect config
     records <- Database.Bolt.run pipe $ Database.Bolt.queryP c p
     Database.Bolt.close pipe
-    return (null records)
+    return (Data.List.null records)
 
-maybeToValueT :: Maybe Text -> Database.Bolt.T
-maybeToValueT = fromMaybe defaultTextNull
+maybeToValueT :: Maybe Text -> Database.Bolt.Value
+maybeToValueT t = Database.Bolt.T $ fromMaybe defaultTextNull t
 
-maybeToValueI :: Maybe Int -> Database.Bolt.I
-maybeToValueI = fromMaybe 0
+maybeToValueI :: Maybe Int -> Database.Bolt.Value
+maybeToValueI i = Database.Bolt.I $ fromMaybe 0 i
 
-maybeDateToValueI :: Maybe GithubDate -> Database.Bolt.I
-maybeDateToValueI g = floor $ utctDayTime (fromJust g) :: Int
+maybeDateToValueI :: Maybe  UTCTime -> Database.Bolt.Value
+maybeDateToValueI g = Database.Bolt.I $ floor $ utctDayTime $ fromJust g :: Int
 
-dateToValueI :: GithubDate -> Database.Bolt.I
-dateToValueI g = floor $ utctDayTime g :: Int
+dateToValueI ::  UTCTime -> Database.Bolt.Value
+dateToValueI g = Database.Bolt.I $ floor $ utctDayTime g :: Int
 
 -----------------------------------------
 --  User
@@ -67,44 +72,44 @@ boltCypherUser :: Text
 boltCypherUser = 
     Data.Text.pack $ 
     "CREATE (n:User { " ++
-    " name: {detailedOwnerLogin}, " ++
-    " detailedOwnerLogin: {detailedOwnerLogin}, " ++
-    " detailedOwnerId: {detailedOwnerId}, " ++
-    " detailedOwnerUrl: {detailedOwnerUrl}, " ++
-    " detailedOwnerName: {detailedOwnerName}, " ++
-    " detailedOwnerCompany: {detailedOwnerCompany}, " ++
-    " detailedOwnerLocation: {detailedOwnerLocation}, " ++
-    " detailedOwnerEmail: {detailedOwnerEmail}, " ++
-    " detailedOwnerBio: {detailedOwnerBio}, " ++
-    " detailedOwnerPublicRepos: {detailedOwnerPublicRepos}, " ++
-    " detailedOwnerPublicGists: {detailedOwnerPublicGists}, " ++
-    " detailedOwnerFollowers: {detailedOwnerFollowers}, " ++
-    " detailedOwnerFollowing: {detailedOwnerFollowing} } )"
+    " name: {userLogin}, " ++
+    " userLogin: {userLogin}, " ++
+    " userId: {userId}, " ++
+    " userUrl: {userUrl}, " ++
+    " userName: {userName}, " ++
+    " userCompany: {userCompany}, " ++
+    " userLocation: {userLocation}, " ++
+    " userEmail: {userEmail}, " ++
+    " userBio: {userBio}, " ++
+    " userPublicRepos: {userPublicRepos}, " ++
+    " userPublicGists: {userPublicGists}, " ++
+    " userFollowers: {userFollowers}, " ++
+    " userFollowing: {userFollowing} } )"
 
-boltParamsUser :: DetailedOwner -> Map Text Value
-boltParamsUser DetailedOwner{..} = Data.Map.fromList [
-        ("detailedOwnerLogin", Database.Bolt.T detailedOwnerLogin),
-        ("detailedOwnerId", Database.Bolt.I detailedOwnerId),
-        ("detailedOwnerUrl", Database.Bolt.T detailedOwnerUrl),
-        ("detailedOwnerName", maybeToValueT detailedOwnerName),
-        ("detailedOwnerCompany", maybeToValueT detailedOwnerCompany),
-        ("detailedOwnerLocation", maybeToValueT detailedOwnerLocation),
-        ("detailedOwnerEmail", maybeToValueT detailedOwnerEmail),
-        ("detailedOwnerBio", maybeToValueT detailedOwnerBio),
-        ("detailedOwnerPublicRepos", Database.Bolt.I detailedOwnerPublicRepos),
-        ("detailedOwnerPublicGists", Database.Bolt.I detailedOwnerPublicGists),
-        ("detailedOwnerFollowers", Database.Bolt.I detailedOwnerFollowers),
-        ("detailedOwnerFollowing", Database.Bolt.I detailedOwnerFollowing)]
+boltParamsUser :: GitHub.Endpoints.Users.User -> Map Text Database.Bolt.Value
+boltParamsUser GitHub.Endpoints.Users.User{..} = Data.Map.fromList [
+        ("userLogin", Database.Bolt.T $ untagName userLogin),
+        ("userId", Database.Bolt.I $ untagId userId),
+        ("userUrl", Database.Bolt.T $ getUrl userUrl),
+        ("userName", maybeToValueT userName),
+        ("userCompany", maybeToValueT userCompany),
+        ("userLocation", maybeToValueT userLocation),
+        ("userEmail", maybeToValueT userEmail),
+        ("userBio", maybeToValueT userBio),
+        ("userPublicRepos", Database.Bolt.I userPublicRepos),
+        ("userPublicGists", Database.Bolt.I userPublicGists),
+        ("userFollowers", Database.Bolt.I userFollowers),
+        ("userFollowing", Database.Bolt.I userFollowing)]
 
-boltStoreUser :: DetailedOwner -> IO Bool
+boltStoreUser :: GitHub.Endpoints.Users.User -> IO Bool
 boltStoreUser o = boltStore boltCypherUser $ boltParamsUser o
 
 -----------------------------------------
 --  Repos
 -----------------------------------------
 
-boltCypherUser :: Text
-boltCypherUser = 
+boltCypherRepo :: Text
+boltCypherRepo = 
     Data.Text.pack $ 
     "MERGE (n:Repo { " ++
     " name: {repoHtmlUrl}, " ++
@@ -124,17 +129,17 @@ boltCypherUser =
     " repoUpdatedAt: {repoUpdatedAt}, " ++
     " repoCreatedAt: {repoCreatedAt} } )"
 
-boltParamsUser :: Repo -> Map Text Value
-boltStoreUser Repo{..}
+boltParamsRepo :: Repo -> Map Text Database.Bolt.Value
+boltParamsRepo Repo{..}
      = Data.Map.fromList [
         ("repoDescription", maybeToValueT repoDescription),
-        ("repoId", Database.Bolt.I repoId),
-        ("repoUrl", Database.Bolt.T repoUrl),
-        ("repoName", Database.Bolt.T repoName),
-        ("repoOwnerLogin", Database.Bolt.T $ githubOwnerLogin repoOwner),
-        ("repoOwnerId", Database.Bolt.I $ githubOwnerId repoOwner),
+        ("repoId", Database.Bolt.I $ untagId repoId),
+        ("repoUrl", Database.Bolt.T $ getUrl repoUrl),
+        ("repoName", Database.Bolt.T $ untagName repoName),
+        ("repoOwnerLogin", Database.Bolt.T $ untagName $ simpleOwnerLogin repoOwner),
+        ("repoOwnerId", Database.Bolt.I $ untagId $ simpleOwnerId repoOwner),
         ("repoPrivate", Database.Bolt.B repoPrivate),
-        ("repoHtmlUrl", Database.Bolt.T repoHtmlUrl),
+        ("repoHtmlUrl", Database.Bolt.T $ getUrl repoHtmlUrl),
         ("repoForks", maybeToValueI repoForks),
         ("repoWatchers", maybeToValueI repoWatchers),
         ("repoSize", maybeToValueI repoSize),
@@ -156,7 +161,7 @@ boltCypherLanguage =
     "CREATE (n:Language { " ++
     " name: {language} } )"
 
-boltParamsLanguage :: Text -> Map Text Value
+boltParamsLanguage :: Text -> Map Text Database.Bolt.Value
 boltParamsLanguage language
      = Data.Map.fromList [("language", Database.Bolt.T language)]
 

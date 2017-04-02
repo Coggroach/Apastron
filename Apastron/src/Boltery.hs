@@ -59,10 +59,10 @@ maybeToValueI :: Maybe Int -> Database.Bolt.Value
 maybeToValueI i = Database.Bolt.I $ fromMaybe 0 i
 
 maybeDateToValueI :: Maybe  UTCTime -> Database.Bolt.Value
-maybeDateToValueI g = Database.Bolt.I $ floor $ utctDayTime $ fromJust g :: Int
+maybeDateToValueI g = Database.Bolt.I (floor $ utctDayTime (fromJust g) :: Int)
 
 dateToValueI ::  UTCTime -> Database.Bolt.Value
-dateToValueI g = Database.Bolt.I $ floor $ utctDayTime g :: Int
+dateToValueI g = Database.Bolt.I ( floor $ utctDayTime g :: Int )
 
 -----------------------------------------
 --  User

@@ -1,0 +1,1027 @@
+
+==================== FINAL INTERFACE ====================
+2017-04-02 23:07:43.5783922 UTC
+
+interface Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Boltery 8001
+  interface hash: 8088a0be526707a4461ca8350aedfeb8
+  ABI hash: 64dfa0afc50b7baaa694ccf6e8bf6e5e
+  export-list hash: 010914063944ee661441d5815be784bf
+  orphan hash: f9b05162acb8bf8637213782dd8ae556
+  flag hash: 1d5c0f6e259a5ef24c7454935ca733fb
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Boltery.boltCypherLanguage
+  Boltery.boltCypherRepo
+  Boltery.boltCypherUser
+  Boltery.boltParamsLanguage
+  Boltery.boltParamsRepo
+  Boltery.boltParamsUser
+  Boltery.boltStore
+  Boltery.boltStoreLanguage
+  Boltery.boltStoreRepo
+  Boltery.boltStoreUser
+  Boltery.dateToValueI
+  Boltery.defaultIntNull
+  Boltery.defaultTextNull
+  Boltery.maybeDateToValueI
+  Boltery.maybeToValueI
+  Boltery.maybeToValueT
+module dependencies: Common
+package dependencies: StateVar-1.1.0.4@StateVar-1.1.0.4-CJpWsiXJdd89SnV9dZtTwc
+                      Win32-2.3.1.1@Win32-2.3.1.1
+                      adjunctions-4.3@adjunctions-4.3-3ol9sWZt3In19pwXwPv3Xc
+                      aeson-1.0.2.1@aeson-1.0.2.1-IWZLPncKUtsCKiJwRHsVV2
+                      aeson-compat-0.3.6@aeson-compat-0.3.6-GGNwrjzrRWDAf6AKSzaJWI
+                      array-0.5.1.1@array-0.5.1.1
+                      asn1-encoding-0.9.4@asn1-encoding-0.9.4-3YVEfMH4lKFFFWYCBjLHYe
+                      asn1-parse-0.9.4@asn1-parse-0.9.4-472aFk4Rjki87YeAg9g5Ph
+                      asn1-types-0.3.2@asn1-types-0.3.2-FQg5wDTaVh0IwfdUfCcNmt
+                      async-2.1.1@async-2.1.1-xFiBzw9xoB8HPZAuxUY2o
+                      attoparsec-0.13.1.0@attoparsec-0.13.1.0-5Olk1S76r1CDYzFS6V3sZR
+                      base-4.9.0.0
+                      base-compat-0.9.1@base-compat-0.9.1-Jorka5wAHbt82D18A4gF6b
+                      base-orphans-0.5.4@base-orphans-0.5.4-5IQvrjd7gNP548VkOOyIq6
+                      base64-bytestring-1.0.0.1@base64-bytestring-1.0.0.1-In9M41tLtcS9QYt3QpGpNY
+                      bifunctors-5.4.1@bifunctors-5.4.1-8Xk5Wsnk1fr6rBLkW9MO8p
+                      binary-0.8.3.0@binary-0.8.3.0
+                      binary-orphans-0.1.5.1@binary-orphans-0.1.5.1-DPC52mntbhkG4cEV7O2TQl
+                      blaze-builder-0.4.0.2@blaze-builder-0.4.0.2-KWDLbdBYSBoALiMW0LHIz1
+                      blaze-html-0.8.1.3@blaze-html-0.8.1.3-8MBPJsFNBtBBD2gWERenva
+                      blaze-markup-0.7.1.1@blaze-markup-0.7.1.1-IE161DWDHNXF9O8bBguli5
+                      bson-0.3.2.3@bson-0.3.2.3-EE4NjCypFvQ16toPJxQaT3
+                      bson-generic-0.0.8@bson-generic-0.0.8-HCUlC9mFzScEiZ90dYsZ4F
+                      byteable-0.1.1@byteable-0.1.1-15aIBCArSOBEnGxArzrDTM
+                      bytestring-0.10.8.1@bytestring-0.10.8.1
+                      case-insensitive-1.2.0.7@case-insensitive-1.2.0.7-FlqweN7AuKj9EdU2arVEt4
+                      cereal-0.5.4.0@cereal-0.5.4.0-2FJYHGgtE5C3SxaZjt25xS
+                      comonad-5@comonad-5-2RMxpSOQ5MCHLHIelJrHD4
+                      connection-0.2.6@connection-0.2.6-7Q3EnbUKiqWBOpVdhPNll1
+                      containers-0.5.7.1@containers-0.5.7.1
+                      contravariant-1.4@contravariant-1.4-KSQE31a7FruKHDlp90hIUT
+                      cookie-0.4.2.1@cookie-0.4.2.1-2a2c54yIyBn79Ul3iLWclJ
+                      cryptohash-0.11.9@cryptohash-0.11.9-AKA83W6XJLuJ6ooDzY2r0l
+                      cryptonite-0.19@cryptonite-0.19-JQTQGTq5BGQJS9F2vRxlj
+                      data-binary-ieee754-0.4.4@data-binary-ieee754-0.4.4-F1HjhwdV1xx5grS0eMjeg2
+                      data-default-0.7.1.1@data-default-0.7.1.1-5uix4eIzBY9IcVb4V2HbW3
+                      data-default-class-0.1.2.0@data-default-class-0.1.2.0-FYQpjIylblBDctdkHAFeXA
+                      data-default-instances-containers-0.0.1@data-default-instances-containers-0.0.1-B3LqdWnlDzL8N7WtQnkQ3T
+                      data-default-instances-dlist-0.0.1@data-default-instances-dlist-0.0.1-7EnnOuRxBMR4O5lm1rpRqD
+                      data-default-instances-old-locale-0.0.1@data-default-instances-old-locale-0.0.1-LPOHPEJCJUa53W1ZYaHB84
+                      deepseq-1.4.2.0@deepseq-1.4.2.0
+                      deepseq-generics-0.2.0.0@deepseq-generics-0.2.0.0-ESBROgKchbm3QXcQv2e7oG
+                      directory-1.2.6.2@directory-1.2.6.2
+                      distributive-0.5.0.2@distributive-0.5.0.2-Cdz2vLOk85j1doGXLcictT
+                      dlist-0.8.0.2@dlist-0.8.0.2-GWAMmbX9rLg3tqrbOizHGv
+                      errors-2.1.3@errors-2.1.3-9dPYnhb3gqE7GWHRoqGMmJ
+                      exceptions-0.8.3@exceptions-0.8.3-7py7fmRxowDFpHmiHGKrTb
+                      file-embed-0.0.10@file-embed-0.0.10-IXfudWSq57y1Athysk5ifZ
+                      filepath-1.4.1.0@filepath-1.4.1.0
+                      free-4.12.4@free-4.12.4-Etm59Dm8iExFxAy1L49Ovd
+                      ghc-boot-th-8.0.1@ghc-boot-th-8.0.1 ghc-prim-0.5.0.0
+                      github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS
+                      hasbolt-0.1.0.9@hasbolt-0.1.0.9-AJXJGY2ypvLC8K54oQUQlt
+                      hashable-1.2.4.0@hashable-1.2.4.0-EMu4H7FB10MAl6hwKw992G
+                      hourglass-0.2.10@hourglass-0.2.10-17WCSaZB7oBF5JMwDbmBMG
+                      http-api-data-0.3.2@http-api-data-0.3.2-A22DPUhAmUlrIoBZ4qkGB
+                      http-client-0.4.31.2@http-client-0.4.31.2-6gyf7twhhmv8yfbRVNkl4Z
+                      http-client-tls-0.2.4.1@http-client-tls-0.2.4.1-GLneheAkBVv2w7qgvVFtET
+                      http-date-0.0.6.1@http-date-0.0.6.1-150spKQYCuoIrltdbMmYGs
+                      http-link-header-1.0.3@http-link-header-1.0.3-fKy7Q0vE064cd4UDnyGGp
+                      http-media-0.6.4@http-media-0.6.4-82jDVCpdN5H696EFF5l5I4
+                      http-types-0.9.1@http-types-0.9.1-8WdUZL4twHzANJbxvb1Aoj
+                      integer-gmp-1.0.0.1
+                      iso8601-time-0.1.4@iso8601-time-0.1.4-CQXtvTAot9eJkkRKHuVCon
+                      kan-extensions-5.0.1@kan-extensions-5.0.1-Asa0tkk9PuPLZ2eXuJ10Gr
+                      keys-3.11@keys-3.11-29BLD8qqiVyGmZ87zOkaxG
+                      memory-0.13@memory-0.13-ABHR5331zHK9scHPRr7afU
+                      mime-types-0.1.0.7@mime-types-0.1.0.7-AxQ64wFjikqCSdK5pSeZvh
+                      mmorph-1.0.9@mmorph-1.0.9-DmSwQqk5nLj7roLAcydGz
+                      mtl-2.2.1@mtl-2.2.1-6qsR1PHUy5lL47Hpoa4jCM
+                      network-2.6.3.1@network-2.6.3.1-nK9qnsiJR03CWuPIGMmX
+                      network-simple-0.4.0.5@network-simple-0.4.0.5-GNWN1gLrnMS3DQFJtwOijq
+                      network-uri-2.6.1.0@network-uri-2.6.1.0-DDHh2FNiPirBRgkuU9DEt2
+                      old-locale-1.0.0.7@old-locale-1.0.0.7-6glXNhHF891B41ZfuI8hU8
+                      parsec-3.1.11@parsec-3.1.11-BCos4GEVCuDB8dnOCBHO6X
+                      pem-0.2.2@pem-0.2.2-qPMQP6sZm3HgQEmiBojNt
+                      pointed-5@pointed-5-4thBVDuswzyHT6OwPKJEnE
+                      prelude-extras-0.4.0.3@prelude-extras-0.4.0.3-FAyB4iuuM7cHXdrLMZtdXq
+                      pretty-1.1.3.3@pretty-1.1.3.3
+                      primitive-0.6.1.0@primitive-0.6.1.0-Ip44DqhfCp21tTUYbecwa
+                      profunctors-5.2@profunctors-5.2-2ZZOz6u59T2H8y7z3NgZkY
+                      random-1.1@random-1.1-54KmMHXjttlERYcr1mvsAe
+                      scientific-0.3.4.9@scientific-0.3.4.9-6oTYuCcx6H5BsTGU7D2Gk3
+                      semigroupoids-5.1@semigroupoids-5.1-1Gay4xNO77GHd4DGCzVuax
+                      servant-0.9.1.1@servant-0.9.1.1-BMzPHFjspLnD38uAz6wSUb
+                      servant-server-0.9.1.1@servant-server-0.9.1.1-DE2J1HrS99GJcT3WTSVjFf
+                      socks-0.5.5@socks-0.5.5-CDtE058LGrg48HLqU60P0R
+                      stm-2.4.4.1@stm-2.4.4.1-4z2NRWnB0NIIUvSJsHW0kF
+                      streaming-commons-0.1.16@streaming-commons-0.1.16-1CT5SENqavw7Xg1mdSO0ef
+                      string-conversions-0.4@string-conversions-0.4-8T0UFmRDEly2gsNJzmHrNQ
+                      tagged-0.8.5@tagged-0.8.5-CtgV6EcN0do8F92i1S6iYx
+                      template-haskell-2.11.0.0
+                      text-1.2.2.1@text-1.2.2.1-5QpmrLQApEZ4Ly9nMHWY0s
+                      time-1.6.0.1@time-1.6.0.1
+                      time-locale-compat-0.1.1.3@time-locale-compat-0.1.1.3-1j5dGjxxtiTDuAsO86iSk0
+                      tls-1.3.8@tls-1.3.8-8GKWLz59XFLJdmmvqVtT7b
+                      transformers-0.5.2.0@transformers-0.5.2.0
+                      transformers-compat-0.5.1.4@transformers-compat-0.5.1.4-81lZyuOJOvsD0zyCv2TKld
+                      unexceptionalio-0.3.0@unexceptionalio-0.3.0-3nDcFbDMfKl1BSaDMqCv5B
+                      unix-compat-0.4.3.1@unix-compat-0.4.3.1-GfTEbzsMzf3JahCxeP2fig
+                      unordered-containers-0.2.7.1@unordered-containers-0.2.7.1-Eo9jd5DMz45DhBLCG8skzW
+                      uri-bytestring-0.2.2.1@uri-bytestring-0.2.2.1-LMJUdG9s1QpIQ10mPWMO6d
+                      utf8-string-1.0.1.1@utf8-string-1.0.1.1-2T8mBCuEDlXDo8zed8Onw4
+                      uuid-types-1.0.3@uuid-types-1.0.3-1qmdgBeDGlbCUibOmxVGqx
+                      vault-0.3.0.6@vault-0.3.0.6-CA9Xj82tAPe9nD32xVMgDG
+                      vector-0.11.0.0@vector-0.11.0.0-BEDZb5o2QOhGbIm6ky7rl6
+                      vector-binary-instances-0.2.3.3@vector-binary-instances-0.2.3.3-ITLfSosnCjgDHIm70KxMIu
+                      vector-instances-3.3.1@vector-instances-3.3.1-I6TdtGyV4ig2RKtxblZRcS
+                      wai-3.2.1.1@wai-3.2.1.1-GVNFJ2NUhhADT18B8nh1gg
+                      wai-app-static-3.1.6.1@wai-app-static-3.1.6.1-DeTa1z3VEolITqmVA6CDdU
+                      word8-0.1.2@word8-0.1.2-2E1SgvvAV2fK8vZPDHbRan
+                      x509-1.6.5@x509-1.6.5-50w9ZWnvQdrHCXUm82xnmn
+                      x509-store-1.6.2@x509-store-1.6.2-9dzQvVcRZx8okbOupFLld
+                      x509-system-1.6.4@x509-system-1.6.4-9A0O4xc5FxpHhIy8kqlvTd
+                      x509-validation-1.6.5@x509-validation-1.6.5-4klcFQmrJewFXisIYAqrfC
+                      zlib-0.6.1.2@zlib-0.6.1.2-4CWLN1T27kOJhNvXgy46ZV
+orphans: Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Common
+         attoparsec-0.13.1.0@attoparsec-0.13.1.0-5Olk1S76r1CDYzFS6V3sZR:Data.Attoparsec.ByteString.Char8
+         attoparsec-0.13.1.0@attoparsec-0.13.1.0-5Olk1S76r1CDYzFS6V3sZR:Data.Attoparsec.Text.Internal
+         base-4.9.0.0:GHC.Base base-4.9.0.0:GHC.Float
+         binary-0.8.3.0@binary-0.8.3.0:Data.Binary.Generic
+         binary-orphans-0.1.5.1@binary-orphans-0.1.5.1-DPC52mntbhkG4cEV7O2TQl:Data.Binary.Orphans
+         bson-generic-0.0.8@bson-generic-0.0.8-HCUlC9mFzScEiZ90dYsZ4F:Data.Bson.Generic
+         bytestring-0.10.8.1@bytestring-0.10.8.1:Data.ByteString.Builder
+         data-default-instances-containers-0.0.1@data-default-instances-containers-0.0.1-B3LqdWnlDzL8N7WtQnkQ3T:Data.Default.Instances.Containers
+         data-default-instances-dlist-0.0.1@data-default-instances-dlist-0.0.1-7EnnOuRxBMR4O5lm1rpRqD:Data.Default.Instances.DList
+         data-default-instances-old-locale-0.0.1@data-default-instances-old-locale-0.0.1-LPOHPEJCJUa53W1ZYaHB84:Data.Default.Instances.OldLocale
+         hasbolt-0.1.0.9@hasbolt-0.1.0.9-AJXJGY2ypvLC8K54oQUQlt:Database.Bolt.Connection.Instances
+         hasbolt-0.1.0.9@hasbolt-0.1.0.9-AJXJGY2ypvLC8K54oQUQlt:Database.Bolt.Value.Instances
+         hasbolt-0.1.0.9@hasbolt-0.1.0.9-AJXJGY2ypvLC8K54oQUQlt:Database.Bolt.Value.Structure
+         hashable-1.2.4.0@hashable-1.2.4.0-EMu4H7FB10MAl6hwKw992G:Data.Hashable.Generic
+         http-client-0.4.31.2@http-client-0.4.31.2-6gyf7twhhmv8yfbRVNkl4Z:Network.HTTP.Client.Request
+         network-2.6.3.1@network-2.6.3.1-nK9qnsiJR03CWuPIGMmX:Network.Socket
+         stm-2.4.4.1@stm-2.4.4.1-4z2NRWnB0NIIUvSJsHW0kF:Control.Monad.STM
+         text-1.2.2.1@text-1.2.2.1-5QpmrLQApEZ4Ly9nMHWY0s:Data.Text
+         text-1.2.2.1@text-1.2.2.1-5QpmrLQApEZ4Ly9nMHWY0s:Data.Text.Lazy
+         text-1.2.2.1@text-1.2.2.1-5QpmrLQApEZ4Ly9nMHWY0s:Data.Text.Show
+         time-1.6.0.1@time-1.6.0.1:Data.Time.Calendar.Gregorian
+         time-1.6.0.1@time-1.6.0.1:Data.Time.Format.Parse
+         time-1.6.0.1@time-1.6.0.1:Data.Time.LocalTime.LocalTime
+         transformers-0.5.2.0@transformers-0.5.2.0:Control.Monad.Trans.Error
+         vector-0.11.0.0@vector-0.11.0.0-BEDZb5o2QOhGbIm6ky7rl6:Data.Vector.Fusion.Bundle
+         vector-0.11.0.0@vector-0.11.0.0-BEDZb5o2QOhGbIm6ky7rl6:Data.Vector.Unboxed
+         vector-binary-instances-0.2.3.3@vector-binary-instances-0.2.3.3-ITLfSosnCjgDHIm70KxMIu:Data.Vector.Binary
+         vector-instances-3.3.1@vector-instances-3.3.1-I6TdtGyV4ig2RKtxblZRcS:Data.Vector.Instances
+family instance modules: Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Common
+                         adjunctions-4.3@adjunctions-4.3-3ol9sWZt3In19pwXwPv3Xc:Data.Functor.Rep
+                         attoparsec-0.13.1.0@attoparsec-0.13.1.0-5Olk1S76r1CDYzFS6V3sZR:Data.Attoparsec.Internal.Types
+                         base-4.9.0.0:Control.Applicative base-4.9.0.0:Data.Complex
+                         base-4.9.0.0:Data.Either base-4.9.0.0:Data.Functor.Compose
+                         base-4.9.0.0:Data.Functor.Const base-4.9.0.0:Data.Functor.Identity
+                         base-4.9.0.0:Data.Functor.Product base-4.9.0.0:Data.Functor.Sum
+                         base-4.9.0.0:Data.List.NonEmpty base-4.9.0.0:Data.Monoid
+                         base-4.9.0.0:Data.Semigroup base-4.9.0.0:Data.Type.Equality
+                         base-4.9.0.0:Data.Version base-4.9.0.0:Data.Void
+                         base-4.9.0.0:GHC.Exts base-4.9.0.0:GHC.Generics
+                         base-4.9.0.0:GHC.IO.Exception base-4.9.0.0:GHC.TypeLits
+                         bifunctors-5.4.1@bifunctors-5.4.1-8Xk5Wsnk1fr6rBLkW9MO8p:Data.Bifunctor.Biff
+                         bifunctors-5.4.1@bifunctors-5.4.1-8Xk5Wsnk1fr6rBLkW9MO8p:Data.Bifunctor.Clown
+                         bifunctors-5.4.1@bifunctors-5.4.1-8Xk5Wsnk1fr6rBLkW9MO8p:Data.Bifunctor.Flip
+                         bifunctors-5.4.1@bifunctors-5.4.1-8Xk5Wsnk1fr6rBLkW9MO8p:Data.Bifunctor.Join
+                         bifunctors-5.4.1@bifunctors-5.4.1-8Xk5Wsnk1fr6rBLkW9MO8p:Data.Bifunctor.Joker
+                         bifunctors-5.4.1@bifunctors-5.4.1-8Xk5Wsnk1fr6rBLkW9MO8p:Data.Bifunctor.Product
+                         bifunctors-5.4.1@bifunctors-5.4.1-8Xk5Wsnk1fr6rBLkW9MO8p:Data.Bifunctor.Sum
+                         bifunctors-5.4.1@bifunctors-5.4.1-8Xk5Wsnk1fr6rBLkW9MO8p:Data.Bifunctor.Tannen
+                         bifunctors-5.4.1@bifunctors-5.4.1-8Xk5Wsnk1fr6rBLkW9MO8p:Data.Bifunctor.Wrapped
+                         bson-generic-0.0.8@bson-generic-0.0.8-HCUlC9mFzScEiZ90dYsZ4F:Data.Bson.Generic
+                         containers-0.5.7.1@containers-0.5.7.1:Data.IntMap.Base
+                         containers-0.5.7.1@containers-0.5.7.1:Data.IntSet.Base
+                         containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base
+                         containers-0.5.7.1@containers-0.5.7.1:Data.Sequence
+                         containers-0.5.7.1@containers-0.5.7.1:Data.Set.Base
+                         dlist-0.8.0.2@dlist-0.8.0.2-GWAMmbX9rLg3tqrbOizHGv:Data.DList
+                         ghc-boot-th-8.0.1@ghc-boot-th-8.0.1:GHC.LanguageExtensions.Type
+                         github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Auth
+                         github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.Activities
+                         github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.Comments
+                         github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.Content
+                         github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.Definitions
+                         github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.DeployKeys
+                         github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.Events
+                         github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.Gists
+                         github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.GitData
+                         github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.Id
+                         github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.Issues
+                         github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.Milestone
+                         github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.Name
+                         github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.Options
+                         github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.PullRequests
+                         github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.Repos
+                         github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.Request
+                         github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.Search
+                         github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.Teams
+                         github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.URL
+                         github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.Webhooks
+                         http-api-data-0.3.2@http-api-data-0.3.2-A22DPUhAmUlrIoBZ4qkGB:Web.Internal.FormUrlEncoded
+                         http-client-0.4.31.2@http-client-0.4.31.2-6gyf7twhhmv8yfbRVNkl4Z:Network.HTTP.Client
+                         kan-extensions-5.0.1@kan-extensions-5.0.1-Asa0tkk9PuPLZ2eXuJ10Gr:Data.Functor.Day
+                         keys-3.11@keys-3.11-29BLD8qqiVyGmZ87zOkaxG:Data.Key
+                         network-uri-2.6.1.0@network-uri-2.6.1.0-DDHh2FNiPirBRgkuU9DEt2:Network.URI
+                         pretty-1.1.3.3@pretty-1.1.3.3:Text.PrettyPrint.Annotated.HughesPJ
+                         pretty-1.1.3.3@pretty-1.1.3.3:Text.PrettyPrint.HughesPJ
+                         primitive-0.6.1.0@primitive-0.6.1.0-Ip44DqhfCp21tTUYbecwa:Control.Monad.Primitive
+                         servant-0.9.1.1@servant-0.9.1.1-BMzPHFjspLnD38uAz6wSUb:Servant.API.ContentTypes
+                         servant-0.9.1.1@servant-0.9.1.1-BMzPHFjspLnD38uAz6wSUb:Servant.API.IsSecure
+                         servant-0.9.1.1@servant-0.9.1.1-BMzPHFjspLnD38uAz6wSUb:Servant.API.Verbs
+                         servant-0.9.1.1@servant-0.9.1.1-BMzPHFjspLnD38uAz6wSUb:Servant.Utils.Links
+                         servant-server-0.9.1.1@servant-server-0.9.1.1-DE2J1HrS99GJcT3WTSVjFf:Servant.Server.Internal
+                         servant-server-0.9.1.1@servant-server-0.9.1.1-DE2J1HrS99GJcT3WTSVjFf:Servant.Server.Internal.BasicAuth
+                         tagged-0.8.5@tagged-0.8.5-CtgV6EcN0do8F92i1S6iYx:Data.Tagged
+                         template-haskell-2.11.0.0:Language.Haskell.TH.Syntax
+                         text-1.2.2.1@text-1.2.2.1-5QpmrLQApEZ4Ly9nMHWY0s:Data.Text
+                         text-1.2.2.1@text-1.2.2.1-5QpmrLQApEZ4Ly9nMHWY0s:Data.Text.Lazy
+                         unordered-containers-0.2.7.1@unordered-containers-0.2.7.1-Eo9jd5DMz45DhBLCG8skzW:Data.HashMap.Base
+                         unordered-containers-0.2.7.1@unordered-containers-0.2.7.1-Eo9jd5DMz45DhBLCG8skzW:Data.HashSet
+                         uri-bytestring-0.2.2.1@uri-bytestring-0.2.2.1-LMJUdG9s1QpIQ10mPWMO6d:URI.ByteString.Types
+                         uuid-types-1.0.3@uuid-types-1.0.3-1qmdgBeDGlbCUibOmxVGqx:Data.UUID.Types.Internal
+                         uuid-types-1.0.3@uuid-types-1.0.3-1qmdgBeDGlbCUibOmxVGqx:Data.UUID.Types.Internal.Builder
+                         vector-0.11.0.0@vector-0.11.0.0-BEDZb5o2QOhGbIm6ky7rl6:Data.Vector
+                         vector-0.11.0.0@vector-0.11.0.0-BEDZb5o2QOhGbIm6ky7rl6:Data.Vector.Primitive
+                         vector-0.11.0.0@vector-0.11.0.0-BEDZb5o2QOhGbIm6ky7rl6:Data.Vector.Storable
+                         vector-0.11.0.0@vector-0.11.0.0-BEDZb5o2QOhGbIm6ky7rl6:Data.Vector.Unboxed
+                         vector-0.11.0.0@vector-0.11.0.0-BEDZb5o2QOhGbIm6ky7rl6:Data.Vector.Unboxed.Base
+                         vector-instances-3.3.1@vector-instances-3.3.1-I6TdtGyV4ig2RKtxblZRcS:Data.Vector.Instances
+                         zlib-0.6.1.2@zlib-0.6.1.2-4CWLN1T27kOJhNvXgy46ZV:Codec.Compression.Zlib.Stream
+import  -/  Common 5a17672e7685c30654408ca68276ad18
+  exports: a09688777efcfc740dc1dc3e24890d69
+import  -/  base-4.9.0.0:Data.Foldable 3cbed01c922be29649c33015287c82ca
+import  -/  base-4.9.0.0:Data.List d711f98b49ef5d33e5b3d404631ed073
+import  -/  base-4.9.0.0:Data.Maybe 086a84053ef7f7810663b5f03b7ec3f7
+import  -/  base-4.9.0.0:GHC.Base dd8044a8d640eee51828c17c476a6ba7
+import  -/  base-4.9.0.0:GHC.Real 011de9ca3282ad24a84e4e15f974f98e
+import  -/  base-4.9.0.0:Prelude 2d9cd8b0ec3d728f62b734df888d2e34
+import  -/  containers-0.5.7.1@containers-0.5.7.1:Data.Map 59ba4f128d7d19046010538c416f3875
+import  -/  containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base d6db6ac95571c976686f97c64548b060
+import  -/  data-default-class-0.1.2.0@data-default-class-0.1.2.0-FYQpjIylblBDctdkHAFeXA:Data.Default.Class cd810d24158fd0b05521bce63ca66536
+import  -/  ghc-prim-0.5.0.0:GHC.Types 7378e41b7749213c8c88ceb6b0665d4c
+import  -/  github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub 17debb1427f3e69d8bcd080cccf518ae
+import  -/  github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data d194d53e37c4ecc16d3fbb995e6b77bd
+import  -/  github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.Definitions ed8fcf50cc57ba0c0443299a163fe3ce
+import  -/  github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.Id abc2cd607ef950daa970ceade8de77f7
+import  -/  github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.Name b13da9dd3eb269a819e95f685caa1002
+import  -/  github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.Repos 126bc2958ca465b6ca752e6ea1e8b917
+import  -/  github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Data.URL 890361568371d394c181cc1e0ee6c609
+import  -/  github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Endpoints.Repos f02aa842636c327cd308ac392a02a71f
+import  -/  github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Endpoints.Users c56b9dd4729d1a871545078f8dd0d422
+import  -/  github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS:GitHub.Internal.Prelude 99678ef942738b1e06b92b3ead375a36
+import  -/  hasbolt-0.1.0.9@hasbolt-0.1.0.9-AJXJGY2ypvLC8K54oQUQlt:Database.Bolt db04bc1484733b36d88b0dd9f97dd2dc
+import  -/  hasbolt-0.1.0.9@hasbolt-0.1.0.9-AJXJGY2ypvLC8K54oQUQlt:Database.Bolt.Connection ae3fdd36c3cc73e2e82816392e35d998
+import  -/  hasbolt-0.1.0.9@hasbolt-0.1.0.9-AJXJGY2ypvLC8K54oQUQlt:Database.Bolt.Connection.Pipe 58daeac2f7c59c1ccdc23eb999cb3a75
+import  -/  hasbolt-0.1.0.9@hasbolt-0.1.0.9-AJXJGY2ypvLC8K54oQUQlt:Database.Bolt.Connection.Type db26fdf704464705a1b71daa7989d1de
+import  -/  hasbolt-0.1.0.9@hasbolt-0.1.0.9-AJXJGY2ypvLC8K54oQUQlt:Database.Bolt.Value.Type 7d7abd55cdfaf543f76023beb39f8509
+import  -/  text-1.2.2.1@text-1.2.2.1-5QpmrLQApEZ4Ly9nMHWY0s:Data.Text 8dbacab9fc008bc20f8ced1c7c1f4b82
+import  -/  text-1.2.2.1@text-1.2.2.1-5QpmrLQApEZ4Ly9nMHWY0s:Data.Text.Internal 80110b2fecada91347ca30963f299ad2
+import  -/  time-1.6.0.1@time-1.6.0.1:Data.Time.Clock 23d666c4496b6f7bf555419424731ccb
+import  -/  time-1.6.0.1@time-1.6.0.1:Data.Time.Clock.UTC 537fb1f480607f986a423bba04b71bb0
+573279eefa871159c3514dbdea0e53d6
+  $sfromList ::
+    [(Data.Text.Internal.Text, a)]
+    -> Data.Map.Base.Map Data.Text.Internal.Text a
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: (\ @ a (ds :: [(Data.Text.Internal.Text, a)]) ->
+                 case ds of wild {
+                   [] -> Data.Map.Base.Tip @ Data.Text.Internal.Text @ a
+                   : ds1 ds2
+                   -> case ds1 of wild1 { (,) kx x ->
+                      case ds2 of wild2 {
+                        []
+                        -> case kx of dt { Data.Text.Internal.Text ipv ipv1 ipv2 ->
+                           Data.Map.Base.Bin
+                             @ Data.Text.Internal.Text
+                             @ a
+                             1#
+                             dt
+                             x
+                             (Data.Map.Base.Tip @ Data.Text.Internal.Text @ a)
+                             (Data.Map.Base.Tip @ Data.Text.Internal.Text @ a) }
+                        : ipv ipv1
+                        -> case ipv of wild3 { (,) ky ds3 ->
+                           case kx of ww { Data.Text.Internal.Text ww1 ww2 ww3 ->
+                           case ky of ww4 { Data.Text.Internal.Text ww5 ww6 ww7 ->
+                           case Data.Text.$w$ccompare ww1 ww2 ww3 ww5 ww6 ww7 of wild4 {
+                             DEFAULT
+                             -> Boltery.$sfromList1
+                                  @ a
+                                  (Data.Map.Base.Bin
+                                     @ Data.Text.Internal.Text
+                                     @ a
+                                     1#
+                                     ww
+                                     x
+                                     (Data.Map.Base.Tip @ Data.Text.Internal.Text @ a)
+                                     (Data.Map.Base.Tip @ Data.Text.Internal.Text @ a))
+                                  wild2
+                             GHC.Types.LT
+                             -> Boltery.$wpoly_go10
+                                  @ a
+                                  1#
+                                  (Data.Map.Base.Bin
+                                     @ Data.Text.Internal.Text
+                                     @ a
+                                     1#
+                                     ww
+                                     x
+                                     (Data.Map.Base.Tip @ Data.Text.Internal.Text @ a)
+                                     (Data.Map.Base.Tip @ Data.Text.Internal.Text @ a))
+                                  wild2 } } } } } } }) -}
+cb78c35666ced1ea57b1179dbe721b5d
+  $sfromList1 ::
+    Data.Map.Base.Map Data.Text.Internal.Text a1
+    -> [(Data.Text.Internal.Text, a1)]
+    -> Data.Map.Base.Map Data.Text.Internal.Text a1
+  {- Arity: 2, Strictness: <S,1*U><S,1*U> -}
+c8164e15899a17d3e678054a3f6bc830
+  $trModule :: GHC.Types.Module
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module
+                   Boltery.$trModule2
+                   Boltery.$trModule1) -}
+7728bdf233f02c05a8dfaa1df7417fa8
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "Boltery"#) -}
+736fa5d66fe8f92b4249a6783b6bb075
+  $trModule2 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS
+                   "Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A"#) -}
+b4513520b9fb196a71e0efafdce16637
+  $w$sgo10 ::
+    GHC.Prim.ByteArray#
+    -> GHC.Prim.Int#
+    -> GHC.Prim.Int#
+    -> a1
+    -> Data.Map.Base.Map Data.Text.Internal.Text a1
+    -> Data.Map.Base.Map Data.Text.Internal.Text a1
+  {- Arity: 5, Strictness: <L,U><L,U><L,U><L,U><S,1*U>,
+     Inline: [0] -}
+9f22608a19070ab4db4d3d6f066069df
+  $wboltParamsRepo ::
+    GHC.Base.Maybe Data.Text.Internal.Text
+    -> GHC.Base.Maybe Data.Time.Clock.UTC.UTCTime
+    -> GitHub.Data.URL.URL
+    -> GHC.Base.Maybe GHC.Types.Int
+    -> GHC.Types.Bool
+    -> GHC.Base.Maybe GHC.Types.Int
+    -> GHC.Base.Maybe Data.Time.Clock.UTC.UTCTime
+    -> GHC.Base.Maybe GHC.Types.Int
+    -> GHC.Prim.Int#
+    -> GitHub.Data.Name.Name GitHub.Data.Definitions.Owner
+    -> GitHub.Data.Name.Name GitHub.Data.Repos.Repo
+    -> GHC.Base.Maybe Data.Time.Clock.UTC.UTCTime
+    -> GHC.Prim.Int#
+    -> GitHub.Data.URL.URL
+    -> GHC.Base.Maybe GHC.Types.Int
+    -> Data.Map.Base.Map
+         Data.Text.Internal.Text Database.Bolt.Value.Type.Value
+  {- Arity: 15,
+     Strictness: <S,U><S,U><S,U><S,U><S,U><S,U><S,U><S,U><L,U><L,U><S,U><S,U><L,U><S,U><S,U>,
+     Inline: [0],
+     Unfolding: (\ (ww :: GHC.Base.Maybe Data.Text.Internal.Text)
+                   (ww1 :: GHC.Base.Maybe Data.Time.Clock.UTC.UTCTime)
+                   (ww2 :: GitHub.Data.URL.URL)
+                   (ww3 :: GHC.Base.Maybe GHC.Types.Int)
+                   (ww4 :: GHC.Types.Bool)
+                   (ww5 :: GHC.Base.Maybe GHC.Types.Int)
+                   (ww6 :: GHC.Base.Maybe Data.Time.Clock.UTC.UTCTime)
+                   (ww7 :: GHC.Base.Maybe GHC.Types.Int)
+                   (ww8 :: GHC.Prim.Int#)
+                   (ww9 :: GitHub.Data.Name.Name GitHub.Data.Definitions.Owner)
+                   (ww10 :: GitHub.Data.Name.Name GitHub.Data.Repos.Repo)
+                   (ww11 :: GHC.Base.Maybe Data.Time.Clock.UTC.UTCTime)
+                   (ww12 :: GHC.Prim.Int#)
+                   (ww13 :: GitHub.Data.URL.URL)
+                   (ww14 :: GHC.Base.Maybe GHC.Types.Int) ->
+                 Boltery.$sfromList
+                   @ Database.Bolt.Value.Type.Value
+                   (GHC.Types.:
+                      @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                      (Boltery.boltParamsRepo15,
+                       Database.Bolt.Value.Type.T
+                         (case ww of wild {
+                            GHC.Base.Nothing -> Boltery.defaultTextNull
+                            GHC.Base.Just v -> v }))
+                      (GHC.Types.:
+                         @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                         (Boltery.boltParamsRepo14,
+                          Database.Bolt.Value.Type.I (GHC.Types.I# ww12))
+                         (GHC.Types.:
+                            @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                            (Boltery.boltParamsRepo13,
+                             Database.Bolt.Value.Type.T ww13 `cast` (GitHub.Data.URL.N:URL[0]))
+                            (GHC.Types.:
+                               @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                               (Boltery.boltParamsRepo12,
+                                Database.Bolt.Value.Type.T
+                                  ww10
+                                    `cast`
+                                  (GitHub.Data.Name.N:Name[0] <GitHub.Data.Repos.Repo>_P))
+                               (GHC.Types.:
+                                  @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                                  (Boltery.boltParamsRepo11,
+                                   Database.Bolt.Value.Type.T
+                                     ww9
+                                       `cast`
+                                     (GitHub.Data.Name.N:Name[0] <GitHub.Data.Definitions.Owner>_P))
+                                  (GHC.Types.:
+                                     @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                                     (Boltery.boltParamsRepo10,
+                                      Database.Bolt.Value.Type.I (GHC.Types.I# ww8))
+                                     (GHC.Types.:
+                                        @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                                        (Boltery.boltParamsRepo9, Database.Bolt.Value.Type.B ww4)
+                                        (GHC.Types.:
+                                           @ (Data.Text.Internal.Text,
+                                              Database.Bolt.Value.Type.Value)
+                                           (Boltery.boltParamsRepo8,
+                                            Database.Bolt.Value.Type.T
+                                              ww2 `cast` (GitHub.Data.URL.N:URL[0]))
+                                           (GHC.Types.:
+                                              @ (Data.Text.Internal.Text,
+                                                 Database.Bolt.Value.Type.Value)
+                                              (Boltery.boltParamsRepo7,
+                                               Database.Bolt.Value.Type.I
+                                                 (case ww3 of wild {
+                                                    GHC.Base.Nothing -> Boltery.defaultIntNull
+                                                    GHC.Base.Just v -> v }))
+                                              (GHC.Types.:
+                                                 @ (Data.Text.Internal.Text,
+                                                    Database.Bolt.Value.Type.Value)
+                                                 (Boltery.boltParamsRepo6,
+                                                  Database.Bolt.Value.Type.I
+                                                    (case ww7 of wild {
+                                                       GHC.Base.Nothing -> Boltery.defaultIntNull
+                                                       GHC.Base.Just v -> v }))
+                                                 (GHC.Types.:
+                                                    @ (Data.Text.Internal.Text,
+                                                       Database.Bolt.Value.Type.Value)
+                                                    (Boltery.boltParamsRepo5,
+                                                     Database.Bolt.Value.Type.I
+                                                       (case ww5 of wild {
+                                                          GHC.Base.Nothing -> Boltery.defaultIntNull
+                                                          GHC.Base.Just v -> v }))
+                                                    (GHC.Types.:
+                                                       @ (Data.Text.Internal.Text,
+                                                          Database.Bolt.Value.Type.Value)
+                                                       (Boltery.boltParamsRepo4,
+                                                        Database.Bolt.Value.Type.I
+                                                          (case ww14 of wild {
+                                                             GHC.Base.Nothing
+                                                             -> Boltery.defaultIntNull
+                                                             GHC.Base.Just v -> v }))
+                                                       (GHC.Types.:
+                                                          @ (Data.Text.Internal.Text,
+                                                             Database.Bolt.Value.Type.Value)
+                                                          (Boltery.boltParamsRepo3,
+                                                           Boltery.maybeDateToValueI ww11)
+                                                          (GHC.Types.:
+                                                             @ (Data.Text.Internal.Text,
+                                                                Database.Bolt.Value.Type.Value)
+                                                             (Boltery.boltParamsRepo2,
+                                                              Boltery.maybeDateToValueI ww6)
+                                                             (GHC.Types.:
+                                                                @ (Data.Text.Internal.Text,
+                                                                   Database.Bolt.Value.Type.Value)
+                                                                (Boltery.boltParamsRepo1,
+                                                                 Boltery.maybeDateToValueI ww1)
+                                                                (GHC.Types.[]
+                                                                   @ (Data.Text.Internal.Text,
+                                                                      Database.Bolt.Value.Type.Value)))))))))))))))))) -}
+246f181efb67ad404ea8ad72476ae33c
+  $wboltParamsUser ::
+    GHC.Prim.Int#
+    -> GitHub.Data.Name.Name GitHub.Data.Definitions.User
+    -> GHC.Base.Maybe Data.Text.Internal.Text
+    -> GHC.Prim.Int#
+    -> GHC.Prim.Int#
+    -> GHC.Prim.Int#
+    -> GHC.Base.Maybe Data.Text.Internal.Text
+    -> GHC.Prim.Int#
+    -> GHC.Base.Maybe Data.Text.Internal.Text
+    -> GHC.Base.Maybe Data.Text.Internal.Text
+    -> GHC.Base.Maybe Data.Text.Internal.Text
+    -> GitHub.Data.URL.URL
+    -> Data.Map.Base.Map
+         Data.Text.Internal.Text Database.Bolt.Value.Type.Value
+  {- Arity: 12,
+     Strictness: <L,U><S,U><S,U><L,U><L,U><L,U><S,U><L,U><S,U><S,U><S,U><S,U>,
+     Inline: [0],
+     Unfolding: (\ (ww :: GHC.Prim.Int#)
+                   (ww1 :: GitHub.Data.Name.Name GitHub.Data.Definitions.User)
+                   (ww2 :: GHC.Base.Maybe Data.Text.Internal.Text)
+                   (ww3 :: GHC.Prim.Int#)
+                   (ww4 :: GHC.Prim.Int#)
+                   (ww5 :: GHC.Prim.Int#)
+                   (ww6 :: GHC.Base.Maybe Data.Text.Internal.Text)
+                   (ww7 :: GHC.Prim.Int#)
+                   (ww8 :: GHC.Base.Maybe Data.Text.Internal.Text)
+                   (ww9 :: GHC.Base.Maybe Data.Text.Internal.Text)
+                   (ww10 :: GHC.Base.Maybe Data.Text.Internal.Text)
+                   (ww11 :: GitHub.Data.URL.URL) ->
+                 Boltery.$sfromList
+                   @ Database.Bolt.Value.Type.Value
+                   (GHC.Types.:
+                      @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                      (Boltery.boltParamsUser12,
+                       Database.Bolt.Value.Type.T
+                         ww1
+                           `cast`
+                         (GitHub.Data.Name.N:Name[0] <GitHub.Data.Definitions.User>_P))
+                      (GHC.Types.:
+                         @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                         (Boltery.boltParamsUser11,
+                          Database.Bolt.Value.Type.I (GHC.Types.I# ww))
+                         (GHC.Types.:
+                            @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                            (Boltery.boltParamsUser10,
+                             Database.Bolt.Value.Type.T ww11 `cast` (GitHub.Data.URL.N:URL[0]))
+                            (GHC.Types.:
+                               @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                               (Boltery.boltParamsUser9,
+                                Database.Bolt.Value.Type.T
+                                  (case ww2 of wild {
+                                     GHC.Base.Nothing -> Boltery.defaultTextNull
+                                     GHC.Base.Just v -> v }))
+                               (GHC.Types.:
+                                  @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                                  (Boltery.boltParamsUser8,
+                                   Database.Bolt.Value.Type.T
+                                     (case ww9 of wild {
+                                        GHC.Base.Nothing -> Boltery.defaultTextNull
+                                        GHC.Base.Just v -> v }))
+                                  (GHC.Types.:
+                                     @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                                     (Boltery.boltParamsUser7,
+                                      Database.Bolt.Value.Type.T
+                                        (case ww8 of wild {
+                                           GHC.Base.Nothing -> Boltery.defaultTextNull
+                                           GHC.Base.Just v -> v }))
+                                     (GHC.Types.:
+                                        @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                                        (Boltery.boltParamsUser6,
+                                         Database.Bolt.Value.Type.T
+                                           (case ww10 of wild {
+                                              GHC.Base.Nothing -> Boltery.defaultTextNull
+                                              GHC.Base.Just v -> v }))
+                                        (GHC.Types.:
+                                           @ (Data.Text.Internal.Text,
+                                              Database.Bolt.Value.Type.Value)
+                                           (Boltery.boltParamsUser5,
+                                            Database.Bolt.Value.Type.T
+                                              (case ww6 of wild {
+                                                 GHC.Base.Nothing -> Boltery.defaultTextNull
+                                                 GHC.Base.Just v -> v }))
+                                           (GHC.Types.:
+                                              @ (Data.Text.Internal.Text,
+                                                 Database.Bolt.Value.Type.Value)
+                                              (Boltery.boltParamsUser4,
+                                               Database.Bolt.Value.Type.I (GHC.Types.I# ww7))
+                                              (GHC.Types.:
+                                                 @ (Data.Text.Internal.Text,
+                                                    Database.Bolt.Value.Type.Value)
+                                                 (Boltery.boltParamsUser3,
+                                                  Database.Bolt.Value.Type.I (GHC.Types.I# ww3))
+                                                 (GHC.Types.:
+                                                    @ (Data.Text.Internal.Text,
+                                                       Database.Bolt.Value.Type.Value)
+                                                    (Boltery.boltParamsUser2,
+                                                     Database.Bolt.Value.Type.I (GHC.Types.I# ww4))
+                                                    (GHC.Types.:
+                                                       @ (Data.Text.Internal.Text,
+                                                          Database.Bolt.Value.Type.Value)
+                                                       (Boltery.boltParamsUser1,
+                                                        Database.Bolt.Value.Type.I
+                                                          (GHC.Types.I# ww5))
+                                                       (GHC.Types.[]
+                                                          @ (Data.Text.Internal.Text,
+                                                             Database.Bolt.Value.Type.Value))))))))))))))) -}
+8de98eb2ae3879382662e1c5a0b96bda
+  $wmaybeDateToValueI ::
+    GHC.Base.Maybe Data.Time.Clock.UTC.UTCTime -> (# GHC.Types.Int #)
+  {- Arity: 1, Strictness: <L,1*U>, Inline: [0],
+     Unfolding: (\ (w :: GHC.Base.Maybe Data.Time.Clock.UTC.UTCTime) ->
+                 (# case w of wild {
+                      GHC.Base.Nothing
+                      -> case Data.Maybe.fromJust1 ret_ty GHC.Types.Int of {}
+                      GHC.Base.Just x
+                      -> case x of wild1 { Data.Time.Clock.UTC.UTCTime ds1 ds2 ->
+                         case GHC.Real.$w$s$c/
+                                ds2
+                                  `cast`
+                                (Trans
+                                     (Data.Time.Clock.Scale.N:DiffTime[0])
+                                     (Data.Fixed.N:Fixed[0] <Data.Fixed.E12>_P))
+                                GHC.Real.$fEnumRatio1
+                                Data.Fixed.$fHasResolutionE5
+                                GHC.Real.$fEnumRatio1 of ww6 { (#,#) ww7 ww8 ->
+                         GHC.Real.$w$s$cfloor
+                           @ GHC.Types.Int
+                           GHC.Real.$fIntegralInt
+                           ww7
+                           ww8 } } } #)) -}
+7cfba65a5405342388b28f9ccce79478
+  $wpoly_go10 ::
+    GHC.Prim.Int#
+    -> Data.Map.Base.Map Data.Text.Internal.Text a
+    -> [(Data.Text.Internal.Text, a)]
+    -> Data.Map.Base.Map Data.Text.Internal.Text a
+  {- Arity: 3, Strictness: <L,U><S,1*U><S,1*U>, Inline: [0] -}
+fa9acff7da1cf3bf93d92b0243a1aa8b
+  boltCypherLanguage :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString#
+                   "CREATE (n:Language {  name: {language} } )"#) -}
+81daa252cf1e84169c092e1c96f0269e
+  boltCypherRepo :: Data.Text.Internal.Text
+ec385b9427299fcb9614a00cad52a8f1
+  boltCypherUser :: Data.Text.Internal.Text
+cb608824ea6ae1815bb45a8372f869c6
+  boltParamsLanguage ::
+    Data.Text.Internal.Text
+    -> Data.Map.Base.Map
+         Data.Text.Internal.Text Database.Bolt.Value.Type.Value
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (language :: Data.Text.Internal.Text) ->
+                 Boltery.$sfromList
+                   @ Database.Bolt.Value.Type.Value
+                   (GHC.Types.:
+                      @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                      (Boltery.boltParamsLanguage1, Database.Bolt.Value.Type.T language)
+                      (GHC.Types.[]
+                         @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)))) -}
+ff877362e96ffa7c95b25c66501ee5b0
+  boltParamsLanguage1 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "language"#) -}
+8edaebfc7b455d04a4b2a9cc2013a381
+  boltParamsRepo ::
+    GitHub.Data.Repos.Repo
+    -> Data.Map.Base.Map
+         Data.Text.Internal.Text Database.Bolt.Value.Type.Value
+  {- Arity: 1,
+     Strictness: <S(LSSSLSLLLSLSSSSSLLSLSSLLLLLLL),1*U(A,U,U,U,A,U,A,A,A,U,A,U,U,U,U(U,U,A,A,A),U,A,A,U,U,U,U,A,A,A,A,A,A,A)>,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (1, True, False)
+                (\ (w :: GitHub.Data.Repos.Repo) ->
+                 case w of ww { GitHub.Data.Repos.Repo ww1 ww2 ww3 ww4 ww5 ww6 ww7 ww8 ww9 ww10 ww11 ww12 ww13 ww14 ww15 ww16 ww17 ww18 ww19 ww20 ww21 ww22 ww23 ww24 ww25 ww26 ww27 ww28 ww29 ->
+                 case ww15 of ww30 { GitHub.Data.Definitions.SimpleOwner ww31 ww32 ww33 ww34 ww35 ->
+                 Boltery.$wboltParamsRepo
+                   ww2
+                   ww3
+                   ww4
+                   ww6
+                   ww10
+                   ww12
+                   ww13
+                   ww14
+                   ww31
+                   ww32
+                   ww16
+                   ww19
+                   ww20
+                   ww21
+                   ww22 } }) -}
+fcde3978010a1dfd06d99b4891cd3f98
+  boltParamsRepo1 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "repoCreatedAt"#) -}
+000eaf684465a8910b04caed4c18f764
+  boltParamsRepo10 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "repoOwnerId"#) -}
+b2a485cbbd6da34c06d8bab81c6b7253
+  boltParamsRepo11 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "repoOwnerLogin"#) -}
+a3ea63eb342cbfd4342701e4a65ff9e5
+  boltParamsRepo12 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "repoName"#) -}
+b0b751973eac48faebd04ffa439bcebd
+  boltParamsRepo13 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "repoUrl"#) -}
+9abc01d322b3e3880527ff2e7b5c778d
+  boltParamsRepo14 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "repoId"#) -}
+ef7cea9e1034b09e2c7ffa5186ad13fb
+  boltParamsRepo15 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "repoDescription"#) -}
+93bf2bd226db9ba2b45aced2fe565505
+  boltParamsRepo2 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "repoUpdatedAt"#) -}
+d41943172db3ba42ff2e493a81cddfdb
+  boltParamsRepo3 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "repoPushedAt"#) -}
+43cb7f0855c271da0d76ce6e5c61f969
+  boltParamsRepo4 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "repoOpenIssues"#) -}
+d385b918f87cd0fe6599ea05d37944da
+  boltParamsRepo5 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "repoSize"#) -}
+fc0aed0174b35f21b5d00337cff6bcb1
+  boltParamsRepo6 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "repoWatchers"#) -}
+fbb9a14c7bb75319aa2efc5b75350e18
+  boltParamsRepo7 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "repoForks"#) -}
+6a96a8912a8a3205b8284ffb3a6a7704
+  boltParamsRepo8 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "repoHtmlUrl"#) -}
+14d867f296b4a9e42291a058a72f6b16
+  boltParamsRepo9 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "repoPrivate"#) -}
+6a72ec17905a5f907475c3a931d7831c
+  boltParamsUser ::
+    GitHub.Data.Definitions.User
+    -> Data.Map.Base.Map
+         Data.Text.Internal.Text Database.Bolt.Value.Type.Value
+  {- Arity: 1,
+     Strictness: <S(LSSLLLLLLLLSLSSSSL),1*U(U,U,U,A,A,U,A,U,U,A,A,U,U,U,U,U,U,A)>,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (1, True, False)
+                (\ (w :: GitHub.Data.Definitions.User) ->
+                 case w of ww { GitHub.Data.Definitions.User ww1 ww2 ww3 ww4 ww5 ww6 ww7 ww8 ww9 ww10 ww11 ww12 ww13 ww14 ww15 ww16 ww17 ww18 ->
+                 Boltery.$wboltParamsUser
+                   ww1
+                   ww2
+                   ww3
+                   ww6
+                   ww8
+                   ww9
+                   ww12
+                   ww13
+                   ww14
+                   ww15
+                   ww16
+                   ww17 }) -}
+f8d466e78e84d6710cab8affc0293549
+  boltParamsUser1 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "userFollowing"#) -}
+50a4ba1eaa1e353adc15cc3c8281d1d2
+  boltParamsUser10 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "userUrl"#) -}
+89f3ae22edb56645f992de6235c7b8f1
+  boltParamsUser11 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "userId"#) -}
+b490404d8e73a9271e40226aba64e215
+  boltParamsUser12 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "userLogin"#) -}
+49d9f09cfb6d905d237d61e777e159d1
+  boltParamsUser2 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "userFollowers"#) -}
+28b3c6f486f9f4ad7768effc32313cfc
+  boltParamsUser3 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "userPublicGists"#) -}
+f43ffb249727bbe167894697130a57f1
+  boltParamsUser4 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "userPublicRepos"#) -}
+7f5d84aaa8270ce6816a84a1b21c95fa
+  boltParamsUser5 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "userBio"#) -}
+192e8ad249df328be479a35df8681d9f
+  boltParamsUser6 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "userEmail"#) -}
+fcd2413dbd0814c5415d7c19e0306733
+  boltParamsUser7 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "userLocation"#) -}
+03b0796effd540bef65f8b45b6e6a9cc
+  boltParamsUser8 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "userCompany"#) -}
+1a164f62ecc2abebccd7b294f8b53c7b
+  boltParamsUser9 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "userName"#) -}
+517b75be1d4812f65d3532d74da6551b
+  boltStore ::
+    Data.Text.Internal.Text
+    -> Data.Map.Base.Map
+         Data.Text.Internal.Text Database.Bolt.Value.Type.Value
+    -> GHC.Types.IO GHC.Types.Bool
+  {- Arity: 3, Strictness: <L,U><L,U><S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Boltery.boltStore1
+                  `cast`
+                (<Data.Text.Internal.Text>_R
+                 ->_R <Data.Map.Base.Map
+                         Data.Text.Internal.Text Database.Bolt.Value.Type.Value>_R
+                 ->_R Sym (GHC.Types.N:IO[0] <GHC.Types.Bool>_R)) -}
+4fcd5be13f5a39003f79533d60dd3ea7
+  boltStore1 ::
+    Data.Text.Internal.Text
+    -> Data.Map.Base.Map
+         Data.Text.Internal.Text Database.Bolt.Value.Type.Value
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, GHC.Types.Bool #)
+  {- Arity: 3, Strictness: <L,U><L,U><S,U>,
+     Unfolding: (\ (c :: Data.Text.Internal.Text)
+                   (p :: Data.Map.Base.Map
+                           Data.Text.Internal.Text Database.Bolt.Value.Type.Value)
+                   (s :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case Boltery.boltStore3
+                        `cast`
+                      (GHC.Types.N:IO[0] <Database.Bolt.Connection.Type.Pipe>_R)
+                        s of ds1 { (#,#) ipv ipv1 ->
+                 case ((Boltery.boltStore2 c p)
+                         `cast`
+                       (Control.Monad.Trans.Reader.N:ReaderT[0]
+                            <*>_N
+                            <Database.Bolt.Connection.Type.Pipe>_R
+                            <GHC.Types.IO>_R
+                            <[Database.Bolt.Record.Record]>_N)
+                         ipv1)
+                        `cast`
+                      (GHC.Types.N:IO[0] <[Database.Bolt.Record.Record]>_R)
+                        ipv of ds2 { (#,#) ipv2 ipv3 ->
+                 case ipv1 of wild { Database.Bolt.Connection.Type.Pipe ds3 ds4 ->
+                 case ds3 of ww { Network.Socket.Types.MkSocket ww1 ww2 ww3 ww4 ww5 ->
+                 case ww5 of ww6 { GHC.MVar.MVar ww7 ->
+                 case Network.Socket.$wclose
+                        ww1
+                        ww7
+                        ipv2 of ds5 { (#,#) ipv4 ipv5 ->
+                 (# ipv4,
+                    GHC.List.null @ Database.Bolt.Record.Record ipv3 #) } } } } } }) -}
+03b01f8919fef5b57e6dc065eba56d2c
+  boltStore2 ::
+    Data.Text.Internal.Text
+    -> Data.Map.Base.Map
+         Data.Text.Internal.Text Database.Bolt.Value.Type.Value
+    -> Database.Bolt.Connection.BoltActionT
+         GHC.Types.IO [Database.Bolt.Record.Record]
+  {- Unfolding: (Database.Bolt.Connection.queryP
+                   @ GHC.Types.IO
+                   Control.Monad.IO.Class.$fMonadIOIO) -}
+7c03212599caa2a29937e7c90379126c
+  boltStore3 :: GHC.Types.IO Database.Bolt.Connection.Type.Pipe
+  {- Unfolding: (Database.Bolt.Connection.Pipe.connect
+                   @ GHC.Types.IO
+                   Control.Monad.IO.Class.$fMonadIOIO
+                   Boltery.boltStore4) -}
+bef3c2c19e6d5dc3493656e0d3bc8224
+  boltStore4 :: Database.Bolt.Connection.Type.BoltCfg
+  {- Unfolding: (Database.Bolt.Connection.Type.BoltCfg
+                   Database.Bolt.Connection.Type.$fDefaultBoltCfg7
+                   Database.Bolt.Connection.Type.$fDefaultBoltCfg6
+                   Database.Bolt.Connection.Type.$fDefaultBoltCfg5
+                   Database.Bolt.Connection.Type.$fDefaultBoltCfg4
+                   Database.Bolt.Connection.Type.$fDefaultBoltCfg3
+                   Database.Bolt.Connection.Type.$fDefaultBoltCfg2
+                   Database.Bolt.Connection.Type.$fDefaultBoltCfg1
+                   Boltery.boltStore6
+                   Boltery.boltStore5) -}
+a3b5cefafa790bc62c7e06449707218d
+  boltStore5 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "Coggroach"#) -}
+5de3fc2ac7c404534716ff15a294df74
+  boltStore6 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "neo4j"#) -}
+e1360a6fd23ecfd8673c754f456a4069
+  boltStoreLanguage ::
+    Data.Text.Internal.Text -> GHC.Types.IO GHC.Types.Bool
+  {- Arity: 2, Strictness: <L,U><S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Boltery.boltStoreLanguage1
+                  `cast`
+                (<Data.Text.Internal.Text>_R
+                 ->_R Sym (GHC.Types.N:IO[0] <GHC.Types.Bool>_R)) -}
+f9cca0c0307d0d7e2cdce9c973d1cb87
+  boltStoreLanguage1 ::
+    Data.Text.Internal.Text
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, GHC.Types.Bool #)
+  {- Arity: 2, Strictness: <L,U><S,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ (l :: Data.Text.Internal.Text)
+                   (eta :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 Boltery.boltStore1
+                   Boltery.boltCypherLanguage
+                   (Boltery.boltParamsLanguage l)
+                   eta) -}
+76d8ad091f63f0e4a54e8fcd7f48c1b1
+  boltStoreRepo ::
+    GitHub.Data.Repos.Repo -> GHC.Types.IO GHC.Types.Bool
+  {- Arity: 2,
+     Strictness: <L,1*U(A,U,U,U,A,U,A,A,A,U,A,U,U,U,U(U,U,A,A,A),U,A,A,U,U,U,U,A,A,A,A,A,A,A)><S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Boltery.boltStoreRepo1
+                  `cast`
+                (<GitHub.Data.Repos.Repo>_R
+                 ->_R Sym (GHC.Types.N:IO[0] <GHC.Types.Bool>_R)) -}
+89578d46fe6388c3955712f89f4588fd
+  boltStoreRepo1 ::
+    GitHub.Data.Repos.Repo
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, GHC.Types.Bool #)
+  {- Arity: 2,
+     Strictness: <L,1*U(A,U,U,U,A,U,A,A,A,U,A,U,U,U,U(U,U,A,A,A),U,A,A,U,U,U,U,A,A,A,A,A,A,A)><S,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ (r :: GitHub.Data.Repos.Repo)
+                   (eta :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 Boltery.boltStore1
+                   Boltery.boltCypherRepo
+                   (Boltery.boltParamsRepo r)
+                   eta) -}
+495d517329514c6c3fdead77e9a0170c
+  boltStoreUser ::
+    GitHub.Data.Definitions.User -> GHC.Types.IO GHC.Types.Bool
+  {- Arity: 2,
+     Strictness: <L,1*U(U,U,U,A,A,U,A,U,U,A,A,U,U,U,U,U,U,A)><S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Boltery.boltStoreUser1
+                  `cast`
+                (<GitHub.Data.Definitions.User>_R
+                 ->_R Sym (GHC.Types.N:IO[0] <GHC.Types.Bool>_R)) -}
+9c36b62b6967b36acb04a8eacb5453dc
+  boltStoreUser1 ::
+    GitHub.Data.Definitions.User
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, GHC.Types.Bool #)
+  {- Arity: 2,
+     Strictness: <L,1*U(U,U,U,A,A,U,A,U,U,A,A,U,U,U,U,U,U,A)><S,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ (o :: GitHub.Data.Definitions.User)
+                   (eta :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 Boltery.boltStore1
+                   Boltery.boltCypherUser
+                   (Boltery.boltParamsUser o)
+                   eta) -}
+25caef96d06a611dedec83095ed456c1
+  dateToValueI ::
+    Data.Time.Clock.UTC.UTCTime -> Database.Bolt.Value.Type.Value
+  {- Arity: 1, Strictness: <L,1*U(A,U)>m3, Inline: INLINE[0],
+     Unfolding: InlineRule (1, True, False)
+                (\ (w :: Data.Time.Clock.UTC.UTCTime) ->
+                 Database.Bolt.Value.Type.I
+                   (case w of wild { Data.Time.Clock.UTC.UTCTime ds1 ds2 ->
+                    case GHC.Real.$w$s$c/
+                           ds2
+                             `cast`
+                           (Trans
+                                (Data.Time.Clock.Scale.N:DiffTime[0])
+                                (Data.Fixed.N:Fixed[0] <Data.Fixed.E12>_P))
+                           GHC.Real.$fEnumRatio1
+                           Data.Fixed.$fHasResolutionE5
+                           GHC.Real.$fEnumRatio1 of ww6 { (#,#) ww7 ww8 ->
+                    GHC.Real.$w$s$cfloor
+                      @ GHC.Types.Int
+                      GHC.Real.$fIntegralInt
+                      ww7
+                      ww8 } })) -}
+1c1ee73e7a8d7f5eb5632dfc82b2749b
+  defaultIntNull :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 0#) -}
+8e16cc62289e814b0ad4dc7ab241e4b0
+  defaultTextNull :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "NULL"#) -}
+468cca259fee7adab386f3afaac37f60
+  maybeDateToValueI ::
+    GHC.Base.Maybe Data.Time.Clock.UTC.UTCTime
+    -> Database.Bolt.Value.Type.Value
+  {- Arity: 1, Strictness: <L,1*U>m3, Inline: INLINE[0],
+     Unfolding: InlineRule (1, True, False)
+                (\ (w :: GHC.Base.Maybe Data.Time.Clock.UTC.UTCTime) ->
+                 case Boltery.$wmaybeDateToValueI w of ww { Unit# ww1 ->
+                 Database.Bolt.Value.Type.I ww1 }) -}
+7d1978da120a4f62ca5e12acc67e27ce
+  maybeToValueI ::
+    GHC.Base.Maybe GHC.Types.Int -> Database.Bolt.Value.Type.Value
+  {- Arity: 1, HasNoCafRefs, Strictness: <L,1*U>m3,
+     Unfolding: InlineRule (1, True, False)
+                (\ (i :: GHC.Base.Maybe GHC.Types.Int) ->
+                 Database.Bolt.Value.Type.I
+                   (case i of wild {
+                      GHC.Base.Nothing -> Boltery.maybeToValueI1
+                      GHC.Base.Just v -> v })) -}
+ba4b97ca513b0d333b47ca4b9eb3209e
+  maybeToValueI1 :: GHC.Types.Int
+  {- Strictness: m, Unfolding: (Boltery.defaultIntNull) -}
+52e414fffbd5c0b647d85c2afbaa3557
+  maybeToValueT ::
+    GHC.Base.Maybe Data.Text.Internal.Text
+    -> Database.Bolt.Value.Type.Value
+  {- Arity: 1, Strictness: <L,1*U>m5,
+     Unfolding: InlineRule (1, True, False)
+                (\ (t :: GHC.Base.Maybe Data.Text.Internal.Text) ->
+                 Database.Bolt.Value.Type.T
+                   (Data.Maybe.fromMaybe
+                      @ Data.Text.Internal.Text
+                      Boltery.defaultTextNull
+                      t)) -}
+"SPEC/Boltery fromList @ Text _" [ALWAYS] forall @ a
+                                                 ($dOrd :: GHC.Classes.Ord Data.Text.Internal.Text)
+  Data.Map.Base.fromList @ Data.Text.Internal.Text @ a $dOrd
+  = Boltery.$sfromList @ a
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: none
+require own pkg trusted: False
+

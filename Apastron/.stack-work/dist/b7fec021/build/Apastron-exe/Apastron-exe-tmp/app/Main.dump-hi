@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2017-03-31 17:49:09.5884192 UTC
+2017-04-02 23:07:45.093883 UTC
 
 interface main@main:Main 8001
-  interface hash: d1e9eed4d92ead59c45b25256d42b55a
-  ABI hash: f7c12021c9f736fa4cc6d35bca6e82f5
-  export-list hash: 07f1ea1bd7b617547fb1b7900398ef47
+  interface hash: 5aeacf16754589c064cad1cc1896d99f
+  ABI hash: 53847ac165b27fd268c569062b8403d0
+  export-list hash: 034b614451bc56815bba02a19362105f
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 9a779d84dfdae98e8f8e01fedea0a322
   sig of: Nothing
@@ -14,7 +14,7 @@ interface main@main:Main 8001
 exports:
   Main.main
 module dependencies:
-package dependencies: Apastron-0.1.0.0@Apastron-0.1.0.0-CUgDvruW5LhL6gqlMr3eJY
+package dependencies: Apastron-0.1.0.0@Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A
                       MonadRandom-0.4.2.3@MonadRandom-0.4.2.3-8TfCm6PGvGYB7omozORhov
                       StateVar-1.1.0.4@StateVar-1.1.0.4-CJpWsiXJdd89SnV9dZtTwc
                       Win32-2.3.1.1@Win32-2.3.1.1
@@ -152,8 +152,8 @@ package dependencies: Apastron-0.1.0.0@Apastron-0.1.0.0-CUgDvruW5LhL6gqlMr3eJY
                       x509-system-1.6.4@x509-system-1.6.4-9A0O4xc5FxpHhIy8kqlvTd
                       x509-validation-1.6.5@x509-validation-1.6.5-4klcFQmrJewFXisIYAqrfC
                       zlib-0.6.1.2@zlib-0.6.1.2-4CWLN1T27kOJhNvXgy46ZV
-orphans: Apastron-0.1.0.0@Apastron-0.1.0.0-CUgDvruW5LhL6gqlMr3eJY:Common
-         Apastron-0.1.0.0@Apastron-0.1.0.0-CUgDvruW5LhL6gqlMr3eJY:Crawler
+orphans: Apastron-0.1.0.0@Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Common
+         Apastron-0.1.0.0@Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Crawler
          MonadRandom-0.4.2.3@MonadRandom-0.4.2.3-8TfCm6PGvGYB7omozORhov:Control.Monad.Random
          attoparsec-0.13.1.0@attoparsec-0.13.1.0-5Olk1S76r1CDYzFS6V3sZR:Data.Attoparsec.ByteString.Char8
          attoparsec-0.13.1.0@attoparsec-0.13.1.0-5Olk1S76r1CDYzFS6V3sZR:Data.Attoparsec.Text.Internal
@@ -178,8 +178,8 @@ orphans: Apastron-0.1.0.0@Apastron-0.1.0.0-CUgDvruW5LhL6gqlMr3eJY:Common
          vector-0.11.0.0@vector-0.11.0.0-BEDZb5o2QOhGbIm6ky7rl6:Data.Vector.Unboxed
          vector-binary-instances-0.2.3.3@vector-binary-instances-0.2.3.3-ITLfSosnCjgDHIm70KxMIu:Data.Vector.Binary
          vector-instances-3.3.1@vector-instances-3.3.1-I6TdtGyV4ig2RKtxblZRcS:Data.Vector.Instances
-family instance modules: Apastron-0.1.0.0@Apastron-0.1.0.0-CUgDvruW5LhL6gqlMr3eJY:Common
-                         Apastron-0.1.0.0@Apastron-0.1.0.0-CUgDvruW5LhL6gqlMr3eJY:Crawler
+family instance modules: Apastron-0.1.0.0@Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Common
+                         Apastron-0.1.0.0@Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Crawler
                          adjunctions-4.3@adjunctions-4.3-3ol9sWZt3In19pwXwPv3Xc:Data.Functor.Rep
                          attoparsec-0.13.1.0@attoparsec-0.13.1.0-5Olk1S76r1CDYzFS6V3sZR:Data.Attoparsec.Internal.Types
                          base-4.9.0.0:Control.Applicative base-4.9.0.0:Data.Complex
@@ -266,7 +266,7 @@ family instance modules: Apastron-0.1.0.0@Apastron-0.1.0.0-CUgDvruW5LhL6gqlMr3eJ
                          vector-0.11.0.0@vector-0.11.0.0-BEDZb5o2QOhGbIm6ky7rl6:Data.Vector.Unboxed.Base
                          vector-instances-3.3.1@vector-instances-3.3.1-I6TdtGyV4ig2RKtxblZRcS:Data.Vector.Instances
                          zlib-0.6.1.2@zlib-0.6.1.2-4CWLN1T27kOJhNvXgy46ZV:Codec.Compression.Zlib.Stream
-import  -/  Apastron-0.1.0.0@Apastron-0.1.0.0-CUgDvruW5LhL6gqlMr3eJY:Crawler 34b35b15dff71bf184640f19bb1a01e0
+import  -/  Apastron-0.1.0.0@Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Crawler f9e04820d9d110c44393f3d5a7129eaf
 import  -/  base-4.9.0.0:Prelude 2d9cd8b0ec3d728f62b734df888d2e34
 import  -/  ghc-prim-0.5.0.0:GHC.Types 7378e41b7749213c8c88ceb6b0665d4c
 d6831ef04cb9301b090dfae6f7bb7ec7
@@ -281,12 +281,12 @@ d6831ef04cb9301b090dfae6f7bb7ec7
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "main"#) -}
-294854bed2fe17b68c68fc55d5cbdbd3
+2db6e665b4d6fe73469346a954b38b69
   main :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <S,U>,
      Unfolding: InlineRule (0, True, True)
                 Crawler.mkCrawler1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
-099062e0ac0bc4472d76d6e27bf7acb6
+fab36d9efe64607159b4a3c04df56fd3
   main1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)

@@ -167,3 +167,93 @@ boltParamsLanguage language
 
 boltStoreLanguage :: Text -> IO Bool
 boltStoreLanguage l = boltStore boltCypherLanguage $ boltParamsLanguage l
+
+-----------------------------------------
+--  Repo<->Language
+-----------------------------------------
+
+boltCypherRepoLanguageLink :: Text
+boltCypherRepoLanguageLink =
+    Data.Text.pack $
+    "MATCH (u:Repo {" ++
+    "repoHtmlUrl: {repoHtmlUrl} } )," ++
+    "(r:Language {" ++
+    "name: {language} } ) \n" ++
+    "CREATE (u)-[:RepoLanguageLink]->(r)"
+
+boltParamsRepoLanguageLink :: Text -> Text -> Database.Bolt.Value
+boltParamsRepoLanguageLink r l 
+    = Data.Map.fromList [
+        ("repoHtmlUrl", Database.Bolt.T r),
+        ("language", Database.Bolt.T l)]
+
+boltStoreRepoLanguageLink :: Text -> Text -> IO Bool
+boltStoreRepoLanguageLink r l = boltStore boltCypherRepoLanguageLink $ boltParamsRepoLanguageLink r l
+
+-----------------------------------------
+--  User<->Language
+-----------------------------------------
+
+boltCypherUserLanguageLink :: Text
+boltCypherUserLanguageLink =
+    Data.Text.pack $
+    "MATCH (u:User {" ++
+    "userLogin: {userLogin} } )," ++
+    "(r:Language {" ++
+    "name: {language} } ) \n" ++
+    "CREATE (u)-[:UserLanguageLink]->(r)"
+
+boltParamsUserLanguageLink :: Text -> Text -> Database.Bolt.Value
+boltParamsUserLanguageLink u l 
+    = Data.Map.fromList [
+        ("userLogin", Database.Bolt.T u),
+        ("language", Database.Bolt.T l)]
+
+boltStoreUserLanguageLink :: Text -> Text -> IO Bool
+boltStoreUserLanguageLink r l = boltStore boltCypherUserLanguageLink $ boltParamsUserLanguageLink r l
+
+-----------------------------------------
+--  User<->Repo - Owner
+-----------------------------------------
+
+boltCypherUserRepoOwnerLink :: Text
+boltCypherUserRepoOwnerLink =
+    Data.Text.pack $
+    "MATCH (u:User {" ++
+    "userLogin: {userLogin} } )," ++
+    "(r:Repo {" ++
+    "repoHtmlUrl: {repoHtmlUrl} } ) \n" ++
+    "CREATE (u)-[:UserRepoOwnerLink]->(r)"
+
+boltParamsUserRepoOwnerLink :: Text -> Text -> Database.Bolt.Value
+boltParamsUserRepoOwnerLink u r 
+    = Data.Map.fromList [
+        ("userLogin", Database.Bolt.T u),
+        ("repoHtmlUrl", Database.Bolt.T r)]
+
+boltStoreUserRepoOwnerLink :: Text -> Text -> IO Bool
+boltStoreUserRepoOwnerLink u r = boltStore boltCypherUserRepoOwnerLink $ boltParamsUserRepoOwnerLink u r
+
+-----------------------------------------
+--  User<->Repo - Collab
+-----------------------------------------
+
+boltCypherUserRepoCollabLink :: Text
+boltCypherUserRepoCollabLink =
+    Data.Text.pack $
+    "MATCH (u:User {" ++
+    "userLogin: {userLogin} } )," ++
+    "(r:Repo {" ++
+    "repoHtmlUrl: {repoHtmlUrl} } ) \n" ++
+    "CREATE (u)-[c:UserRepoCollabLink {commits: {commits}}]->(r)"
+
+boltParamsUserRepoCollabLink :: Text -> Text -> Int -> Database.Bolt.Value
+boltParamsUserRepoCollabLink u l c
+    = Data.Map.fromList [
+        ("userLogin", Database.Bolt.T u),
+        ("language", Database.Bolt.T l),
+        ("commits", Database.Bolt.I c)]
+
+boltStoreUserRepoCollabLink :: Text -> Text -> Int -> IO Bool
+boltStoreUserRepoCollabLink u r = boltStore boltCypherUserRepoCollabLink $ boltParamsUserRepoCollabLink u r
+

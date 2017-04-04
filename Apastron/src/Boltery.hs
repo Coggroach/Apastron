@@ -65,6 +65,61 @@ dateToValueI ::  UTCTime -> Database.Bolt.Value
 dateToValueI g = Database.Bolt.I ( floor $ utctDayTime g :: Int )
 
 -----------------------------------------
+--  Data Conversions
+-----------------------------------------
+
+boltRecordToVertex :: Database.Bolt.Record -> IO Common.Vertex
+boltRecordToVertex r = do
+    n :: Text <- (r `Database.Bolt.at` "name") >>= Database.Bolt.exact
+    g :: Text <- (r `Database.Bolt.at` "group") >>= Database.Bolt.exact
+    return Common.Vertex (Data.Text.unpack n) (Data.Text.unpack g)
+
+boltRecordToEdge :: Database.Bolt.Record -> IO Common.Edge
+boltRecordToEdge r = do
+    p :: Text <- (r `Database.Bolt.at` "parent") >>= Database.Bolt.exact
+    c :: Text <- (r `Database.Bolt.at` "child") >>= Database.Bolt.exact
+    g :: Text <- (r `Database.Bolt.at` "type") >>= Database.Bolt.exact
+    return Common.Edge (Data.Text.unpack p) (Data.Text.unpack c) (Data.Text.unpack g)
+
+boltCreateGraph :: Text -> IO Common.Graph
+boltCreateGraph t = do
+    recordNodes <- boltStoreExtractNode t
+    recordLinks <- boltStoreExtractLink t
+    vertices <- mapM boltRecordToVertex recordNodes
+    edges <- mapM boltRecordToEdge recordLinks
+    return Common.Graph vertices edges
+
+-----------------------------------------
+--  Data Extractions
+-----------------------------------------
+
+boltCypherExtractNode :: Text
+boltCypherExtractNode =
+    Data.Text.pack $
+    "MATCH (n) WHERE n.name = {username}" ++
+    " OPTIONAL MATCH path=(n)-[*1..2]-(c)" ++
+    " RETURN DISTINCT c.name as name, HEAD(LABELS(c)) as group"
+
+boltStoreExtractNode :: Text -> IO Bool
+boltStoreExtractNode u = boltStore boltCypherExtractNode $ boltParamsExtract u
+
+boltCypherExtractLink :: Text
+boltCypherExtractLink =
+    Data.Text.pack $
+    "MATCH (n) WHERE n.name = {username}" ++
+    "OPTIONAL MATCH path=(n)-[*1..2]-(c)" ++
+    " WITH rels(path) AS rels" ++
+    " UNWIND rels AS rel" ++ 
+    " WITH DISTINCT rel" ++
+    " RETURN startnode(rel).name as parent, endnode(rel).name as child, type(rel) as type"
+
+boltParamsExtract :: Text -> Map Text Database.Bolt.Value
+boltParamsExtract u = Data.Map.fromList [("username", Database.Bolt.T u)]
+
+boltStoreExtractLink :: Text -> IO Bool
+boltStoreExtractLink u = boltStore boltCypherExtractLink $ boltParamsExtract u
+
+-----------------------------------------
 --  User
 -----------------------------------------
 
@@ -256,4 +311,5 @@ boltParamsUserRepoCollabLink u l c
 
 boltStoreUserRepoCollabLink :: Text -> Text -> Int -> IO Bool
 boltStoreUserRepoCollabLink u r = boltStore boltCypherUserRepoCollabLink $ boltParamsUserRepoCollabLink u r
+
 

@@ -32,8 +32,8 @@ instance FromBSON String
 instance ToBSON String
 
 data Edge = Edge {
-    eParent :: Vertex,
-    eChild :: Vertex,
+    eParent :: String,
+    eChild :: String,
     eData :: String
 } deriving (Generic, Eq, Show, ToJSON, FromJSON, ToBSON, FromBSON)
 

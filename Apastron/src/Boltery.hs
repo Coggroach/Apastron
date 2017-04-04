@@ -52,6 +52,14 @@ boltStore c p = do
     Database.Bolt.close pipe
     return (Data.List.null records)
 
+boltGetRecords :: Text -> Map Text Database.Bolt.Value -> IO [Database.Bolt.Record]
+boltGetRecords c p = do
+    let config = Database.Bolt.def { Database.Bolt.user = "neo4j", Database.Bolt.password = "Coggroach" }
+    pipe <- Database.Bolt.connect config
+    records <- Database.Bolt.run pipe $ Database.Bolt.queryP c p
+    Database.Bolt.close pipe
+    return records
+
 maybeToValueT :: Maybe Text -> Database.Bolt.Value
 maybeToValueT t = Database.Bolt.T $ fromMaybe defaultTextNull t
 
@@ -72,14 +80,14 @@ boltRecordToVertex :: Database.Bolt.Record -> IO Common.Vertex
 boltRecordToVertex r = do
     n :: Text <- (r `Database.Bolt.at` "name") >>= Database.Bolt.exact
     g :: Text <- (r `Database.Bolt.at` "group") >>= Database.Bolt.exact
-    return Common.Vertex (Data.Text.unpack n) (Data.Text.unpack g)
+    return (Common.Vertex (Data.Text.unpack n) (Data.Text.unpack g))
 
 boltRecordToEdge :: Database.Bolt.Record -> IO Common.Edge
 boltRecordToEdge r = do
     p :: Text <- (r `Database.Bolt.at` "parent") >>= Database.Bolt.exact
     c :: Text <- (r `Database.Bolt.at` "child") >>= Database.Bolt.exact
     g :: Text <- (r `Database.Bolt.at` "type") >>= Database.Bolt.exact
-    return Common.Edge (Data.Text.unpack p) (Data.Text.unpack c) (Data.Text.unpack g)
+    return (Common.Edge (Data.Text.unpack p) (Data.Text.unpack c) (Data.Text.unpack g))
 
 boltCreateGraph :: Text -> IO Common.Graph
 boltCreateGraph t = do
@@ -87,7 +95,7 @@ boltCreateGraph t = do
     recordLinks <- boltStoreExtractLink t
     vertices <- mapM boltRecordToVertex recordNodes
     edges <- mapM boltRecordToEdge recordLinks
-    return Common.Graph vertices edges
+    return (Common.Graph vertices edges)
 
 -----------------------------------------
 --  Data Extractions
@@ -100,8 +108,8 @@ boltCypherExtractNode =
     " OPTIONAL MATCH path=(n)-[*1..2]-(c)" ++
     " RETURN DISTINCT c.name as name, HEAD(LABELS(c)) as group"
 
-boltStoreExtractNode :: Text -> IO Bool
-boltStoreExtractNode u = boltStore boltCypherExtractNode $ boltParamsExtract u
+boltStoreExtractNode :: Text -> IO [Database.Bolt.Record]
+boltStoreExtractNode u = boltGetRecords boltCypherExtractNode $ boltParamsExtract u
 
 boltCypherExtractLink :: Text
 boltCypherExtractLink =
@@ -116,8 +124,8 @@ boltCypherExtractLink =
 boltParamsExtract :: Text -> Map Text Database.Bolt.Value
 boltParamsExtract u = Data.Map.fromList [("username", Database.Bolt.T u)]
 
-boltStoreExtractLink :: Text -> IO Bool
-boltStoreExtractLink u = boltStore boltCypherExtractLink $ boltParamsExtract u
+boltStoreExtractLink :: Text -> IO [Database.Bolt.Record]
+boltStoreExtractLink u = boltGetRecords boltCypherExtractLink $ boltParamsExtract u
 
 -----------------------------------------
 --  User
@@ -236,7 +244,7 @@ boltCypherRepoLanguageLink =
     "name: {language} } ) \n" ++
     "CREATE (u)-[:RepoLanguageLink]->(r)"
 
-boltParamsRepoLanguageLink :: Text -> Text -> Database.Bolt.Value
+boltParamsRepoLanguageLink :: Text -> Text -> Map Text Database.Bolt.Value
 boltParamsRepoLanguageLink r l 
     = Data.Map.fromList [
         ("repoHtmlUrl", Database.Bolt.T r),
@@ -258,7 +266,7 @@ boltCypherUserLanguageLink =
     "name: {language} } ) \n" ++
     "CREATE (u)-[:UserLanguageLink]->(r)"
 
-boltParamsUserLanguageLink :: Text -> Text -> Database.Bolt.Value
+boltParamsUserLanguageLink :: Text -> Text -> Map Text Database.Bolt.Value
 boltParamsUserLanguageLink u l 
     = Data.Map.fromList [
         ("userLogin", Database.Bolt.T u),
@@ -280,7 +288,7 @@ boltCypherUserRepoOwnerLink =
     "repoHtmlUrl: {repoHtmlUrl} } ) \n" ++
     "CREATE (u)-[:UserRepoOwnerLink]->(r)"
 
-boltParamsUserRepoOwnerLink :: Text -> Text -> Database.Bolt.Value
+boltParamsUserRepoOwnerLink :: Text -> Text -> Map Text Database.Bolt.Value
 boltParamsUserRepoOwnerLink u r 
     = Data.Map.fromList [
         ("userLogin", Database.Bolt.T u),
@@ -302,7 +310,7 @@ boltCypherUserRepoCollabLink =
     "repoHtmlUrl: {repoHtmlUrl} } ) \n" ++
     "CREATE (u)-[c:UserRepoCollabLink {commits: {commits}}]->(r)"
 
-boltParamsUserRepoCollabLink :: Text -> Text -> Int -> Database.Bolt.Value
+boltParamsUserRepoCollabLink :: Text -> Text -> Int -> Map Text Database.Bolt.Value
 boltParamsUserRepoCollabLink u l c
     = Data.Map.fromList [
         ("userLogin", Database.Bolt.T u),
@@ -310,6 +318,6 @@ boltParamsUserRepoCollabLink u l c
         ("commits", Database.Bolt.I c)]
 
 boltStoreUserRepoCollabLink :: Text -> Text -> Int -> IO Bool
-boltStoreUserRepoCollabLink u r = boltStore boltCypherUserRepoCollabLink $ boltParamsUserRepoCollabLink u r
+boltStoreUserRepoCollabLink u r c = boltStore boltCypherUserRepoCollabLink $ boltParamsUserRepoCollabLink u r c
 
 

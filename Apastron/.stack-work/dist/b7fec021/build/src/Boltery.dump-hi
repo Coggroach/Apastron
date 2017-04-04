@@ -1,27 +1,48 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-02 23:07:43.5783922 UTC
+2017-04-04 23:42:20.5295472 UTC
 
 interface Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Boltery 8001
-  interface hash: 8088a0be526707a4461ca8350aedfeb8
-  ABI hash: 64dfa0afc50b7baaa694ccf6e8bf6e5e
-  export-list hash: 010914063944ee661441d5815be784bf
+  interface hash: 61a0202962098ac0eb1f8032a5ef4ba4
+  ABI hash: a74eed944d77779df3475513b0a9f03a
+  export-list hash: 3b3ab39a5af724b278c3ff0ad76817c2
   orphan hash: f9b05162acb8bf8637213782dd8ae556
   flag hash: 1d5c0f6e259a5ef24c7454935ca733fb
   sig of: Nothing
   used TH splices: False
   where
 exports:
+  Boltery.boltCreateGraph
+  Boltery.boltCypherExtractLink
+  Boltery.boltCypherExtractNode
   Boltery.boltCypherLanguage
   Boltery.boltCypherRepo
+  Boltery.boltCypherRepoLanguageLink
   Boltery.boltCypherUser
+  Boltery.boltCypherUserLanguageLink
+  Boltery.boltCypherUserRepoCollabLink
+  Boltery.boltCypherUserRepoOwnerLink
+  Boltery.boltGetRecords
+  Boltery.boltParamsExtract
   Boltery.boltParamsLanguage
   Boltery.boltParamsRepo
+  Boltery.boltParamsRepoLanguageLink
   Boltery.boltParamsUser
+  Boltery.boltParamsUserLanguageLink
+  Boltery.boltParamsUserRepoCollabLink
+  Boltery.boltParamsUserRepoOwnerLink
+  Boltery.boltRecordToEdge
+  Boltery.boltRecordToVertex
   Boltery.boltStore
+  Boltery.boltStoreExtractLink
+  Boltery.boltStoreExtractNode
   Boltery.boltStoreLanguage
   Boltery.boltStoreRepo
+  Boltery.boltStoreRepoLanguageLink
   Boltery.boltStoreUser
+  Boltery.boltStoreUserLanguageLink
+  Boltery.boltStoreUserRepoCollabLink
+  Boltery.boltStoreUserRepoOwnerLink
   Boltery.dateToValueI
   Boltery.defaultIntNull
   Boltery.defaultTextNull
@@ -254,11 +275,18 @@ family instance modules: Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Common
                          vector-0.11.0.0@vector-0.11.0.0-BEDZb5o2QOhGbIm6ky7rl6:Data.Vector.Unboxed.Base
                          vector-instances-3.3.1@vector-instances-3.3.1-I6TdtGyV4ig2RKtxblZRcS:Data.Vector.Instances
                          zlib-0.6.1.2@zlib-0.6.1.2-4CWLN1T27kOJhNvXgy46ZV:Codec.Compression.Zlib.Stream
-import  -/  Common 5a17672e7685c30654408ca68276ad18
-  exports: a09688777efcfc740dc1dc3e24890d69
+import  -/  Common 062ebcde786e386de99285de4d9e4743
+  exports: f7f3a68aba283cb225cd58774d1ca198
+  Edge 42d680aa4d47565cd2a958b27f3856cd
+  Edge 0425c321b21ea0f346891b541dc22f20
+  Graph 5dae96db798b0668cb4d5f1767e229f1
+  Graph 0425c321b21ea0f346891b541dc22f20
+  Vertex 9b5dbcb59eef1a5645b8a9be68c94f7e
+  Vertex f532a46e9a6a1570c3793944e901fb85
 import  -/  base-4.9.0.0:Data.Foldable 3cbed01c922be29649c33015287c82ca
 import  -/  base-4.9.0.0:Data.List d711f98b49ef5d33e5b3d404631ed073
 import  -/  base-4.9.0.0:Data.Maybe 086a84053ef7f7810663b5f03b7ec3f7
+import  -/  base-4.9.0.0:Data.Traversable 578f976513fd28b7f58c156ea20c192a
 import  -/  base-4.9.0.0:GHC.Base dd8044a8d640eee51828c17c476a6ba7
 import  -/  base-4.9.0.0:GHC.Real 011de9ca3282ad24a84e4e15f974f98e
 import  -/  base-4.9.0.0:Prelude 2d9cd8b0ec3d728f62b734df888d2e34
@@ -280,9 +308,11 @@ import  -/  hasbolt-0.1.0.9@hasbolt-0.1.0.9-AJXJGY2ypvLC8K54oQUQlt:Database.Bolt
 import  -/  hasbolt-0.1.0.9@hasbolt-0.1.0.9-AJXJGY2ypvLC8K54oQUQlt:Database.Bolt.Connection ae3fdd36c3cc73e2e82816392e35d998
 import  -/  hasbolt-0.1.0.9@hasbolt-0.1.0.9-AJXJGY2ypvLC8K54oQUQlt:Database.Bolt.Connection.Pipe 58daeac2f7c59c1ccdc23eb999cb3a75
 import  -/  hasbolt-0.1.0.9@hasbolt-0.1.0.9-AJXJGY2ypvLC8K54oQUQlt:Database.Bolt.Connection.Type db26fdf704464705a1b71daa7989d1de
+import  -/  hasbolt-0.1.0.9@hasbolt-0.1.0.9-AJXJGY2ypvLC8K54oQUQlt:Database.Bolt.Record a7a63ac20fc87031522a1fae5c2a0f5b
 import  -/  hasbolt-0.1.0.9@hasbolt-0.1.0.9-AJXJGY2ypvLC8K54oQUQlt:Database.Bolt.Value.Type 7d7abd55cdfaf543f76023beb39f8509
 import  -/  text-1.2.2.1@text-1.2.2.1-5QpmrLQApEZ4Ly9nMHWY0s:Data.Text 8dbacab9fc008bc20f8ced1c7c1f4b82
 import  -/  text-1.2.2.1@text-1.2.2.1-5QpmrLQApEZ4Ly9nMHWY0s:Data.Text.Internal 80110b2fecada91347ca30963f299ad2
+import  -/  text-1.2.2.1@text-1.2.2.1-5QpmrLQApEZ4Ly9nMHWY0s:Data.Text.Show 42ce7a01f7291031a7f48c4ecfab5e43
 import  -/  time-1.6.0.1@time-1.6.0.1:Data.Time.Clock 23d666c4496b6f7bf555419424731ccb
 import  -/  time-1.6.0.1@time-1.6.0.1:Data.Time.Clock.UTC 537fb1f480607f986a423bba04b71bb0
 573279eefa871159c3514dbdea0e53d6
@@ -638,14 +668,229 @@ b4513520b9fb196a71e0efafdce16637
     -> [(Data.Text.Internal.Text, a)]
     -> Data.Map.Base.Map Data.Text.Internal.Text a
   {- Arity: 3, Strictness: <L,U><S,1*U><S,1*U>, Inline: [0] -}
+649a9eae0f1c92337732be1a9d847265
+  boltCreateGraph ::
+    Data.Text.Internal.Text -> GHC.Types.IO Common.Graph
+  {- Arity: 2, Strictness: <L,U><S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Boltery.boltCreateGraph1
+                  `cast`
+                (<Data.Text.Internal.Text>_R
+                 ->_R Sym (GHC.Types.N:IO[0] <Common.Graph>_R)) -}
+98a25f675f44c41b08f83f9cadef269c
+  boltCreateGraph1 ::
+    Data.Text.Internal.Text
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, Common.Graph #)
+  {- Arity: 2, Strictness: <L,U><S,U>,
+     Unfolding: (\ (t :: Data.Text.Internal.Text)
+                   (s :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case Boltery.boltCreateGraph5
+                        `cast`
+                      (GHC.Types.N:IO[0] <Database.Bolt.Connection.Type.Pipe>_R)
+                        s of ds1 { (#,#) ipv ipv1 ->
+                 case ((Boltery.boltCreateGraph4
+                          Boltery.boltCypherExtractNode
+                          (Boltery.boltParamsExtract t))
+                         `cast`
+                       (Control.Monad.Trans.Reader.N:ReaderT[0]
+                            <*>_N
+                            <Database.Bolt.Connection.Type.Pipe>_R
+                            <GHC.Types.IO>_R
+                            <[Database.Bolt.Record.Record]>_N)
+                         ipv1)
+                        `cast`
+                      (GHC.Types.N:IO[0] <[Database.Bolt.Record.Record]>_R)
+                        ipv of ds2 { (#,#) ipv2 ipv3 ->
+                 case ipv1 of wild { Database.Bolt.Connection.Type.Pipe ds3 ds4 ->
+                 case ds3 of ww { Network.Socket.Types.MkSocket ww1 ww2 ww3 ww4 ww5 ->
+                 case ww5 of ww6 { GHC.MVar.MVar ww7 ->
+                 case Network.Socket.$wclose
+                        ww1
+                        ww7
+                        ipv2 of ds5 { (#,#) ipv4 ipv5 ->
+                 case Boltery.boltCreateGraph5
+                        `cast`
+                      (GHC.Types.N:IO[0] <Database.Bolt.Connection.Type.Pipe>_R)
+                        ipv4 of ds6 { (#,#) ipv6 ipv7 ->
+                 case ((Boltery.boltCreateGraph4
+                          Boltery.boltCypherExtractLink
+                          (Boltery.boltParamsExtract t))
+                         `cast`
+                       (Control.Monad.Trans.Reader.N:ReaderT[0]
+                            <*>_N
+                            <Database.Bolt.Connection.Type.Pipe>_R
+                            <GHC.Types.IO>_R
+                            <[Database.Bolt.Record.Record]>_N)
+                         ipv7)
+                        `cast`
+                      (GHC.Types.N:IO[0] <[Database.Bolt.Record.Record]>_R)
+                        ipv6 of ds7 { (#,#) ipv8 ipv9 ->
+                 case ipv7 of wild1 { Database.Bolt.Connection.Type.Pipe ds8 ds9 ->
+                 case ds8 of ww11 { Network.Socket.Types.MkSocket ww12 ww13 ww14 ww15 ww16 ->
+                 case ww16 of ww17 { GHC.MVar.MVar ww18 ->
+                 case Network.Socket.$wclose
+                        ww12
+                        ww18
+                        ipv8 of ds10 { (#,#) ipv10 ipv11 ->
+                 case Boltery.boltCreateGraph3
+                        ipv3
+                        ipv10 of ds11 { (#,#) ipv12 ipv13 ->
+                 case Boltery.boltCreateGraph2
+                        ipv9
+                        ipv12 of ds12 { (#,#) ipv14 ipv15 ->
+                 (# ipv14,
+                    Common.Graph ipv13 ipv15 #) } } } } } } } } } } } } } }) -}
+18aa8ac95ec2ac19899ff1a8e9af608b
+  boltCreateGraph2 ::
+    [Database.Bolt.Record.Record]
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, [Common.Edge] #)
+  {- Arity: 2, Strictness: <S,1*U><S,U> -}
+d3d0378bf4d4024367df75d314665c01
+  boltCreateGraph3 ::
+    [Database.Bolt.Record.Record]
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, [Common.Vertex] #)
+  {- Arity: 2, Strictness: <S,1*U><S,U> -}
+0a7092f3dd2a2cdb210d18c8c9bd7fb9
+  boltCreateGraph4 ::
+    Data.Text.Internal.Text
+    -> Data.Map.Base.Map
+         Data.Text.Internal.Text Database.Bolt.Value.Type.Value
+    -> Database.Bolt.Connection.BoltActionT
+         GHC.Types.IO [Database.Bolt.Record.Record]
+  {- Unfolding: (Database.Bolt.Connection.queryP
+                   @ GHC.Types.IO
+                   Control.Monad.IO.Class.$fMonadIOIO) -}
+fef543eb42fe822ba15a570f8033a679
+  boltCreateGraph5 :: GHC.Types.IO Database.Bolt.Connection.Type.Pipe
+  {- Unfolding: (Database.Bolt.Connection.Pipe.connect
+                   @ GHC.Types.IO
+                   Control.Monad.IO.Class.$fMonadIOIO
+                   Boltery.boltCreateGraph6) -}
+2c1712e1c983d7cc947fc822b3838f7a
+  boltCreateGraph6 :: Database.Bolt.Connection.Type.BoltCfg
+  {- Unfolding: (Database.Bolt.Connection.Type.BoltCfg
+                   Database.Bolt.Connection.Type.$fDefaultBoltCfg7
+                   Database.Bolt.Connection.Type.$fDefaultBoltCfg6
+                   Database.Bolt.Connection.Type.$fDefaultBoltCfg5
+                   Database.Bolt.Connection.Type.$fDefaultBoltCfg4
+                   Database.Bolt.Connection.Type.$fDefaultBoltCfg3
+                   Database.Bolt.Connection.Type.$fDefaultBoltCfg2
+                   Database.Bolt.Connection.Type.$fDefaultBoltCfg1
+                   Boltery.boltCreateGraph8
+                   Boltery.boltCreateGraph7) -}
+e233b02c8cd9b9ab0044612fa0caf46b
+  boltCreateGraph7 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "Coggroach"#) -}
+edd2b909c6d5ad3772532787d25fb2a4
+  boltCreateGraph8 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "neo4j"#) -}
+16f83f35dcea598399e67e2a55b24c8c
+  boltCypherExtractLink :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString#
+                   "MATCH (n) WHERE n.name = {username}OPTIONAL MATCH path=(n)-[*1..2]-(c) WITH rels(path) AS rels UNWIND rels AS rel WITH DISTINCT rel RETURN startnode(rel).name as parent, endnode(rel).name as child, type(rel) as type"#) -}
+9f6a2597361621eadcf6c309f21ce58f
+  boltCypherExtractNode :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString#
+                   "MATCH (n) WHERE n.name = {username} OPTIONAL MATCH path=(n)-[*1..2]-(c) RETURN DISTINCT c.name as name, HEAD(LABELS(c)) as group"#) -}
 fa9acff7da1cf3bf93d92b0243a1aa8b
   boltCypherLanguage :: Data.Text.Internal.Text
   {- Unfolding: (Data.Text.Show.unpackCString#
                    "CREATE (n:Language {  name: {language} } )"#) -}
 81daa252cf1e84169c092e1c96f0269e
   boltCypherRepo :: Data.Text.Internal.Text
+b88bf6dacdff9d8b102591ead868fe7f
+  boltCypherRepoLanguageLink :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString#
+                   "MATCH (u:Repo {repoHtmlUrl: {repoHtmlUrl} } ),(r:Language {name: {language} } ) \n\
+                   \CREATE (u)-[:RepoLanguageLink]->(r)"#) -}
 ec385b9427299fcb9614a00cad52a8f1
   boltCypherUser :: Data.Text.Internal.Text
+312cd5f1fee762fe0bc4a94222784ba0
+  boltCypherUserLanguageLink :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString#
+                   "MATCH (u:User {userLogin: {userLogin} } ),(r:Language {name: {language} } ) \n\
+                   \CREATE (u)-[:UserLanguageLink]->(r)"#) -}
+d9921fad2a888cb78e4c5923f11ecf06
+  boltCypherUserRepoCollabLink :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString#
+                   "MATCH (u:User {userLogin: {userLogin} } ),(r:Repo {repoHtmlUrl: {repoHtmlUrl} } ) \n\
+                   \CREATE (u)-[c:UserRepoCollabLink {commits: {commits}}]->(r)"#) -}
+7265ca53639a66426d8f8e826ff503d4
+  boltCypherUserRepoOwnerLink :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString#
+                   "MATCH (u:User {userLogin: {userLogin} } ),(r:Repo {repoHtmlUrl: {repoHtmlUrl} } ) \n\
+                   \CREATE (u)-[:UserRepoOwnerLink]->(r)"#) -}
+7c1d5e0218b0b8c1f74386557486d964
+  boltGetRecords ::
+    Data.Text.Internal.Text
+    -> Data.Map.Base.Map
+         Data.Text.Internal.Text Database.Bolt.Value.Type.Value
+    -> GHC.Types.IO [Database.Bolt.Record.Record]
+  {- Arity: 3, Strictness: <L,U><L,U><S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Boltery.boltGetRecords1
+                  `cast`
+                (<Data.Text.Internal.Text>_R
+                 ->_R <Data.Map.Base.Map
+                         Data.Text.Internal.Text Database.Bolt.Value.Type.Value>_R
+                 ->_R Sym (GHC.Types.N:IO[0] <[Database.Bolt.Record.Record]>_R)) -}
+758eee83a009a5119c9119658a7b355a
+  boltGetRecords1 ::
+    Data.Text.Internal.Text
+    -> Data.Map.Base.Map
+         Data.Text.Internal.Text Database.Bolt.Value.Type.Value
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          [Database.Bolt.Record.Record] #)
+  {- Arity: 3, Strictness: <L,U><L,U><S,U>,
+     Unfolding: (\ (c :: Data.Text.Internal.Text)
+                   (p :: Data.Map.Base.Map
+                           Data.Text.Internal.Text Database.Bolt.Value.Type.Value)
+                   (s :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case Boltery.boltCreateGraph5
+                        `cast`
+                      (GHC.Types.N:IO[0] <Database.Bolt.Connection.Type.Pipe>_R)
+                        s of ds1 { (#,#) ipv ipv1 ->
+                 case ((Boltery.boltCreateGraph4 c p)
+                         `cast`
+                       (Control.Monad.Trans.Reader.N:ReaderT[0]
+                            <*>_N
+                            <Database.Bolt.Connection.Type.Pipe>_R
+                            <GHC.Types.IO>_R
+                            <[Database.Bolt.Record.Record]>_N)
+                         ipv1)
+                        `cast`
+                      (GHC.Types.N:IO[0] <[Database.Bolt.Record.Record]>_R)
+                        ipv of ds2 { (#,#) ipv2 ipv3 ->
+                 case ipv1 of wild { Database.Bolt.Connection.Type.Pipe ds3 ds4 ->
+                 case ds3 of ww { Network.Socket.Types.MkSocket ww1 ww2 ww3 ww4 ww5 ->
+                 case ww5 of ww6 { GHC.MVar.MVar ww7 ->
+                 case Network.Socket.$wclose
+                        ww1
+                        ww7
+                        ipv2 of ds5 { (#,#) ipv4 ipv5 ->
+                 (# ipv4, ipv3 #) } } } } } }) -}
+3a37ccc5d26ef21e808d53c6af7f8b9b
+  boltParamsExtract ::
+    Data.Text.Internal.Text
+    -> Data.Map.Base.Map
+         Data.Text.Internal.Text Database.Bolt.Value.Type.Value
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (u :: Data.Text.Internal.Text) ->
+                 Boltery.$sfromList
+                   @ Database.Bolt.Value.Type.Value
+                   (GHC.Types.:
+                      @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                      (Boltery.boltParamsExtract1, Database.Bolt.Value.Type.T u)
+                      (GHC.Types.[]
+                         @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)))) -}
+5f8e4ec39897c9eae7488f1b8fda02a5
+  boltParamsExtract1 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "username"#) -}
 cb608824ea6ae1815bb45a8372f869c6
   boltParamsLanguage ::
     Data.Text.Internal.Text
@@ -737,6 +982,25 @@ fbb9a14c7bb75319aa2efc5b75350e18
 14d867f296b4a9e42291a058a72f6b16
   boltParamsRepo9 :: Data.Text.Internal.Text
   {- Unfolding: (Data.Text.Show.unpackCString# "repoPrivate"#) -}
+0176a8dbcdb71a031903b185bfa1c4fc
+  boltParamsRepoLanguageLink ::
+    Data.Text.Internal.Text
+    -> Data.Text.Internal.Text
+    -> Data.Map.Base.Map
+         Data.Text.Internal.Text Database.Bolt.Value.Type.Value
+  {- Arity: 2, Strictness: <L,U><L,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ (r :: Data.Text.Internal.Text) (l :: Data.Text.Internal.Text) ->
+                 Boltery.$sfromList
+                   @ Database.Bolt.Value.Type.Value
+                   (GHC.Types.:
+                      @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                      (Boltery.boltParamsRepo8, Database.Bolt.Value.Type.T r)
+                      (GHC.Types.:
+                         @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                         (Boltery.boltParamsLanguage1, Database.Bolt.Value.Type.T l)
+                         (GHC.Types.[]
+                            @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value))))) -}
 6a72ec17905a5f907475c3a931d7831c
   boltParamsUser ::
     GitHub.Data.Definitions.User
@@ -797,7 +1061,103 @@ fcd2413dbd0814c5415d7c19e0306733
 1a164f62ecc2abebccd7b294f8b53c7b
   boltParamsUser9 :: Data.Text.Internal.Text
   {- Unfolding: (Data.Text.Show.unpackCString# "userName"#) -}
-517b75be1d4812f65d3532d74da6551b
+8cd38f82a95c718a4a0a12cf7a9483bd
+  boltParamsUserLanguageLink ::
+    Data.Text.Internal.Text
+    -> Data.Text.Internal.Text
+    -> Data.Map.Base.Map
+         Data.Text.Internal.Text Database.Bolt.Value.Type.Value
+  {- Arity: 2, Strictness: <L,U><L,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ (u :: Data.Text.Internal.Text) (l :: Data.Text.Internal.Text) ->
+                 Boltery.$sfromList
+                   @ Database.Bolt.Value.Type.Value
+                   (GHC.Types.:
+                      @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                      (Boltery.boltParamsUser12, Database.Bolt.Value.Type.T u)
+                      (GHC.Types.:
+                         @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                         (Boltery.boltParamsLanguage1, Database.Bolt.Value.Type.T l)
+                         (GHC.Types.[]
+                            @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value))))) -}
+8629caf434511a253c3352e12f445c1e
+  boltParamsUserRepoCollabLink ::
+    Data.Text.Internal.Text
+    -> Data.Text.Internal.Text
+    -> GHC.Types.Int
+    -> Data.Map.Base.Map
+         Data.Text.Internal.Text Database.Bolt.Value.Type.Value
+  {- Arity: 3, Strictness: <L,U><L,U><L,U>,
+     Unfolding: (\ (u :: Data.Text.Internal.Text)
+                   (l :: Data.Text.Internal.Text)
+                   (c :: GHC.Types.Int) ->
+                 Boltery.$sfromList
+                   @ Database.Bolt.Value.Type.Value
+                   (GHC.Types.:
+                      @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                      (Boltery.boltParamsUser12, Database.Bolt.Value.Type.T u)
+                      (GHC.Types.:
+                         @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                         (Boltery.boltParamsLanguage1, Database.Bolt.Value.Type.T l)
+                         (GHC.Types.:
+                            @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                            (Boltery.boltParamsUserRepoCollabLink1,
+                             Database.Bolt.Value.Type.I c)
+                            (GHC.Types.[]
+                               @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)))))) -}
+a08bda22e6553452f5457631d48453b0
+  boltParamsUserRepoCollabLink1 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "commits"#) -}
+79936cf74643faf4d8014ab7df37d944
+  boltParamsUserRepoOwnerLink ::
+    Data.Text.Internal.Text
+    -> Data.Text.Internal.Text
+    -> Data.Map.Base.Map
+         Data.Text.Internal.Text Database.Bolt.Value.Type.Value
+  {- Arity: 2, Strictness: <L,U><L,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ (u :: Data.Text.Internal.Text) (r :: Data.Text.Internal.Text) ->
+                 Boltery.$sfromList
+                   @ Database.Bolt.Value.Type.Value
+                   (GHC.Types.:
+                      @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                      (Boltery.boltParamsUser12, Database.Bolt.Value.Type.T u)
+                      (GHC.Types.:
+                         @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value)
+                         (Boltery.boltParamsRepo8, Database.Bolt.Value.Type.T r)
+                         (GHC.Types.[]
+                            @ (Data.Text.Internal.Text, Database.Bolt.Value.Type.Value))))) -}
+87835a15c2e736281de3a7519e070288
+  boltRecordToEdge ::
+    Database.Bolt.Record.Record -> GHC.Types.IO Common.Edge
+  {- Arity: 2, Strictness: <S,U><S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Boltery.boltRecordToEdge1
+                  `cast`
+                (<Database.Bolt.Record.Record>_R
+                 ->_R Sym (GHC.Types.N:IO[0] <Common.Edge>_R)) -}
+c481f8b23dfe19f6b6b027b2dd6ec7a6
+  boltRecordToEdge1 ::
+    Database.Bolt.Record.Record
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, Common.Edge #)
+  {- Arity: 2, Strictness: <S,U><S,U> -}
+298981787efe350e208945f3635d6a7c
+  boltRecordToVertex ::
+    Database.Bolt.Record.Record -> GHC.Types.IO Common.Vertex
+  {- Arity: 2, Strictness: <S,U><S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Boltery.boltRecordToVertex1
+                  `cast`
+                (<Database.Bolt.Record.Record>_R
+                 ->_R Sym (GHC.Types.N:IO[0] <Common.Vertex>_R)) -}
+a055cd75ad343edb89e6ce2b3d44a066
+  boltRecordToVertex1 ::
+    Database.Bolt.Record.Record
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, Common.Vertex #)
+  {- Arity: 2, Strictness: <S,U><S,U> -}
+46a7416c1cba8a9bf1b9356c025478d5
   boltStore ::
     Data.Text.Internal.Text
     -> Data.Map.Base.Map
@@ -811,7 +1171,7 @@ fcd2413dbd0814c5415d7c19e0306733
                  ->_R <Data.Map.Base.Map
                          Data.Text.Internal.Text Database.Bolt.Value.Type.Value>_R
                  ->_R Sym (GHC.Types.N:IO[0] <GHC.Types.Bool>_R)) -}
-4fcd5be13f5a39003f79533d60dd3ea7
+4d549288778cf3955239e6c04f0d68d6
   boltStore1 ::
     Data.Text.Internal.Text
     -> Data.Map.Base.Map
@@ -823,11 +1183,11 @@ fcd2413dbd0814c5415d7c19e0306733
                    (p :: Data.Map.Base.Map
                            Data.Text.Internal.Text Database.Bolt.Value.Type.Value)
                    (s :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
-                 case Boltery.boltStore3
+                 case Boltery.boltCreateGraph5
                         `cast`
                       (GHC.Types.N:IO[0] <Database.Bolt.Connection.Type.Pipe>_R)
                         s of ds1 { (#,#) ipv ipv1 ->
-                 case ((Boltery.boltStore2 c p)
+                 case ((Boltery.boltCreateGraph4 c p)
                          `cast`
                        (Control.Monad.Trans.Reader.N:ReaderT[0]
                             <*>_N
@@ -847,41 +1207,55 @@ fcd2413dbd0814c5415d7c19e0306733
                         ipv2 of ds5 { (#,#) ipv4 ipv5 ->
                  (# ipv4,
                     GHC.List.null @ Database.Bolt.Record.Record ipv3 #) } } } } } }) -}
-03b01f8919fef5b57e6dc065eba56d2c
-  boltStore2 ::
+4c5c431066e9bec2b125cc2a106781d2
+  boltStoreExtractLink ::
     Data.Text.Internal.Text
-    -> Data.Map.Base.Map
-         Data.Text.Internal.Text Database.Bolt.Value.Type.Value
-    -> Database.Bolt.Connection.BoltActionT
-         GHC.Types.IO [Database.Bolt.Record.Record]
-  {- Unfolding: (Database.Bolt.Connection.queryP
-                   @ GHC.Types.IO
-                   Control.Monad.IO.Class.$fMonadIOIO) -}
-7c03212599caa2a29937e7c90379126c
-  boltStore3 :: GHC.Types.IO Database.Bolt.Connection.Type.Pipe
-  {- Unfolding: (Database.Bolt.Connection.Pipe.connect
-                   @ GHC.Types.IO
-                   Control.Monad.IO.Class.$fMonadIOIO
-                   Boltery.boltStore4) -}
-bef3c2c19e6d5dc3493656e0d3bc8224
-  boltStore4 :: Database.Bolt.Connection.Type.BoltCfg
-  {- Unfolding: (Database.Bolt.Connection.Type.BoltCfg
-                   Database.Bolt.Connection.Type.$fDefaultBoltCfg7
-                   Database.Bolt.Connection.Type.$fDefaultBoltCfg6
-                   Database.Bolt.Connection.Type.$fDefaultBoltCfg5
-                   Database.Bolt.Connection.Type.$fDefaultBoltCfg4
-                   Database.Bolt.Connection.Type.$fDefaultBoltCfg3
-                   Database.Bolt.Connection.Type.$fDefaultBoltCfg2
-                   Database.Bolt.Connection.Type.$fDefaultBoltCfg1
-                   Boltery.boltStore6
-                   Boltery.boltStore5) -}
-a3b5cefafa790bc62c7e06449707218d
-  boltStore5 :: Data.Text.Internal.Text
-  {- Unfolding: (Data.Text.Show.unpackCString# "Coggroach"#) -}
-5de3fc2ac7c404534716ff15a294df74
-  boltStore6 :: Data.Text.Internal.Text
-  {- Unfolding: (Data.Text.Show.unpackCString# "neo4j"#) -}
-e1360a6fd23ecfd8673c754f456a4069
+    -> GHC.Types.IO [Database.Bolt.Record.Record]
+  {- Arity: 2, Strictness: <L,U><S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Boltery.boltStoreExtractLink1
+                  `cast`
+                (<Data.Text.Internal.Text>_R
+                 ->_R Sym (GHC.Types.N:IO[0] <[Database.Bolt.Record.Record]>_R)) -}
+a9813cb62e0b4bdb4d7d9ae17368b158
+  boltStoreExtractLink1 ::
+    Data.Text.Internal.Text
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          [Database.Bolt.Record.Record] #)
+  {- Arity: 2, Strictness: <L,U><S,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ (u :: Data.Text.Internal.Text)
+                   (eta :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 Boltery.boltGetRecords1
+                   Boltery.boltCypherExtractLink
+                   (Boltery.boltParamsExtract u)
+                   eta) -}
+8b696b4007be50bac4000edcda8d01bf
+  boltStoreExtractNode ::
+    Data.Text.Internal.Text
+    -> GHC.Types.IO [Database.Bolt.Record.Record]
+  {- Arity: 2, Strictness: <L,U><S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Boltery.boltStoreExtractNode1
+                  `cast`
+                (<Data.Text.Internal.Text>_R
+                 ->_R Sym (GHC.Types.N:IO[0] <[Database.Bolt.Record.Record]>_R)) -}
+4566ad645f4a3dd4d4a562a561eec20c
+  boltStoreExtractNode1 ::
+    Data.Text.Internal.Text
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          [Database.Bolt.Record.Record] #)
+  {- Arity: 2, Strictness: <L,U><S,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ (u :: Data.Text.Internal.Text)
+                   (eta :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 Boltery.boltGetRecords1
+                   Boltery.boltCypherExtractNode
+                   (Boltery.boltParamsExtract u)
+                   eta) -}
+35d039fa36c9c184beed2cb8a50d4f2a
   boltStoreLanguage ::
     Data.Text.Internal.Text -> GHC.Types.IO GHC.Types.Bool
   {- Arity: 2, Strictness: <L,U><S,U>,
@@ -890,7 +1264,7 @@ e1360a6fd23ecfd8673c754f456a4069
                   `cast`
                 (<Data.Text.Internal.Text>_R
                  ->_R Sym (GHC.Types.N:IO[0] <GHC.Types.Bool>_R)) -}
-f9cca0c0307d0d7e2cdce9c973d1cb87
+19374136076730357f74047ffe1b72a7
   boltStoreLanguage1 ::
     Data.Text.Internal.Text
     -> GHC.Prim.State# GHC.Prim.RealWorld
@@ -903,7 +1277,7 @@ f9cca0c0307d0d7e2cdce9c973d1cb87
                    Boltery.boltCypherLanguage
                    (Boltery.boltParamsLanguage l)
                    eta) -}
-76d8ad091f63f0e4a54e8fcd7f48c1b1
+a7aad6d20fa5dd8185ce88492c87783b
   boltStoreRepo ::
     GitHub.Data.Repos.Repo -> GHC.Types.IO GHC.Types.Bool
   {- Arity: 2,
@@ -913,7 +1287,7 @@ f9cca0c0307d0d7e2cdce9c973d1cb87
                   `cast`
                 (<GitHub.Data.Repos.Repo>_R
                  ->_R Sym (GHC.Types.N:IO[0] <GHC.Types.Bool>_R)) -}
-89578d46fe6388c3955712f89f4588fd
+c5e4dadaec6fdf4b807c40a54cddf7b3
   boltStoreRepo1 ::
     GitHub.Data.Repos.Repo
     -> GHC.Prim.State# GHC.Prim.RealWorld
@@ -927,7 +1301,33 @@ f9cca0c0307d0d7e2cdce9c973d1cb87
                    Boltery.boltCypherRepo
                    (Boltery.boltParamsRepo r)
                    eta) -}
-495d517329514c6c3fdead77e9a0170c
+fbb44037a468b4908ba8ce56b94d3540
+  boltStoreRepoLanguageLink ::
+    Data.Text.Internal.Text
+    -> Data.Text.Internal.Text -> GHC.Types.IO GHC.Types.Bool
+  {- Arity: 3, Strictness: <L,U><L,U><S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Boltery.boltStoreRepoLanguageLink1
+                  `cast`
+                (<Data.Text.Internal.Text>_R
+                 ->_R <Data.Text.Internal.Text>_R
+                 ->_R Sym (GHC.Types.N:IO[0] <GHC.Types.Bool>_R)) -}
+73a2cfd165efeda1c9ca6b99e0d2fef6
+  boltStoreRepoLanguageLink1 ::
+    Data.Text.Internal.Text
+    -> Data.Text.Internal.Text
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, GHC.Types.Bool #)
+  {- Arity: 3, Strictness: <L,U><L,U><S,U>,
+     Unfolding: InlineRule (3, True, False)
+                (\ (r :: Data.Text.Internal.Text)
+                   (l :: Data.Text.Internal.Text)
+                   (eta :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 Boltery.boltStore1
+                   Boltery.boltCypherRepoLanguageLink
+                   (Boltery.boltParamsRepoLanguageLink r l)
+                   eta) -}
+2caf019b89acab6a4e48f348b743b452
   boltStoreUser ::
     GitHub.Data.Definitions.User -> GHC.Types.IO GHC.Types.Bool
   {- Arity: 2,
@@ -937,7 +1337,7 @@ f9cca0c0307d0d7e2cdce9c973d1cb87
                   `cast`
                 (<GitHub.Data.Definitions.User>_R
                  ->_R Sym (GHC.Types.N:IO[0] <GHC.Types.Bool>_R)) -}
-9c36b62b6967b36acb04a8eacb5453dc
+ef554005b9a66cf548a9db4677d95f90
   boltStoreUser1 ::
     GitHub.Data.Definitions.User
     -> GHC.Prim.State# GHC.Prim.RealWorld
@@ -950,6 +1350,89 @@ f9cca0c0307d0d7e2cdce9c973d1cb87
                  Boltery.boltStore1
                    Boltery.boltCypherUser
                    (Boltery.boltParamsUser o)
+                   eta) -}
+6df9fdec072b7dd83d9f0ff071ae21e3
+  boltStoreUserLanguageLink ::
+    Data.Text.Internal.Text
+    -> Data.Text.Internal.Text -> GHC.Types.IO GHC.Types.Bool
+  {- Arity: 3, Strictness: <L,U><L,U><S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Boltery.boltStoreUserLanguageLink1
+                  `cast`
+                (<Data.Text.Internal.Text>_R
+                 ->_R <Data.Text.Internal.Text>_R
+                 ->_R Sym (GHC.Types.N:IO[0] <GHC.Types.Bool>_R)) -}
+639c9a33a38e05ec8f51dbe2fdb49271
+  boltStoreUserLanguageLink1 ::
+    Data.Text.Internal.Text
+    -> Data.Text.Internal.Text
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, GHC.Types.Bool #)
+  {- Arity: 3, Strictness: <L,U><L,U><S,U>,
+     Unfolding: InlineRule (3, True, False)
+                (\ (r :: Data.Text.Internal.Text)
+                   (l :: Data.Text.Internal.Text)
+                   (eta :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 Boltery.boltStore1
+                   Boltery.boltCypherUserLanguageLink
+                   (Boltery.boltParamsUserLanguageLink r l)
+                   eta) -}
+fe09b1100ebffdcfc809ac5624c865f9
+  boltStoreUserRepoCollabLink ::
+    Data.Text.Internal.Text
+    -> Data.Text.Internal.Text
+    -> GHC.Types.Int
+    -> GHC.Types.IO GHC.Types.Bool
+  {- Arity: 4, Strictness: <L,U><L,U><L,U><S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Boltery.boltStoreUserRepoCollabLink1
+                  `cast`
+                (<Data.Text.Internal.Text>_R
+                 ->_R <Data.Text.Internal.Text>_R
+                 ->_R <GHC.Types.Int>_R
+                 ->_R Sym (GHC.Types.N:IO[0] <GHC.Types.Bool>_R)) -}
+731c8b31922599a1e91418a3deae7c03
+  boltStoreUserRepoCollabLink1 ::
+    Data.Text.Internal.Text
+    -> Data.Text.Internal.Text
+    -> GHC.Types.Int
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, GHC.Types.Bool #)
+  {- Arity: 4, Strictness: <L,U><L,U><L,U><S,U>,
+     Unfolding: InlineRule (4, True, False)
+                (\ (u :: Data.Text.Internal.Text)
+                   (r :: Data.Text.Internal.Text)
+                   (c :: GHC.Types.Int)
+                   (eta :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 Boltery.boltStore1
+                   Boltery.boltCypherUserRepoCollabLink
+                   (Boltery.boltParamsUserRepoCollabLink u r c)
+                   eta) -}
+32587ef2eb63360e25f1f9eb84f0cb14
+  boltStoreUserRepoOwnerLink ::
+    Data.Text.Internal.Text
+    -> Data.Text.Internal.Text -> GHC.Types.IO GHC.Types.Bool
+  {- Arity: 3, Strictness: <L,U><L,U><S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Boltery.boltStoreUserRepoOwnerLink1
+                  `cast`
+                (<Data.Text.Internal.Text>_R
+                 ->_R <Data.Text.Internal.Text>_R
+                 ->_R Sym (GHC.Types.N:IO[0] <GHC.Types.Bool>_R)) -}
+89d1f4d9b4416c93020cc15ca1fe1922
+  boltStoreUserRepoOwnerLink1 ::
+    Data.Text.Internal.Text
+    -> Data.Text.Internal.Text
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, GHC.Types.Bool #)
+  {- Arity: 3, Strictness: <L,U><L,U><S,U>,
+     Unfolding: InlineRule (3, True, False)
+                (\ (u :: Data.Text.Internal.Text)
+                   (r :: Data.Text.Internal.Text)
+                   (eta :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 Boltery.boltStore1
+                   Boltery.boltCypherUserRepoOwnerLink
+                   (Boltery.boltParamsUserRepoOwnerLink u r)
                    eta) -}
 25caef96d06a611dedec83095ed456c1
   dateToValueI ::

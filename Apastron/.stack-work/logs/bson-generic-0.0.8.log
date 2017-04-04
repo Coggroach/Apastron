@@ -3,7 +3,6 @@ Preprocessing library bson-generic-0.0.8...
 
 src\Data\Bson\Generic.hs:11:14: warning:
     -XOverlappingInstances is deprecated: instead use per-instance pragmas OVERLAPPING/OVERLAPPABLE/OVERLAPS
-[1 of 1] Compiling Data.Bson.Generic ( src\Data\Bson\Generic.hs, .stack-work\dist\b7fec021\build\Data\Bson\Generic.o )
 Installing library in
-E:\Development\Haskell\Projects\Apastron\Apastron\.stack-work\install\1bb99e24\lib\x86_64-windows-ghc-8.0.1\bson-generic-0.0.8-HCUlC9mFzScEiZ90dYsZ4F
+E:\Development\Haskell\Projects\Apastron\apastron\.stack-work\install\1bb99e24\lib\x86_64-windows-ghc-8.0.1\bson-generic-0.0.8-HCUlC9mFzScEiZ90dYsZ4F
 Registering bson-generic-0.0.8...

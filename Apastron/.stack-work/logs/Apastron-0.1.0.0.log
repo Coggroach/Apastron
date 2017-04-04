@@ -4,7 +4,7 @@ Preprocessing executable 'Apastron-exe' for Apastron-0.1.0.0...
 [1 of 1] Compiling Main             ( app\Main.hs, .stack-work\dist\b7fec021\build\Apastron-exe\Apastron-exe-tmp\Main.o ) [Crawler changed]
 Linking .stack-work\dist\b7fec021\build\Apastron-exe\Apastron-exe.exe ...
 Installing library in
-E:\Development\Haskell\Projects\Apastron\Apastron\.stack-work\install\1bb99e24\lib\x86_64-windows-ghc-8.0.1\Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A
+E:\Development\Haskell\Projects\Apastron\apastron\.stack-work\install\1bb99e24\lib\x86_64-windows-ghc-8.0.1\Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A
 Installing executable(s) in
-E:\Development\Haskell\Projects\Apastron\Apastron\.stack-work\install\1bb99e24\bin
+E:\Development\Haskell\Projects\Apastron\apastron\.stack-work\install\1bb99e24\bin
 Registering Apastron-0.1.0.0...

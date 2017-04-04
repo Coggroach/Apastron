@@ -46,10 +46,7 @@ defaultIntNull = 0
 
 boltStore :: Text -> Map Text Database.Bolt.Value -> IO Bool
 boltStore c p = do
-    let config = Database.Bolt.def { Database.Bolt.user = "neo4j", Database.Bolt.password = "Coggroach" }
-    pipe <- Database.Bolt.connect config
-    records <- Database.Bolt.run pipe $ Database.Bolt.queryP c p
-    Database.Bolt.close pipe
+    records <- boltGetRecords c p
     return (Data.List.null records)
 
 boltGetRecords :: Text -> Map Text Database.Bolt.Value -> IO [Database.Bolt.Record]
@@ -128,7 +125,7 @@ boltStoreExtractLink :: Text -> IO [Database.Bolt.Record]
 boltStoreExtractLink u = boltGetRecords boltCypherExtractLink $ boltParamsExtract u
 
 -----------------------------------------
---  User
+--   Store User
 -----------------------------------------
 
 boltCypherUser :: Text
@@ -168,7 +165,7 @@ boltStoreUser :: GitHub.Endpoints.Users.User -> IO Bool
 boltStoreUser o = boltStore boltCypherUser $ boltParamsUser o
 
 -----------------------------------------
---  Repos
+--  Store Repos
 -----------------------------------------
 
 boltCypherRepo :: Text
@@ -215,7 +212,7 @@ boltStoreRepo :: Repo -> IO Bool
 boltStoreRepo r = boltStore boltCypherRepo $ boltParamsRepo r
 
 -----------------------------------------
---  Languages
+--   Store Languages
 -----------------------------------------
 
 boltCypherLanguage :: Text

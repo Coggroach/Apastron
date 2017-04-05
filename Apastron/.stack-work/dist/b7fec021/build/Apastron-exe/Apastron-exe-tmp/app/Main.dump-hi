@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-04 23:42:21.7299005 UTC
+2017-04-05 00:30:58.8797511 UTC
 
 interface main@main:Main 8001
-  interface hash: e3f554ac98df437489ecbb6ec3a6db75
-  ABI hash: af639157871b7bd10d104346117c7b47
-  export-list hash: 034b614451bc56815bba02a19362105f
+  interface hash: 3267b81c87033edff08cbf796c3bcce9
+  ABI hash: be62c2d3ebd451dcc82d2d225619d013
+  export-list hash: 9388cc7291bb1ca96286ff4b54ad634c
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 9a779d84dfdae98e8f8e01fedea0a322
   sig of: Nothing
@@ -59,7 +59,11 @@ package dependencies: Apastron-0.1.0.0@Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A
                       cryptohash-0.11.9@cryptohash-0.11.9-AKA83W6XJLuJ6ooDzY2r0l
                       cryptonite-0.19@cryptonite-0.19-JQTQGTq5BGQJS9F2vRxlj
                       data-binary-ieee754-0.4.4@data-binary-ieee754-0.4.4-F1HjhwdV1xx5grS0eMjeg2
+                      data-default-0.7.1.1@data-default-0.7.1.1-5uix4eIzBY9IcVb4V2HbW3
                       data-default-class-0.1.2.0@data-default-class-0.1.2.0-FYQpjIylblBDctdkHAFeXA
+                      data-default-instances-containers-0.0.1@data-default-instances-containers-0.0.1-B3LqdWnlDzL8N7WtQnkQ3T
+                      data-default-instances-dlist-0.0.1@data-default-instances-dlist-0.0.1-7EnnOuRxBMR4O5lm1rpRqD
+                      data-default-instances-old-locale-0.0.1@data-default-instances-old-locale-0.0.1-LPOHPEJCJUa53W1ZYaHB84
                       deepseq-1.4.2.0@deepseq-1.4.2.0
                       deepseq-generics-0.2.0.0@deepseq-generics-0.2.0.0-ESBROgKchbm3QXcQv2e7oG
                       directory-1.2.6.2@directory-1.2.6.2
@@ -74,6 +78,7 @@ package dependencies: Apastron-0.1.0.0@Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A
                       free-4.12.4@free-4.12.4-Etm59Dm8iExFxAy1L49Ovd
                       ghc-boot-th-8.0.1@ghc-boot-th-8.0.1 ghc-prim-0.5.0.0
                       github-0.15.0@github-0.15.0-5NmHJJJjiHK3Xno1Auc5DS
+                      hasbolt-0.1.0.9@hasbolt-0.1.0.9-AJXJGY2ypvLC8K54oQUQlt
                       hashable-1.2.4.0@hashable-1.2.4.0-EMu4H7FB10MAl6hwKw992G
                       hashtables-1.2.1.0@hashtables-1.2.1.0-97BixhaJIWTIDAaThqJujl
                       hourglass-0.2.10@hourglass-0.2.10-17WCSaZB7oBF5JMwDbmBMG
@@ -98,8 +103,10 @@ package dependencies: Apastron-0.1.0.0@Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A
                       mongoDB-2.1.1.1@mongoDB-2.1.1.1-8pQlEjBJ8J0LRyS8YhkcGi
                       mtl-2.2.1@mtl-2.2.1-6qsR1PHUy5lL47Hpoa4jCM
                       network-2.6.3.1@network-2.6.3.1-nK9qnsiJR03CWuPIGMmX
+                      network-simple-0.4.0.5@network-simple-0.4.0.5-GNWN1gLrnMS3DQFJtwOijq
                       network-uri-2.6.1.0@network-uri-2.6.1.0-DDHh2FNiPirBRgkuU9DEt2
                       nonce-1.0.2@nonce-1.0.2-5AJC5Z1QNmbDHXkdC0qzs0
+                      old-locale-1.0.0.7@old-locale-1.0.0.7-6glXNhHF891B41ZfuI8hU8
                       parsec-3.1.11@parsec-3.1.11-BCos4GEVCuDB8dnOCBHO6X
                       pem-0.2.2@pem-0.2.2-qPMQP6sZm3HgQEmiBojNt
                       pointed-5@pointed-5-4thBVDuswzyHT6OwPKJEnE
@@ -162,6 +169,12 @@ orphans: Apastron-0.1.0.0@Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Common
          binary-orphans-0.1.5.1@binary-orphans-0.1.5.1-DPC52mntbhkG4cEV7O2TQl:Data.Binary.Orphans
          bson-generic-0.0.8@bson-generic-0.0.8-HCUlC9mFzScEiZ90dYsZ4F:Data.Bson.Generic
          bytestring-0.10.8.1@bytestring-0.10.8.1:Data.ByteString.Builder
+         data-default-instances-containers-0.0.1@data-default-instances-containers-0.0.1-B3LqdWnlDzL8N7WtQnkQ3T:Data.Default.Instances.Containers
+         data-default-instances-dlist-0.0.1@data-default-instances-dlist-0.0.1-7EnnOuRxBMR4O5lm1rpRqD:Data.Default.Instances.DList
+         data-default-instances-old-locale-0.0.1@data-default-instances-old-locale-0.0.1-LPOHPEJCJUa53W1ZYaHB84:Data.Default.Instances.OldLocale
+         hasbolt-0.1.0.9@hasbolt-0.1.0.9-AJXJGY2ypvLC8K54oQUQlt:Database.Bolt.Connection.Instances
+         hasbolt-0.1.0.9@hasbolt-0.1.0.9-AJXJGY2ypvLC8K54oQUQlt:Database.Bolt.Value.Instances
+         hasbolt-0.1.0.9@hasbolt-0.1.0.9-AJXJGY2ypvLC8K54oQUQlt:Database.Bolt.Value.Structure
          hashable-1.2.4.0@hashable-1.2.4.0-EMu4H7FB10MAl6hwKw992G:Data.Hashable.Generic
          http-client-0.4.31.2@http-client-0.4.31.2-6gyf7twhhmv8yfbRVNkl4Z:Network.HTTP.Client.Request
          mongoDB-2.1.1.1@mongoDB-2.1.1.1-8pQlEjBJ8J0LRyS8YhkcGi:Database.MongoDB.Internal.Util
@@ -266,7 +279,7 @@ family instance modules: Apastron-0.1.0.0@Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0
                          vector-0.11.0.0@vector-0.11.0.0-BEDZb5o2QOhGbIm6ky7rl6:Data.Vector.Unboxed.Base
                          vector-instances-3.3.1@vector-instances-3.3.1-I6TdtGyV4ig2RKtxblZRcS:Data.Vector.Instances
                          zlib-0.6.1.2@zlib-0.6.1.2-4CWLN1T27kOJhNvXgy46ZV:Codec.Compression.Zlib.Stream
-import  -/  Apastron-0.1.0.0@Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Crawler 9941f373777fa39c732a46b0293c52c8
+import  -/  Apastron-0.1.0.0@Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Crawler d2ba3b6c0138444c7d132be906225993
 import  -/  base-4.9.0.0:Prelude 2d9cd8b0ec3d728f62b734df888d2e34
 import  -/  ghc-prim-0.5.0.0:GHC.Types 7378e41b7749213c8c88ceb6b0665d4c
 d6831ef04cb9301b090dfae6f7bb7ec7
@@ -281,12 +294,12 @@ d6831ef04cb9301b090dfae6f7bb7ec7
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "main"#) -}
-dacb0f8987b83119d1e86f973f4410e2
+562fdbe1dd4545420b7a1b3ddd526c8b
   main :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <S,U>,
      Unfolding: InlineRule (0, True, True)
                 Crawler.mkCrawler1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
-91103c0de4a28365c2260ae0d1840183
+e219893705e8d5d9c3cc3c05af04b60b
   main1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)

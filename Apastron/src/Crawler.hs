@@ -52,6 +52,7 @@ import            GitHub.Endpoints.Repos
 import            GitHub.Endpoints.Users
 import            GHC.Generics
 import            Prelude
+import            Boltery
 
 -----------------------------------------
 --  Variables
@@ -66,7 +67,7 @@ data Crawl = Crawl {
 } deriving (Generic, Show, Eq, ToJSON, FromJSON, ToBSON, FromBSON)
 
 data VertexMap = VertexMap{
-    vertices :: TVar (Map Text Common.Vertex)
+    vertices :: TVar (Map Text Text)
 }
 
 data CrawlInfo = CrawlInfo {
@@ -127,13 +128,25 @@ upsertCrawl c = liftIO $ do
     logDatabase "Crawler" "UserCrawlDb" "upsert" u
     connectToDatabase $ Database.MongoDB.upsert (Database.MongoDB.select ["cUserName" =: u] "UserCrawlDb") $ toBSON c
 
+upsertCrawlWhenTrue :: String -> IO Bool
+upsertCrawlWhenTrue c = liftIO $ do
+    crawl <- findCrawl c
+    let status = cStatus crawl    
+    if status then do
+        let newCrawl = Crawl c False
+        upsertCrawl newCrawl
+        return status
+    else
+        return status
+    
+
 newVertexMap :: IO VertexMap
 newVertexMap = atomically $ VertexMap <$> newTVar Data.Map.empty
 
-addVertex :: VertexMap -> Text -> Common.Vertex -> STM ()
-addVertex VertexMap{..} t = modifyTVar vertices . Data.Map.insert t
+addVertex :: VertexMap -> Text -> Text -> STM ()
+addVertex VertexMap{..} a = modifyTVar vertices . Data.Map.insert a
 
-lookupVertex :: VertexMap -> Text -> STM (Maybe Common.Vertex)
+lookupVertex :: VertexMap -> Text -> STM (Maybe Text)
 lookupVertex VertexMap{..} t = Data.Map.lookup t <$> readTVar vertices
 
 startCrawl :: Crawl -> Common.User -> VertexMap -> IO()
@@ -143,7 +156,33 @@ startCrawl c u@Common.User{..} v = liftIO $ do
     liftIO $ forkIO $ crawlRepositories v crawlInfo
     return ()
 
+
+
 crawlRepositories :: VertexMap -> CrawlInfo -> IO()
 crawlRepositories v ci = do
     let hops = uHops $ cUser ci
-    return ()
+    let name = uName $ cUser ci
+    let tName = Data.Text.pack name
+    if hops > 0 then do
+        logAction "Crawler" "UserName" name
+        hasSeen <- atomically $ lookupVertex v tName
+        case hasSeen of
+            Just u -> logAction "Crawler" "Already Stored" name
+            Nothing -> do
+                userInfo <- GitHub.Endpoints.Users.userInfoFor' (cAuth ci) (GitHub.Data.Name.N tName)
+                case userInfo of
+                    Left err -> do
+                        logError "Crawler" $ show err
+                        return ()
+                    Right userInfo' -> do
+                        result <- boltStoreUser userInfo'
+                        if result then
+                            logAction "Crawler" "Stored" name
+                        else logError "Crawler" "Failed to Store User"
+                        atomically $ addVertex v tName tName
+        --repos <- GitHub.Endpoints.Repos.userRepos (mkOwnerName name) GitHub.Data.Repos.RepoPublicityAll
+
+    else
+        do
+        logAction "Crawler" "Repos" "Complete"
+        return ()

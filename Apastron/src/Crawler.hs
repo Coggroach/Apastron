@@ -62,18 +62,21 @@ instance ToBSON Bool
 instance FromBSON Bool
 
 data Crawl = Crawl {
-    cUsername :: String,
+    cName :: String,
     cStatus :: Bool
 } deriving (Generic, Show, Eq, ToJSON, FromJSON, ToBSON, FromBSON)
 
-data VertexMap = VertexMap{
-    vertices :: TVar (Map Text Text)
+data LookupMap = LookupMap{
+    entries :: TVar (Map Text String)
 }
 
 data CrawlInfo = CrawlInfo {
-    cCrawl :: Crawl,
-    cUser :: Common.User,
-    cAuth :: Maybe GitHub.Data.Auth
+    cUserName :: Text,
+    cAuthToken :: Maybe GitHub.Data.Auth,
+    cHops :: Int,
+    cRepoName :: Text,
+    cContributions :: Int,
+    cLanguage :: Text
 }
 
 -----------------------------------------
@@ -103,7 +106,7 @@ initCrawler user@(Common.User n t h) = liftIO $ do
         (Crawl _ False) -> return (Common.Response "Completed")
         _ -> do            
             upsertCrawl (Crawl n True)
-            vMap <- newVertexMap
+            vMap <- newLookupMap
             startCrawl crawl user vMap
             return (Common.Response "Started")
 
@@ -111,22 +114,21 @@ killCrawler :: Common.User -> ApiHandler Common.Response
 killCrawler u = return (Common.Response "Not Implemented")
 
 -----------------------------------------
---  Helping Functions
+--  Db Functions
 -----------------------------------------
 
 findCrawl :: String -> IO Crawl
 findCrawl u = liftIO $ do
     logDatabase "Crawler" "UserCrawlDb" "find" u
     crawl <- connectToDatabase $ do
-        docs <- Database.MongoDB.find (Database.MongoDB.select ["cUserName" =: u] "UserCrawlDb") >>= drainCursor
+        docs <- Database.MongoDB.find (Database.MongoDB.select ["cName" =: u] "UserCrawlDb") >>= drainCursor
         return $ Data.Maybe.mapMaybe (\b -> fromBSON b :: Maybe Crawl) docs
     return $ Data.List.head crawl
 
 upsertCrawl :: Crawl -> IO ()
-upsertCrawl c = liftIO $ do
-    let u = cUsername c
+upsertCrawl c@Crawl{..} = liftIO $ do
     logDatabase "Crawler" "UserCrawlDb" "upsert" u
-    connectToDatabase $ Database.MongoDB.upsert (Database.MongoDB.select ["cUserName" =: u] "UserCrawlDb") $ toBSON c
+    connectToDatabase $ Database.MongoDB.upsert (Database.MongoDB.select ["cName" =: cName] "UserCrawlDb") $ toBSON c
 
 upsertCrawlWhenTrue :: String -> IO Bool
 upsertCrawlWhenTrue c = liftIO $ do
@@ -138,50 +140,100 @@ upsertCrawlWhenTrue c = liftIO $ do
         return status
     else
         return status
-    
 
-newVertexMap :: IO VertexMap
-newVertexMap = atomically $ VertexMap <$> newTVar Data.Map.empty
+-----------------------------------------
+--  Lookup Functions
+-----------------------------------------
+newLookupMap :: IO LookupMap
+newLookupMap = atomically $ LookupMap <$> newTVar Data.Map.empty
 
-addVertex :: VertexMap -> Text -> Text -> STM ()
-addVertex VertexMap{..} a = modifyTVar vertices . Data.Map.insert a
+addLookup :: LookupMap -> Text -> STM ()
+addLookup LookupMap{..} a = modifyTVar entries . Data.Map.insert a
 
-lookupVertex :: VertexMap -> Text -> STM (Maybe Text)
-lookupVertex VertexMap{..} t = Data.Map.lookup t <$> readTVar vertices
+findLookup :: LookupMap -> Text -> STM (Maybe Text)
+findLookup LookupMap{..} t = Data.Map.lookup t <$> readTVar entries
 
-startCrawl :: Crawl -> Common.User -> VertexMap -> IO()
-startCrawl c u@Common.User{..} v = liftIO $ do
-    let auth = Just $ GitHub.OAuth $ Data.ByteString.Char8.pack uAuthToken
-    let crawlInfo = CrawlInfo c u auth
-    liftIO $ forkIO $ crawlRepositories v crawlInfo
+-----------------------------------------
+--  Crawling Functions
+-----------------------------------------
+startCrawl :: Crawl -> Common.User -> LookupMap -> IO()
+startCrawl c u@Common.User{..} lm = liftIO $ do
+    let cAuth = Just $ GitHub.OAuth $ Data.ByteString.Char8.pack uAuthToken
+    let crawlInfo = CrawlInfo (Data.Text.pack cUsername) cAuth (uHops u) Data.Text.empty -1 Data.Text.empty
+    liftIO $ forkIO $ crawlEngine lm crawlInfo
     return ()
 
+crawlOnUser :: LookupMap -> CrawlInfo -> IO()
+crawlOnUser lm ci@CrawlInfo{..} = do
+    let name = Data.Text.unpack cUserName
+    logAction "Crawler" "UserName" name
+    hasSeen <- atomically $ findLookup lm cUserName
+    case hasSeen of
+        Just u -> logAction "Crawler" "Already Stored" name
+        Nothing -> do
+            userInfo <- GitHub.Endpoints.Users.userInfoFor' (cAuth ci) (GitHub.Data.Name.N cUserName)
+            case userInfo of
+                Left err -> logError "Crawler" $ show err
+                Right userInfo' -> do
+                    result <- boltStoreUser userInfo'             
+                    logBoolAction result "Crawler" "Stored" name
+                    atomically $ addLookup lm cUserName
+                    repos <- GitHub.Endpoints.Repos.userRepos (mkOwnerName cUserName) GitHub.Data.Repos.RepoPublicityAll
+                    let newCi = CrawlInfo cUserName cAuthToken (cHops - 1) cRepoName cContributions cLanguage
+                    mapM_ (crawlOnRepo lm newCi) repos
+    when (cLanguage != Data.Text.empty) $ 
+        boltStoreUserLanguageLink cUserName cLanguage
+    when (cRepoName != Data.Text.empty && cContributions != -1) $ 
+        boltStoreUserRepoCollabLink cUserName cRepoName cContributions
 
+crawlOnRepo :: LookupMap -> CrawlInfo -> GitHub.Data.Repos.Repo -> IO ()
+crawlOnRepo lm ci@CrawlInfo{..} repo = do
+    let repoHTML = getUrl $ GitHub.Data.Repos.repoHtmlUrl repo
+    logAction "Crawler" "Repo" repoHTML
+    hasSeen <- atomically $ findLookup lm repoHTML
+    case hasSeen of
+        Just u -> logAction "Crawler" "Already Stored" ""
+        Nothing -> do
+            result <- boltStoreRepo repo
+            logBoolAction result "Crawler" "Stored" repoHtml
+            atomically $ addLookup lm repoHTML
+                        
+            let newCi = CrawlInfo cUserName cAuthToken (cHops - 1) repoHTML cContributions cLanguage
+            let lang = GitHub.Data.Repos.repoLanguage repo
+            crawlOnLanguage lm newCi lang
 
-crawlRepositories :: VertexMap -> CrawlInfo -> IO()
-crawlRepositories v ci = do
-    let hops = uHops $ cUser ci
+crawlOnLanguage :: LookupMap -> CrawlInfo -> GitHub.Data.Repos.Language -> IO()
+crawlOnLanguage lm ci@CrawlInfo{..} lang = do
+    let langText = getLanguage lang
+    logAction "Crawler" "Repo" langText
+    hasSeen <- atomically $ findLookup lm langText
+    case hasSeen of
+        Just u -> logAction "Crawler" "Already Stored" ""
+        Nothing -> do
+            result <- boltStoreLanguage langText
+            logBoolAction result "Crawler" "Stored" langText
+            atomically $ addLookup lm langText
+    when (langText != Data.Text.empty && cRepoName != Data.Text.empty) $
+        boltStoreRepoLanguageLink cRepoName langText
+
+crawlRepos :: LookupMap -> CrawlInfo -> IO()
+crawlRepos v ci = do
     let name = uName $ cUser ci
-    let tName = Data.Text.pack name
-    if hops > 0 then do
-        logAction "Crawler" "UserName" name
-        hasSeen <- atomically $ lookupVertex v tName
-        case hasSeen of
-            Just u -> logAction "Crawler" "Already Stored" name
-            Nothing -> do
-                userInfo <- GitHub.Endpoints.Users.userInfoFor' (cAuth ci) (GitHub.Data.Name.N tName)
-                case userInfo of
-                    Left err -> do
-                        logError "Crawler" $ show err
-                        return ()
-                    Right userInfo' -> do
-                        result <- boltStoreUser userInfo'
-                        if result then
-                            logAction "Crawler" "Stored" name
-                        else logError "Crawler" "Failed to Store User"
-                        atomically $ addVertex v tName tName
-        --repos <- GitHub.Endpoints.Repos.userRepos (mkOwnerName name) GitHub.Data.Repos.RepoPublicityAll
+    repos <- GitHub.Endpoints.Repos.userRepos (mkOwnerName name) GitHub.Data.Repos.RepoPublicityAll
+    case repos of
+        Left err -> do
+            logError "Crawler" $ show err
+            return ()
+        Right repos' -> do
+            logHeading "Crawler"
+            return()
+    return ()
 
+crawlEngine :: LookupMap -> CrawlInfo -> IO()
+crawlEngine v ci = do
+    let hops = uHops $ cUser ci
+    if hops > 0 then
+        crawlOnUser v ci
     else
         do
         logAction "Crawler" "Repos" "Complete"

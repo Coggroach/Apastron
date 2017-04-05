@@ -99,6 +99,9 @@ logTrailing = putStrLn "======================"
 logAction :: String -> String -> String -> IO()
 logAction s a m = putStrLn $ "[" ++ s ++ "]" ++ "[" ++ a ++ "]: " ++ m
 
+logBoolAction :: Bool -> String -> String -> String -> IO()
+logBoolAction b s a m = putStrLn $ "[" ++ s ++ "]" ++ "[" ++ a ++ ":" ++ show b ++ "]: " ++ m
+
 logError :: String -> String -> IO()
 logError s m =  putStrLn $ "[" ++ s ++ "]" ++ "[Error]: " ++ m
 

@@ -164,16 +164,16 @@ startCrawl c u@Common.User{..} lm = liftIO $ do
     return ()
 
 crawlOnUser :: LookupMap -> CrawlInfo -> Github.Data.Users.User -> IO()
-crawlOnUser lm ci@CrawlInfo{..} = do
-    let name = Data.Text.unpack cUserName
-    logAction "Crawler" "UserName" name
-    hasSeen <- atomically $ findLookup lm cUserName
+crawlOnUser lm ci@CrawlInfo{..} user = do
+    let name = untagName $ userLogin user
+    logAction "Crawler" "UserName" $ show name
+    hasSeen <- atomically $ findLookup lm name
     case hasSeen of
-        Just u -> logAction "Crawler" "Already Stored" name
+        Just u -> logAction "Crawler" "Already Stored" $ show name
         Nothing -> do
             result <- boltStoreUser userInfo'
-            logBoolAction result "Crawler" "Stored" name
-            atomically $ addLookup lm cUserName
+            logBoolAction result "Crawler" "Stored" $ show name
+            atomically $ addLookup lm name
             --userInfo <- GitHub.Endpoints.Users.userInfoFor' (cAuth ci) (GitHub.Data.Name.N cUserName)
             --case userInfo of
             --   Left err -> logError "Crawler" $ show err
@@ -184,7 +184,7 @@ crawlOnUser lm ci@CrawlInfo{..} = do
     when (cLanguage != Data.Text.empty) $ 
         boltStoreUserLanguageLink cUserName cLanguage
     when (cRepoName != Data.Text.empty && cContributions != -1) $ 
-        boltStoreUserRepoCollabLink cUserName cRepoName cContributionscx
+        boltStoreUserRepoCollabLink cUserName cRepoName cContributions
 
 crawlOnContributor :: LookupMap -> CrawlInfo -> Github.Data.Repos.Contributor -> IO ()
 crawlOnContributor lm ci@CrawlInfo{..} contributor = do

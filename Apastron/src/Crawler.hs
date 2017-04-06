@@ -228,7 +228,7 @@ crawlUser lm ci = do
 
 
 crawlEngine :: LookupMap -> CrawlInfo -> IO()
-crawlEngine v ci = do
+crawlEngine lm ci@CrawlInfo{..} = do
     let hops = uHops $ cUser ci
     if hops > 0 then
         crawlOnUser v ci

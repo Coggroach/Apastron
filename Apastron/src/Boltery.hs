@@ -102,7 +102,7 @@ boltCypherExtractNode :: Text
 boltCypherExtractNode =
     Data.Text.pack $
     "MATCH (n) WHERE n.name = {username}" ++
-    " OPTIONAL MATCH path=(n)-[*1..2]-(c)" ++
+    " OPTIONAL MATCH path=(n)-[*..2]-(c)" ++
     " RETURN DISTINCT c.name as name, HEAD(LABELS(c)) as group"
 
 boltStoreExtractNode :: Text -> IO [Database.Bolt.Record]
@@ -112,7 +112,7 @@ boltCypherExtractLink :: Text
 boltCypherExtractLink =
     Data.Text.pack $
     "MATCH (n) WHERE n.name = {username}" ++
-    "OPTIONAL MATCH path=(n)-[*1..2]-(c)" ++
+    "OPTIONAL MATCH path=(n)-[*..2]-(c)" ++
     " WITH rels(path) AS rels" ++
     " UNWIND rels AS rel" ++ 
     " WITH DISTINCT rel" ++

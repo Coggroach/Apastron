@@ -58,15 +58,11 @@ crawlerClientInit :<|> crawlerClientKill = Servant.Client.client crawlerApi
 -----------------------------------------
 
 type SearchApi =
-    "vertices" :> Get '[JSON] [Common.Vertex] :<|>
-    "edges" :> Get '[JSON] [Common.Edge] :<|>
-    "graph" :> Get '[JSON] Common.Graph
+    "graph" :> Capture "username" String :> Get '[JSON] Common.Graph
 
 searchApi :: Proxy SearchApi
 searchApi = Proxy
 
-searchClientVertices :: ClientM [Common.Vertex]
-searchClientEdges :: ClientM [Common.Edge]
-searchClientGraph :: ClientM Common.Graph
+searchClientGraph :: String -> ClientM Common.Graph
 
-searchClientVertices :<|> searchClientEdges :<|> searchClientGraph = Servant.Client.client searchApi
+searchClientGraph = Servant.Client.client searchApi

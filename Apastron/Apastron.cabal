@@ -22,6 +22,7 @@ library
                      , servant == 0.9.*
                      , servant-server
                      , servant-client
+                     , servant-js
                      , aeson
                      , cipher-aes
                      , bcrypt
@@ -49,7 +50,6 @@ library
                      , split
                      , containers
                      , stm
-                     , servant-js
                      , hasbolt
   default-language:    Haskell2010
 

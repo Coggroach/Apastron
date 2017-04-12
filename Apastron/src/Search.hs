@@ -21,6 +21,7 @@ import            System.Directory
 import            Servant
 import            Servant.API
 import            Servant.Client
+import            Servant.JS
 import            Data.Aeson
 import            Data.Aeson.TH
 import            Data.Bson.Generic
@@ -42,6 +43,7 @@ import            Control.Concurrent
 import            Network.Wai hiding (Response)
 import            Network.Wai.Handler.Warp
 import            Network.Wai.Logger
+import            Network.Wai.Middleware.Cors
 import            Network.HTTP.Client (newManager, defaultManagerSettings)
 import            GitHub
 import            GitHub.Data.URL
@@ -60,6 +62,8 @@ import            Boltery
 --  Variables
 -----------------------------------------
 
+scriptPath :: FilePath
+scriptPath = "scripts/api.js"
 
 -----------------------------------------
 --  Server
@@ -76,6 +80,7 @@ mkSearch :: IO ()
 mkSearch = do
     logHeading "Search"
     logAction "Search" "Starting" $ "on: " ++ getIdentitySafeString searchIdentity
+    writeJSForAPI searchApi jquery scriptPath
     run (getIdentityPort searchIdentity) searchApp
 
 getGraph :: String -> ApiHandler Common.Graph

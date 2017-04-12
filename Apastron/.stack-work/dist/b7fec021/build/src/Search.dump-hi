@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-12 17:40:44.797597 UTC
+2017-04-12 17:46:42.7538686 UTC
 
 interface Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Search 8001
-  interface hash: 94e71b98dd1d76f834d5c1f6d1a0ed40
-  ABI hash: c180954ab90a7f4a8bcb5e899d11588b
-  export-list hash: de5feeae086c6d18b79dbca41059b064
+  interface hash: 73229829c7ab44de0ce78f5ea4436b8e
+  ABI hash: ae6e6e891e06c1b03d7ef79eef362ed4
+  export-list hash: a43b21f208560902f09e65fc3ef48af7
   orphan hash: 8a7a2983fe2f276b4ad62d6a842c7b5f
   flag hash: 9193a1108f5073ddaa226dd5af582a94
   sig of: Nothing
@@ -14,6 +14,7 @@ interface Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Search 8001
 exports:
   Search.getGraph
   Search.mkSearch
+  Search.scriptPath
   Search.searchApp
   Search.searchServer
 module dependencies: Boltery Common CommonApi MongoDbConnector
@@ -34,6 +35,7 @@ package dependencies: MonadRandom-0.4.2.3@MonadRandom-0.4.2.3-8TfCm6PGvGYB7omozO
                       base-4.9.0.0
                       base-compat-0.9.1@base-compat-0.9.1-Jorka5wAHbt82D18A4gF6b
                       base-orphans-0.5.4@base-orphans-0.5.4-5IQvrjd7gNP548VkOOyIq6
+                      base-unicode-symbols-0.2.2.4@base-unicode-symbols-0.2.2.4-EZo0X1xtJYFIOElQArieZo
                       base16-bytestring-0.1.1.6@base16-bytestring-0.1.1.6-5dPoF8dzhwzBaEB2MvnmIS
                       base64-bytestring-1.0.0.1@base64-bytestring-1.0.0.1-In9M41tLtcS9QYt3QpGpNY
                       bifunctors-5.4.1@bifunctors-5.4.1-8Xk5Wsnk1fr6rBLkW9MO8p
@@ -49,6 +51,7 @@ package dependencies: MonadRandom-0.4.2.3@MonadRandom-0.4.2.3-8TfCm6PGvGYB7omozO
                       bytestring-0.10.8.1@bytestring-0.10.8.1
                       case-insensitive-1.2.0.7@case-insensitive-1.2.0.7-FlqweN7AuKj9EdU2arVEt4
                       cereal-0.5.4.0@cereal-0.5.4.0-2FJYHGgtE5C3SxaZjt25xS
+                      charset-0.3.7.1@charset-0.3.7.1-4lsFvOcM7i5BbmeeHj6Z66
                       cipher-aes-0.2.11@cipher-aes-0.2.11-6IDqXzfBW6B3WK2bKJbiBh
                       comonad-5@comonad-5-2RMxpSOQ5MCHLHIelJrHD4
                       connection-0.2.6@connection-0.2.6-7Q3EnbUKiqWBOpVdhPNll1
@@ -97,6 +100,7 @@ package dependencies: MonadRandom-0.4.2.3@MonadRandom-0.4.2.3-8TfCm6PGvGYB7omozO
                       iso8601-time-0.1.4@iso8601-time-0.1.4-CQXtvTAot9eJkkRKHuVCon
                       kan-extensions-5.0.1@kan-extensions-5.0.1-Asa0tkk9PuPLZ2eXuJ10Gr
                       keys-3.11@keys-3.11-29BLD8qqiVyGmZ87zOkaxG
+                      lens-4.14@lens-4.14-LQbbTc84mRL8zB39b41ZKA
                       lifted-base-0.2.3.8@lifted-base-0.2.3.8-KLkd0w1UJqu6nE8oVTTEBy
                       memory-0.13@memory-0.13-ABHR5331zHK9scHPRr7afU
                       mime-types-0.1.0.7@mime-types-0.1.0.7-AxQ64wFjikqCSdK5pSeZvh
@@ -119,6 +123,7 @@ package dependencies: MonadRandom-0.4.2.3@MonadRandom-0.4.2.3-8TfCm6PGvGYB7omozO
                       psqueues-0.2.2.3@psqueues-0.2.2.3-YN2xKllZOMJLtAgRHlkEw
                       random-1.1@random-1.1-54KmMHXjttlERYcr1mvsAe
                       random-shuffle-0.0.4@random-shuffle-0.0.4-LfeDYNPfwrQ2o9p6tw2M9l
+                      reflection-2.1.2@reflection-2.1.2-J1ZzlxijzaHGRixYxgxlf9
                       resourcet-1.1.8.1@resourcet-1.1.8.1-1XWaZ7RmVde330DM5PRI3Z
                       safe-0.3.10@safe-0.3.10-1VyrsjWhmjvGnGud5lgW7f
                       scientific-0.3.4.9@scientific-0.3.4.9-6oTYuCcx6H5BsTGU7D2Gk3
@@ -126,6 +131,8 @@ package dependencies: MonadRandom-0.4.2.3@MonadRandom-0.4.2.3-8TfCm6PGvGYB7omozO
                       semigroupoids-5.1@semigroupoids-5.1-1Gay4xNO77GHd4DGCzVuax
                       servant-0.9.1.1@servant-0.9.1.1-BMzPHFjspLnD38uAz6wSUb
                       servant-client-0.9.1.1@servant-client-0.9.1.1-53t7WdoYt3I67frsrNV7TX
+                      servant-foreign-0.9.1.1@servant-foreign-0.9.1.1-BpYCsglj6282YdKFd5O7ZU
+                      servant-js-0.9.3@servant-js-0.9.3-11bRNuXkrKNDVJ5Xz1fqoZ
                       servant-server-0.9.1.1@servant-server-0.9.1.1-DE2J1HrS99GJcT3WTSVjFf
                       socks-0.5.5@socks-0.5.5-CDtE058LGrg48HLqU60P0R
                       split-0.2.3.1@split-0.2.3.1-IJKK4pOCYGKud0jZImZke
@@ -153,6 +160,7 @@ package dependencies: MonadRandom-0.4.2.3@MonadRandom-0.4.2.3-8TfCm6PGvGYB7omozO
                       vector-instances-3.3.1@vector-instances-3.3.1-I6TdtGyV4ig2RKtxblZRcS
                       wai-3.2.1.1@wai-3.2.1.1-GVNFJ2NUhhADT18B8nh1gg
                       wai-app-static-3.1.6.1@wai-app-static-3.1.6.1-DeTa1z3VEolITqmVA6CDdU
+                      wai-cors-0.2.5@wai-cors-0.2.5-IgbcNa7znv7FZ5RL0Pxefr
                       wai-logger-2.3.0@wai-logger-2.3.0-B1TSfcg2MSABqaGF5fd5IG
                       warp-3.2.11@warp-3.2.11-3f0GdBy4N7PBe7H9xN4yrg
                       word8-0.1.2@word8-0.1.2-2E1SgvvAV2fK8vZPDHbRan
@@ -180,6 +188,7 @@ orphans: Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Common
          http-client-0.4.31.2@http-client-0.4.31.2-6gyf7twhhmv8yfbRVNkl4Z:Network.HTTP.Client.Request
          mongoDB-2.1.1.1@mongoDB-2.1.1.1-8pQlEjBJ8J0LRyS8YhkcGi:Database.MongoDB.Internal.Util
          network-2.6.3.1@network-2.6.3.1-nK9qnsiJR03CWuPIGMmX:Network.Socket
+         reflection-2.1.2@reflection-2.1.2-J1ZzlxijzaHGRixYxgxlf9:Data.Reflection
          stm-2.4.4.1@stm-2.4.4.1-4z2NRWnB0NIIUvSJsHW0kF:Control.Monad.STM
          text-1.2.2.1@text-1.2.2.1-5QpmrLQApEZ4Ly9nMHWY0s:Data.Text
          text-1.2.2.1@text-1.2.2.1-5QpmrLQApEZ4Ly9nMHWY0s:Data.Text.Lazy
@@ -247,12 +256,20 @@ family instance modules: Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Common
                          iproute-1.7.1@iproute-1.7.1-EsJa15Wmnfj5pBTvNuT9V3:Data.IP.Addr
                          iproute-1.7.1@iproute-1.7.1-EsJa15Wmnfj5pBTvNuT9V3:Data.IP.Range
                          kan-extensions-5.0.1@kan-extensions-5.0.1-Asa0tkk9PuPLZ2eXuJ10Gr:Data.Functor.Day
+                         kan-extensions-5.0.1@kan-extensions-5.0.1-Asa0tkk9PuPLZ2eXuJ10Gr:Data.Functor.Yoneda
                          keys-3.11@keys-3.11-29BLD8qqiVyGmZ87zOkaxG:Data.Key
+                         lens-4.14@lens-4.14-LQbbTc84mRL8zB39b41ZKA:Control.Lens.At
+                         lens-4.14@lens-4.14-LQbbTc84mRL8zB39b41ZKA:Control.Lens.Internal.Indexed
+                         lens-4.14@lens-4.14-LQbbTc84mRL8zB39b41ZKA:Control.Lens.Reified
+                         lens-4.14@lens-4.14-LQbbTc84mRL8zB39b41ZKA:Control.Lens.Tuple
+                         lens-4.14@lens-4.14-LQbbTc84mRL8zB39b41ZKA:Control.Lens.Wrapped
+                         lens-4.14@lens-4.14-LQbbTc84mRL8zB39b41ZKA:Control.Lens.Zoom
                          monad-control-1.0.1.0@monad-control-1.0.1.0-HoNEBoNfniX3vjSfkI7WTT:Control.Monad.Trans.Control
                          network-uri-2.6.1.0@network-uri-2.6.1.0-DDHh2FNiPirBRgkuU9DEt2:Network.URI
                          pretty-1.1.3.3@pretty-1.1.3.3:Text.PrettyPrint.Annotated.HughesPJ
                          pretty-1.1.3.3@pretty-1.1.3.3:Text.PrettyPrint.HughesPJ
                          primitive-0.6.1.0@primitive-0.6.1.0-Ip44DqhfCp21tTUYbecwa:Control.Monad.Primitive
+                         profunctors-5.2@profunctors-5.2-2ZZOz6u59T2H8y7z3NgZkY:Data.Profunctor.Rep
                          resourcet-1.1.8.1@resourcet-1.1.8.1-1XWaZ7RmVde330DM5PRI3Z:Control.Monad.Trans.Resource.Internal
                          servant-0.9.1.1@servant-0.9.1.1-BMzPHFjspLnD38uAz6wSUb:Servant.API.ContentTypes
                          servant-0.9.1.1@servant-0.9.1.1-BMzPHFjspLnD38uAz6wSUb:Servant.API.IsSecure
@@ -261,6 +278,7 @@ family instance modules: Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Common
                          servant-client-0.9.1.1@servant-client-0.9.1.1-53t7WdoYt3I67frsrNV7TX:Servant.Client
                          servant-client-0.9.1.1@servant-client-0.9.1.1-53t7WdoYt3I67frsrNV7TX:Servant.Common.BaseUrl
                          servant-client-0.9.1.1@servant-client-0.9.1.1-53t7WdoYt3I67frsrNV7TX:Servant.Common.Req
+                         servant-foreign-0.9.1.1@servant-foreign-0.9.1.1-BpYCsglj6282YdKFd5O7ZU:Servant.Foreign.Internal
                          servant-server-0.9.1.1@servant-server-0.9.1.1-DE2J1HrS99GJcT3WTSVjFf:Servant.Server.Internal
                          servant-server-0.9.1.1@servant-server-0.9.1.1-DE2J1HrS99GJcT3WTSVjFf:Servant.Server.Internal.BasicAuth
                          tagged-0.8.5@tagged-0.8.5-CtgV6EcN0do8F92i1S6iYx:Data.Tagged
@@ -306,6 +324,7 @@ import  -/  base-4.9.0.0:Data.List d711f98b49ef5d33e5b3d404631ed073
 import  -/  base-4.9.0.0:Data.Maybe 086a84053ef7f7810663b5f03b7ec3f7
 import  -/  base-4.9.0.0:GHC.Base dd8044a8d640eee51828c17c476a6ba7
 import  -/  base-4.9.0.0:GHC.Generics cdf72cc575895201800451f77c6e6810
+import  -/  base-4.9.0.0:GHC.IO 1429985c1cb03cc0778fa4876799f1d2
 import  -/  base-4.9.0.0:Prelude 2d9cd8b0ec3d728f62b734df888d2e34
 import  -/  base-4.9.0.0:System.IO c1068c4f4231e3198e330f99a58145b0
 import  -/  bson-generic-0.0.8@bson-generic-0.0.8-HCUlC9mFzScEiZ90dYsZ4F:Data.Bson.Generic 4ab95dcee9ff70a284f7b097542ed4a3
@@ -328,6 +347,8 @@ import  -/  random-1.1@random-1.1-54KmMHXjttlERYcr1mvsAe:System.Random 8483439f8
 import  -/  resourcet-1.1.8.1@resourcet-1.1.8.1-1XWaZ7RmVde330DM5PRI3Z:Control.Monad.Trans.Resource 43ad99d9dc3f44283ad3f4dab0f4ed29
 import  -/  servant-0.9.1.1@servant-0.9.1.1-BMzPHFjspLnD38uAz6wSUb:Servant.API 58034960611853d9b300556fe318efde
 import  -/  servant-client-0.9.1.1@servant-client-0.9.1.1-53t7WdoYt3I67frsrNV7TX:Servant.Client dedc155ae7f7e2f1d081ccb343eee630
+import  -/  servant-js-0.9.3@servant-js-0.9.3-11bRNuXkrKNDVJ5Xz1fqoZ:Servant.JS 0e311c81237f369d828c4cdb0697fd11
+import  -/  servant-js-0.9.3@servant-js-0.9.3-11bRNuXkrKNDVJ5Xz1fqoZ:Servant.JS.JQuery 2b24df4cde51a94d705389de5fe36c2b
 import  -/  servant-server-0.9.1.1@servant-server-0.9.1.1-DE2J1HrS99GJcT3WTSVjFf:Servant 78e5ee4b643e12eca1b4e69e5e633fbc
 import  -/  servant-server-0.9.1.1@servant-server-0.9.1.1-DE2J1HrS99GJcT3WTSVjFf:Servant.Server f57b01a490d7726a49b940eb9ca6286f
 import  -/  servant-server-0.9.1.1@servant-server-0.9.1.1-DE2J1HrS99GJcT3WTSVjFf:Servant.Server.Internal 3d9690609d8ba0035abe00add59da12a
@@ -338,6 +359,7 @@ import  -/  text-1.2.2.1@text-1.2.2.1-5QpmrLQApEZ4Ly9nMHWY0s:Data.Text 8dbacab9f
 import  -/  time-1.6.0.1@time-1.6.0.1:Data.Time.Clock 23d666c4496b6f7bf555419424731ccb
 import  -/  transformers-0.5.2.0@transformers-0.5.2.0:Control.Monad.Trans.Except 7818a7c6346c90815c8b961a98146fb3
 import  -/  wai-3.2.1.1@wai-3.2.1.1-GVNFJ2NUhhADT18B8nh1gg:Network.Wai 6802161fda2a254e932e92defc21d045
+import  -/  wai-cors-0.2.5@wai-cors-0.2.5-IgbcNa7znv7FZ5RL0Pxefr:Network.Wai.Middleware.Cors b5397b1249ca571677521fc917864e00
 import  -/  wai-logger-2.3.0@wai-logger-2.3.0-B1TSfcg2MSABqaGF5fd5IG:Network.Wai.Logger 56469c170e7597786e90d99c58cc10cd
 import  -/  warp-3.2.11@warp-3.2.11-3f0GdBy4N7PBe7H9xN4yrg:Network.Wai.Handler.Warp f948cbb820285834bfca6dd50d8dff9a
 import  -/  warp-3.2.11@warp-3.2.11-3f0GdBy4N7PBe7H9xN4yrg:Network.Wai.Handler.Warp.Run ba42fc9e658f134f16724de028f00dcb
@@ -587,12 +609,12 @@ ff7573208bd9364e4f4c533598534d19
 b964cb38fc0688dbc2c7d92d7149ae50
   getGraph5 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "Search"#) -}
-4116025decdf22421018ba0bcdcc5e5a
+6da347815da81c6058f890a4e34cd902
   mkSearch :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <S,U>,
      Unfolding: InlineRule (0, True, True)
                 Search.mkSearch1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
-eba1f994f2caba0c2c26608d7c137744
+3ad8ac2f20a77deab15b232bbe8be188
   mkSearch1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
@@ -603,9 +625,25 @@ eba1f994f2caba0c2c26608d7c137744
                         s of ds1 { (#,#) ipv ipv1 ->
                  case Common.logAction1
                         Search.getGraph5
-                        Search.mkSearch6
-                        Search.mkSearch4
+                        Search.mkSearch15
+                        Search.mkSearch13
                         ipv of ds2 { (#,#) ipv2 ipv3 ->
+                 case Control.Exception.Base.bracket1
+                        @ GHC.IO.Handle.Types.Handle
+                        @ ()
+                        @ ()
+                        Search.mkSearch12
+                          `cast`
+                        (Sym (GHC.Types.N:IO[0] <GHC.IO.Handle.Types.Handle>_R))
+                        GHC.IO.Handle.hClose1
+                          `cast`
+                        (<GHC.IO.Handle.Types.Handle>_R
+                         ->_R Sym (GHC.Types.N:IO[0] <()>_R))
+                        Search.mkSearch4
+                          `cast`
+                        (<GHC.IO.Handle.Types.Handle>_R
+                         ->_R Sym (GHC.Types.N:IO[0] <()>_R))
+                        ipv2 of ds3 { (#,#) ipv4 ipv5 ->
                  Network.Wai.Handler.Warp.Run.$wrunSettings
                    Search.mkSearch2
                    Network.Wai.Handler.Warp.Settings.defaultSettings16
@@ -658,7 +696,124 @@ eba1f994f2caba0c2c26608d7c137744
                     ->_R Sym (GHC.Types.N:IO[0] <()>_R))
                    (GHC.Base.Nothing @ GHC.Types.Int)
                    Search.searchApp
-                   ipv2 } }) -}
+                   ipv4 } } }) -}
+13ae9c6b4fa50b060c49dee282dca312
+  mkSearch10 ::
+    Data.Proxy.Proxy Servant.Foreign.Internal.NoTypes
+    -> Data.Proxy.Proxy Servant.API.ContentTypes.NoContent
+    -> Data.Proxy.Proxy
+         (Servant.API.Verbs.Verb
+            'Network.HTTP.Types.Method.GET
+            200
+            '[Servant.API.ContentTypes.JSON]
+            Common.Graph)
+    -> Servant.Foreign.Internal.Req Servant.API.ContentTypes.NoContent
+    -> Servant.Foreign.Internal.Foreign
+         Servant.API.ContentTypes.NoContent
+         (Servant.API.Verbs.Verb
+            'Network.HTTP.Types.Method.GET
+            200
+            '[Servant.API.ContentTypes.JSON]
+            Common.Graph)
+  {- Arity: 4,
+     Unfolding: (\ (w3 :: Data.Proxy.Proxy
+                            Servant.Foreign.Internal.NoTypes)[OneShot]
+                   (w4 :: Data.Proxy.Proxy
+                            Servant.API.ContentTypes.NoContent)[OneShot]
+                   (w5 :: Data.Proxy.Proxy
+                            (Servant.API.Verbs.Verb
+                               'Network.HTTP.Types.Method.GET
+                               200
+                               '[Servant.API.ContentTypes.JSON]
+                               Common.Graph))[OneShot]
+                   (w6 :: Servant.Foreign.Internal.Req
+                            Servant.API.ContentTypes.NoContent)[OneShot] ->
+                 case w4 of w7 { Data.Proxy.Proxy ->
+                 case w5 of w8 { Data.Proxy.Proxy ->
+                 case w6 of ww { Servant.Foreign.Internal.Req ww1 ww2 ww3 ww4 ww5 ww6 ->
+                 case Servant.Foreign.Internal.$w$cforeignFor8
+                        @ *
+                        @ Network.HTTP.Types.Method.StdMethod
+                        @ *
+                        @ '[Servant.API.ContentTypes.JSON]
+                        @ Servant.Foreign.Internal.NoTypes
+                        @ Servant.API.ContentTypes.NoContent
+                        @ Common.Graph
+                        @ 'Network.HTTP.Types.Method.GET
+                        @ 200
+                        (Servant.Foreign.Internal.$fHasForeignTypeTYPEkNoTypesNoContentftype_$ctypeFor
+                           @ *
+                           @ Common.Graph)
+                          `cast`
+                        (Sym (Servant.Foreign.Internal.N:HasForeignType[0]
+                                  <*>_N
+                                  <*>_N
+                                  <Servant.Foreign.Internal.NoTypes>_N
+                                  <Servant.API.ContentTypes.NoContent>_N
+                                  <Common.Graph>_N))
+                        Servant.API.Verbs.$fReflectMethodStdMethodGET_$creflectMethod
+                          `cast`
+                        (Sym (Servant.API.Verbs.N:ReflectMethod[0]
+                                  <Network.HTTP.Types.Method.StdMethod>_N
+                                  <'Network.HTTP.Types.Method.GET>_N))
+                        w3
+                        (Data.Proxy.Proxy @ * @ Servant.API.ContentTypes.NoContent)
+                        (Data.Proxy.Proxy
+                           @ GHC.Types.*
+                           @ (Servant.API.Verbs.Verb
+                                'Network.HTTP.Types.Method.GET
+                                200
+                                '[Servant.API.ContentTypes.JSON]
+                                Common.Graph))
+                        ww1
+                        ww3
+                        ww4
+                        ww6 of ww7 { (#,,,,,#) ww8 ww9 ww10 ww11 ww12 ww13 ->
+                 (Servant.Foreign.Internal.Req
+                    @ Servant.API.ContentTypes.NoContent
+                    ww8
+                    ww9
+                    ww10
+                    ww11
+                    ww12
+                    ww13)
+                   `cast`
+                 (Sub (Sym (Servant.Foreign.Internal.D:R:ForeignftypeVerb[0]
+                                <Network.HTTP.Types.Method.StdMethod>_N
+                                <*>_N
+                                <'[Servant.API.ContentTypes.JSON]>_N
+                                <Servant.API.ContentTypes.NoContent>_N
+                                <Common.Graph>_N
+                                <'Network.HTTP.Types.Method.GET>_N
+                                <200>_N))) } } } }) -}
+764dc4a8ca5f1023e2fa92f27563a528
+  mkSearch11 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "username"#) -}
+9dca85beab6e2e1ceb5a94d18d9c61ac
+  mkSearch12 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          GHC.IO.Handle.Types.Handle #)
+  {- Arity: 1,
+     Unfolding: (GHC.IO.Handle.FD.openFile1
+                   Search.scriptPath
+                   GHC.IO.IOMode.WriteMode) -}
+d197b32d054fa6b7eb743b74dffa8b71
+  mkSearch13 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackAppendCString#
+                   "on: "#
+                   Search.mkSearch14) -}
+e09ad2c40fdce4126590a3795fe524ef
+  mkSearch14 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.Base.++
+                   @ GHC.Types.Char
+                   CommonApi.crawlerIdentity2
+                   (GHC.CString.unpackAppendCString#
+                      "_"#
+                      CommonApi.searchIdentity1)) -}
+dce8e222b932c037217ccae858aec2da
+  mkSearch15 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "Starting"#) -}
 f5040981aed8e2a7e854219f5848740f
   mkSearch2 :: Network.Wai.Handler.Warp.Types.Port
   {- Unfolding: (case Text.Read.readEither6
@@ -674,22 +829,191 @@ dc1cd87ec4e55d9f4e8eb70efe85208c
                    @ GHC.Types.Int
                    Common.getIdentityPort3
                    CommonApi.searchIdentity1) -}
-f65f7a671db8985f09da0f2acddde9c2
-  mkSearch4 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackAppendCString#
-                   "on: "#
-                   Search.mkSearch5) -}
-e84af7736ff649107523d88eb8bf70db
-  mkSearch5 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.Base.++
-                   @ GHC.Types.Char
-                   CommonApi.crawlerIdentity2
-                   (GHC.CString.unpackAppendCString#
-                      "_"#
-                      CommonApi.searchIdentity1)) -}
-e67f11d7224103c35e958580af4dbfb4
-  mkSearch6 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "Starting"#) -}
+06f630b7fe02005a33ed7aeece63167f
+  mkSearch4 ::
+    GHC.IO.Handle.Types.Handle
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 2,
+     Unfolding: (\ (y :: GHC.IO.Handle.Types.Handle)[OneShot]
+                   (eta2 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 Data.Text.IO.appendFile2 y Search.mkSearch5 eta2) -}
+6cab690129320732543f8f5d1f0555ae
+  mkSearch5 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.concat Search.mkSearch6) -}
+2ea6250fb3a13f149e9e05f8b994887d
+  mkSearch6 :: [Data.Text.Internal.Text]
+  {- Unfolding: (GHC.Types.:
+                   @ Data.Text.Internal.Text
+                   Search.mkSearch7
+                   (GHC.Types.[] @ Data.Text.Internal.Text)) -}
+7f2ac24cefa258005eaeabf7888beea0
+  mkSearch7 :: Data.Text.Internal.Text
+  {- Unfolding: (Servant.JS.JQuery.generateJQueryJS
+                   Search.mkSearch8
+                     `cast`
+                   (Trans
+                        (Sub (Servant.Foreign.Internal.D:R:Foreignftype:>10[0]
+                                  <*>_N
+                                  <"username">_N
+                                  <Servant.API.ContentTypes.NoContent>_N
+                                  <Servant.API.Verbs.Verb
+                                     'Network.HTTP.Types.Method.GET
+                                     200
+                                     '[Servant.API.ContentTypes.JSON]
+                                     Common.Graph>_N
+                                  <[GHC.Types.Char]>_N))
+                        (Sub (Servant.Foreign.Internal.D:R:ForeignftypeVerb[0]
+                                  <Network.HTTP.Types.Method.StdMethod>_N
+                                  <*>_N
+                                  <'[Servant.API.ContentTypes.JSON]>_N
+                                  <Servant.API.ContentTypes.NoContent>_N
+                                  <Common.Graph>_N
+                                  <'Network.HTTP.Types.Method.GET>_N
+                                  <200>_N)))) -}
+fa68110791ca2d09e88afbfa9daef144
+  mkSearch8 ::
+    Servant.Foreign.Internal.Foreign
+      Servant.API.ContentTypes.NoContent
+      (Servant.API.Capture.Capture "username" GHC.Base.String
+       Servant.API.Sub.:> Servant.API.Verbs.Get
+                            '[Servant.API.ContentTypes.JSON] Common.Graph)
+  {- Unfolding: (Servant.Foreign.Internal.$w$cforeignFor1
+                   @ *
+                   @ "graph"
+                   @ Servant.Foreign.Internal.NoTypes
+                   @ Servant.API.ContentTypes.NoContent
+                   @ (Servant.API.Capture.Capture "username" GHC.Base.String
+                      Servant.API.Sub.:> Servant.API.Verbs.Get
+                                           '[Servant.API.ContentTypes.JSON] Common.Graph)
+                   Search.$sserve6
+                     `cast`
+                   (Trans
+                        (Sym (GHC.TypeLits.N:SSymbol[0] <"graph">_P))
+                        (Sym (GHC.TypeLits.N:KnownSymbol[0]) <"graph">_N))
+                   Search.mkSearch9
+                     `cast`
+                   (Sym (Servant.Foreign.Internal.N:HasForeign[0]
+                             <*>_N
+                             <Servant.Foreign.Internal.NoTypes>_N
+                             <Servant.API.ContentTypes.NoContent>_N
+                             <Servant.API.Capture.Capture "username" [GHC.Types.Char]
+                              Servant.API.Sub.:> Servant.API.Verbs.Verb
+                                                   'Network.HTTP.Types.Method.GET
+                                                   200
+                                                   '[Servant.API.ContentTypes.JSON]
+                                                   Common.Graph>_N))
+                   (Data.Proxy.Proxy @ * @ Servant.Foreign.Internal.NoTypes)
+                   (Data.Proxy.Proxy @ * @ Servant.API.ContentTypes.NoContent)
+                   (Data.Proxy.Proxy
+                      @ GHC.Types.*
+                      @ ("graph"
+                         Servant.API.Sub.:> (Servant.API.Capture.Capture
+                                               "username" GHC.Base.String
+                                             Servant.API.Sub.:> Servant.API.Verbs.Get
+                                                                  '[Servant.API.ContentTypes.JSON]
+                                                                  Common.Graph)))
+                   (Servant.Foreign.Internal.defReq
+                      @ Servant.API.ContentTypes.NoContent)) -}
+2a5179f0ce437e2d8b33caf7a1e8df21
+  mkSearch9 ::
+    Data.Proxy.Proxy Servant.Foreign.Internal.NoTypes
+    -> Data.Proxy.Proxy Servant.API.ContentTypes.NoContent
+    -> Data.Proxy.Proxy
+         (Servant.API.Capture.Capture "username" [GHC.Types.Char]
+          Servant.API.Sub.:> Servant.API.Verbs.Verb
+                               'Network.HTTP.Types.Method.GET
+                               200
+                               '[Servant.API.ContentTypes.JSON]
+                               Common.Graph)
+    -> Servant.Foreign.Internal.Req Servant.API.ContentTypes.NoContent
+    -> Servant.Foreign.Internal.Foreign
+         Servant.API.ContentTypes.NoContent
+         (Servant.API.Capture.Capture "username" [GHC.Types.Char]
+          Servant.API.Sub.:> Servant.API.Verbs.Verb
+                               'Network.HTTP.Types.Method.GET
+                               200
+                               '[Servant.API.ContentTypes.JSON]
+                               Common.Graph)
+  {- Arity: 4,
+     Unfolding: (\ (w3 :: Data.Proxy.Proxy
+                            Servant.Foreign.Internal.NoTypes)[OneShot]
+                   (w4 :: Data.Proxy.Proxy
+                            Servant.API.ContentTypes.NoContent)[OneShot]
+                   (w5 :: Data.Proxy.Proxy
+                            (Servant.API.Capture.Capture "username" [GHC.Types.Char]
+                             Servant.API.Sub.:> Servant.API.Verbs.Verb
+                                                  'Network.HTTP.Types.Method.GET
+                                                  200
+                                                  '[Servant.API.ContentTypes.JSON]
+                                                  Common.Graph))[OneShot]
+                   (w6 :: Servant.Foreign.Internal.Req
+                            Servant.API.ContentTypes.NoContent)[OneShot] ->
+                 case w4 of w7 { Data.Proxy.Proxy ->
+                 case w5 of w8 { Data.Proxy.Proxy ->
+                 (Servant.Foreign.Internal.$w$cforeignFor
+                    @ *
+                    @ *
+                    @ "username"
+                    @ Servant.Foreign.Internal.NoTypes
+                    @ Servant.API.ContentTypes.NoContent
+                    @ [GHC.Types.Char]
+                    @ (Servant.API.Verbs.Verb
+                         'Network.HTTP.Types.Method.GET
+                         200
+                         '[Servant.API.ContentTypes.JSON]
+                         Common.Graph)
+                    Search.mkSearch11
+                      `cast`
+                    (Trans
+                         (Sym (GHC.TypeLits.N:SSymbol[0] <"username">_P))
+                         (Sym (GHC.TypeLits.N:KnownSymbol[0]) <"username">_N))
+                    (Servant.Foreign.Internal.$fHasForeignTypeTYPEkNoTypesNoContentftype_$ctypeFor
+                       @ *
+                       @ [GHC.Types.Char])
+                      `cast`
+                    (Sym (Servant.Foreign.Internal.N:HasForeignType[0]
+                              <*>_N
+                              <*>_N
+                              <Servant.Foreign.Internal.NoTypes>_N
+                              <Servant.API.ContentTypes.NoContent>_N
+                              <[GHC.Types.Char]>_N))
+                    Search.mkSearch10
+                      `cast`
+                    (Sym (Servant.Foreign.Internal.N:HasForeign[0]
+                              <*>_N
+                              <Servant.Foreign.Internal.NoTypes>_N
+                              <Servant.API.ContentTypes.NoContent>_N
+                              <Servant.API.Verbs.Verb
+                                 'Network.HTTP.Types.Method.GET
+                                 200
+                                 '[Servant.API.ContentTypes.JSON]
+                                 Common.Graph>_N))
+                    w3
+                    (Data.Proxy.Proxy @ * @ Servant.API.ContentTypes.NoContent)
+                    (Data.Proxy.Proxy
+                       @ GHC.Types.*
+                       @ (Servant.API.Capture.Capture "username" [GHC.Types.Char]
+                          Servant.API.Sub.:> Servant.API.Verbs.Verb
+                                               'Network.HTTP.Types.Method.GET
+                                               200
+                                               '[Servant.API.ContentTypes.JSON]
+                                               Common.Graph))
+                    w6)
+                   `cast`
+                 (Sub (Sym (Servant.Foreign.Internal.D:R:Foreignftype:>10[0]
+                                <*>_N
+                                <"username">_N
+                                <Servant.API.ContentTypes.NoContent>_N
+                                <Servant.API.Verbs.Verb
+                                   'Network.HTTP.Types.Method.GET
+                                   200
+                                   '[Servant.API.ContentTypes.JSON]
+                                   Common.Graph>_N
+                                <[GHC.Types.Char]>_N))) } }) -}
+3ab99c9beed41071c14553510f7e5382
+  scriptPath :: GHC.IO.FilePath
+  {- Unfolding: (GHC.CString.unpackCString# "scripts/api.js"#) -}
 f8113ecb14b7e0588054ffa6685a2ecc
   searchApp :: Network.Wai.Application
   {- Arity: 2,

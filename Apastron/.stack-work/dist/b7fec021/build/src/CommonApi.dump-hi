@@ -1,9 +1,9 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-04 23:32:06.4111168 UTC
+2017-04-12 14:48:30.8380676 UTC
 
 interface Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:CommonApi 8001
-  interface hash: 0b1c9f9c11cfe1a8fc819c338d9463ab
+  interface hash: 83b0ff290c03ed2f9919c14741ac4512
   ABI hash: f80713ca94112a893f06629ca0b814f9
   export-list hash: 6307adf4f870ab3dd50bcf7ca1eecea3
   orphan hash: c0a9f78ccb7a8d90d1a22746f9268a1f
@@ -171,8 +171,8 @@ family instance modules: Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Common
                          vector-0.11.0.0@vector-0.11.0.0-BEDZb5o2QOhGbIm6ky7rl6:Data.Vector.Unboxed
                          vector-0.11.0.0@vector-0.11.0.0-BEDZb5o2QOhGbIm6ky7rl6:Data.Vector.Unboxed.Base
                          zlib-0.6.1.2@zlib-0.6.1.2-4CWLN1T27kOJhNvXgy46ZV:Codec.Compression.Zlib.Stream
-import  -/  Common 062ebcde786e386de99285de4d9e4743
-  exports: f7f3a68aba283cb225cd58774d1ca198
+import  -/  Common f254b67436148d6262714d4e45819ee2
+  exports: 2b5d66aa0289ed5cec0aabc302cea494
   Edge 0425c321b21ea0f346891b541dc22f20
   Graph 0425c321b21ea0f346891b541dc22f20
   Identity de79f92e724fdcfe665ed811f24d06d1

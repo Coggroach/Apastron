@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-04 23:32:04.9166827 UTC
+2017-04-12 14:48:29.0499382 UTC
 
 interface Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Common [orphan module] [family instance module] 8001
-  interface hash: 0811c73dd2da06a67c287a10a1d0e600
-  ABI hash: 062ebcde786e386de99285de4d9e4743
-  export-list hash: f7f3a68aba283cb225cd58774d1ca198
+  interface hash: dbb5f2d67ca5c2822179ad6b9fef2509
+  ABI hash: f254b67436148d6262714d4e45819ee2
+  export-list hash: 2b5d66aa0289ed5cec0aabc302cea494
   orphan hash: e15099f489a0c852950d6b98fbd1a540
   flag hash: a217a46c836dcaeea502143f74cc1a8a
   sig of: Nothing
@@ -16,6 +16,7 @@ exports:
   Common.getIdentitySafeString
   Common.getIdentityString
   Common.logAction
+  Common.logBoolAction
   Common.logConnection
   Common.logDatabase
   Common.logError
@@ -14609,6 +14610,65 @@ a5424551bed07f80c51b336640a8df49
                                   @ GHC.Types.Char
                                   a
                                   (GHC.CString.unpackAppendCString# "]: "# m))))))
+                   GHC.Types.True
+                   eta) -}
+fe100a1fc5b072434138e0dbf67fb495
+  logBoolAction ::
+    GHC.Types.Bool
+    -> GHC.Base.String
+    -> GHC.Base.String
+    -> GHC.Base.String
+    -> GHC.Types.IO ()
+  {- Arity: 5, Strictness: <L,1*U><L,1*U><L,1*U><L,U><S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Common.logBoolAction1
+                  `cast`
+                (<GHC.Types.Bool>_R
+                 ->_R <GHC.Base.String>_R
+                 ->_R <GHC.Base.String>_R
+                 ->_R <GHC.Base.String>_R
+                 ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
+81d8ece03a256e05eb9a0e0cd6227333
+  logBoolAction1 ::
+    GHC.Types.Bool
+    -> GHC.Base.String
+    -> GHC.Base.String
+    -> GHC.Base.String
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 5, Strictness: <L,1*U><L,1*U><L,1*U><L,U><S,U>,
+     Unfolding: (\ (b :: GHC.Types.Bool)
+                   (s :: GHC.Base.String)
+                   (a :: GHC.Base.String)
+                   (m :: GHC.Base.String)
+                   (eta :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 GHC.IO.Handle.Text.hPutStr2
+                   GHC.IO.Handle.FD.stdout
+                   (GHC.CString.unpackAppendCString#
+                      "["#
+                      (GHC.Base.++
+                         @ GHC.Types.Char
+                         s
+                         (GHC.CString.unpackAppendCString#
+                            "]"#
+                            (GHC.CString.unpackAppendCString#
+                               "["#
+                               (GHC.Base.++
+                                  @ GHC.Types.Char
+                                  a
+                                  (GHC.CString.unpackAppendCString#
+                                     ":"#
+                                     (case b of wild {
+                                        GHC.Types.False
+                                        -> GHC.Base.++
+                                             @ GHC.Types.Char
+                                             GHC.Show.shows21
+                                             (GHC.CString.unpackAppendCString# "]: "# m)
+                                        GHC.Types.True
+                                        -> GHC.Base.++
+                                             @ GHC.Types.Char
+                                             GHC.Show.shows20
+                                             (GHC.CString.unpackAppendCString# "]: "# m) })))))))
                    GHC.Types.True
                    eta) -}
 2c52f0798064cda183a1ec225911c0a3

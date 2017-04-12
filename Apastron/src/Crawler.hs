@@ -48,8 +48,10 @@ import            GitHub.Data.URL
 import            GitHub.Data.Name
 import            GitHub.Data.Repos
 import            GitHub.Data
+import            GitHub.Data.Definitions
 import            GitHub.Endpoints.Repos
 import            GitHub.Endpoints.Users
+import            GitHub.Internal.Prelude
 import            GHC.Generics
 import            Prelude
 import            Boltery
@@ -73,10 +75,7 @@ data LookupMap = LookupMap{
 data CrawlInfo = CrawlInfo {
     cUserName :: Text,
     cAuthToken :: Maybe GitHub.Data.Auth,
-    cHops :: Int,
-    cRepoName :: Text,
-    cContributions :: Int,
-    cLanguage :: Text
+    cHops :: Int
 }
 
 -----------------------------------------
@@ -127,19 +126,17 @@ findCrawl u = liftIO $ do
 
 upsertCrawl :: Crawl -> IO ()
 upsertCrawl c@Crawl{..} = liftIO $ do
-    logDatabase "Crawler" "UserCrawlDb" "upsert" u
+    logDatabase "Crawler" "UserCrawlDb" "upsert" cName
     connectToDatabase $ Database.MongoDB.upsert (Database.MongoDB.select ["cName" =: cName] "UserCrawlDb") $ toBSON c
 
 upsertCrawlWhenTrue :: String -> IO Bool
 upsertCrawlWhenTrue c = liftIO $ do
     crawl <- findCrawl c
-    let status = cStatus crawl    
-    if status then do
+    let status = cStatus crawl
+    when status $ do
         let newCrawl = Crawl c False
         upsertCrawl newCrawl
-        return status
-    else
-        return status
+    return status
 
 -----------------------------------------
 --  Lookup Functions
@@ -147,92 +144,118 @@ upsertCrawlWhenTrue c = liftIO $ do
 newLookupMap :: IO LookupMap
 newLookupMap = atomically $ LookupMap <$> newTVar Data.Map.empty
 
-addLookup :: LookupMap -> Text -> STM ()
+addLookup :: LookupMap -> Text -> String -> STM ()
 addLookup LookupMap{..} a = modifyTVar entries . Data.Map.insert a
 
-findLookup :: LookupMap -> Text -> STM (Maybe Text)
+findLookup :: LookupMap -> Text -> STM (Maybe String)
 findLookup LookupMap{..} t = Data.Map.lookup t <$> readTVar entries
 
 -----------------------------------------
 --  Crawling Functions
 -----------------------------------------
 startCrawl :: Crawl -> Common.User -> LookupMap -> IO()
-startCrawl c u@Common.User{..} lm = liftIO $ do
+startCrawl Crawl{..} u@Common.User{..} lm = liftIO $ do
     let cAuth = Just $ GitHub.OAuth $ Data.ByteString.Char8.pack uAuthToken
-    let crawlInfo = CrawlInfo (Data.Text.pack cUsername) cAuth (uHops u) Data.Text.empty -1 Data.Text.empty
+    let crawlInfo = CrawlInfo (Data.Text.pack cName) cAuth uHops
     liftIO $ forkIO $ crawlEngine lm crawlInfo
     return ()
 
-crawlOnUser :: LookupMap -> CrawlInfo -> Github.Data.Users.User -> IO()
-crawlOnUser lm ci@CrawlInfo{..} user = do
+crawlOnUser :: LookupMap -> GitHub.Data.Definitions.User -> IO()
+crawlOnUser lm user = do
     let name = untagName $ userLogin user
     logAction "Crawler" "UserName" $ show name
     hasSeen <- atomically $ findLookup lm name
     case hasSeen of
         Just u -> logAction "Crawler" "Already Stored" $ show name
         Nothing -> do
-            result <- boltStoreUser userInfo'
+            result <- boltStoreUser user
             logBoolAction result "Crawler" "Stored" $ show name
-            atomically $ addLookup lm name
-            --userInfo <- GitHub.Endpoints.Users.userInfoFor' (cAuth ci) (GitHub.Data.Name.N cUserName)
-            --case userInfo of
-            --   Left err -> logError "Crawler" $ show err
-            --    Right userInfo' -> do
-            --repos <- GitHub.Endpoints.Repos.userRepos (mkOwnerName cUserName) GitHub.Data.Repos.RepoPublicityAll
-            --let newCi = CrawlInfo cUserName cAuthToken (cHops - 1) cRepoName cContributions cLanguage
-            --mapM_ (crawlOnRepo lm newCi) repos
-    when (cLanguage != Data.Text.empty) $ 
-        boltStoreUserLanguageLink cUserName cLanguage
-    when (cRepoName != Data.Text.empty && cContributions != -1) $ 
-        boltStoreUserRepoCollabLink cUserName cRepoName cContributions
+            atomically $ addLookup lm name "User"
 
-crawlOnContributor :: LookupMap -> CrawlInfo -> Github.Data.Repos.Contributor -> IO ()
-crawlOnContributor lm ci@CrawlInfo{..} contributor = do
+logLinkAction :: Bool -> Text -> Text -> IO()
+logLinkAction r a b = logBoolAction r "Crawler" "Stored Link" $ show a ++ ":" ++ show b
+
+crawlOnContributor :: LookupMap -> Text -> Text -> GitHub.Data.Repos.Contributor -> IO ()
+crawlOnContributor lm repo lang contributor@(GitHub.Data.Repos.KnownContributor contributions _ _ _ _ _) = do
     let contributorName = untagName $ simpleUserLogin $ fromJust $ contributorToSimpleUser contributor
-    userInfo <- GitHub.Endpoints.Users.userInfoFor' (cAuth ci) (GitHub.Data.Name.N contributorName)
-    crawlOnUser lm ci userInfo
+    userInfo <- GitHub.Endpoints.Users.userInfoFor (GitHub.Data.Name.N contributorName)
+    case userInfo of 
+        Left err -> do
+            logError "Crawler" $ show err
+            return ()
+        Right user -> crawlOnUser lm user
+    langLink <- boltStoreUserLanguageLink contributorName lang
+    repoLink <- boltStoreUserRepoCollabLink contributorName repo contributions
+    logLinkAction langLink contributorName lang
+    logLinkAction repoLink contributorName repo
 
-crawlOnRepo :: LookupMap -> CrawlInfo -> GitHub.Data.Repos.Repo -> IO ()
-crawlOnRepo lm ci@CrawlInfo{..} repo = do
-    let repoHTML = getUrl $ GitHub.Data.Repos.repoHtmlUrl repo
-    logAction "Crawler" "Repo" repoHTML
-    hasSeen <- atomically $ findLookup lm repoHTML
+crawlOnRepo :: LookupMap -> Text -> GitHub.Data.Repos.Repo -> IO ()
+crawlOnRepo lm user repo = do
+    let repoHtml = getUrl $ GitHub.Data.Repos.repoHtmlUrl repo
+    logAction "Crawler" "Repo" $ unpack repoHtml
+    hasSeen <- atomically $ findLookup lm repoHtml
     case hasSeen of
         Just u -> logAction "Crawler" "Already Stored" ""
         Nothing -> do
             result <- boltStoreRepo repo
-            logBoolAction result "Crawler" "Stored" repoHtml
-            atomically $ addLookup lm repoHTML
-            --let newCi = CrawlInfo cUserName cAuthToken (cHops - 1) repoHTML cContributions cLanguage
-            --let lang = GitHub.Data.Repos.repoLanguage repo
-            --crawlOnLanguage lm newCi lang
-    when (cRepoName != Data.Text.empty) $
-        boltStoreUserRepoOwnerLink cUserName cRepoName
+            logBoolAction result "Crawler" "Stored" $ unpack repoHtml
+            atomically $ addLookup lm repoHtml "Repo"
+    repoLink <- boltStoreUserRepoOwnerLink user repoHtml
+    logLinkAction repoLink user repoHtml
 
-crawlOnLanguage :: LookupMap -> CrawlInfo -> GitHub.Data.Repos.Language -> IO()
-crawlOnLanguage lm ci@CrawlInfo{..} lang = do
+crawlOnLanguage :: LookupMap -> Text -> GitHub.Data.Repos.Language -> IO()
+crawlOnLanguage lm repo lang = do
     let langText = getLanguage lang
-    logAction "Crawler" "Repo" langText
+    logAction "Crawler" "Repo" $ unpack langText
     hasSeen <- atomically $ findLookup lm langText
     case hasSeen of
         Just u -> logAction "Crawler" "Already Stored" ""
         Nothing -> do
             result <- boltStoreLanguage langText
-            logBoolAction result "Crawler" "Stored" langText
-            atomically $ addLookup lm langText
-    when (langText != Data.Text.empty && cRepoName != Data.Text.empty) $
-        boltStoreRepoLanguageLink cRepoName langText
+            logBoolAction result "Crawler" "Stored" $ unpack langText
+            atomically $ addLookup lm langText "Language"
+    repoLink <- boltStoreRepoLanguageLink repo langText
+    logLinkAction repoLink repo langText
 
-crawlUser :: LookupMap -> CrawlInfo -> IO()
-crawlUser lm ci = do
+crawlUserToRepos :: LookupMap -> Text -> Int -> IO()
+crawlUserToRepos lm cUserName hops = when (hops > 0) $ do
+    eitherUser <- GitHub.Endpoints.Users.userInfoFor $ GitHub.Data.Name.N cUserName
+    case eitherUser of
+        Left err -> logError "Crawler" $ show err
+        Right user -> crawlOnUser lm user
+    repos <- userRepos (mkOwnerName cUserName) RepoPublicityAll
+    case repos of
+        Left err -> do
+            logError "Crawler" $ show err
+            return ()
+        Right repos' -> do
+            mapM_ (crawlOnRepo lm cUserName) repos'
+            mapM_ (crawlRepoToLanguage lm) repos'
+            mapM_ (crawlRepoToContributors lm hops) repos'
 
+crawlRepoToLanguage :: LookupMap -> Repo -> IO()
+crawlRepoToLanguage lm r@Repo{..} =
+    case repoLanguage of 
+        Just lang -> crawlOnLanguage lm (getUrl repoHtmlUrl) lang
+        Nothing -> return ()
+
+crawlRepoToContributors :: LookupMap -> Int -> Repo -> IO()
+crawlRepoToContributors lm hops r@Repo{..} = do
+    let owner = mkOwnerName $ untagName $ simpleOwnerLogin repoOwner
+    coUsers <- contributors owner repoName
+    case coUsers of
+        Left err -> do
+            logError "Crawler" $ show err
+            return ()
+        Right coUsers' -> do
+            case repoLanguage of
+                Just lang -> mapM_ (crawlOnContributor lm (getUrl repoHtmlUrl) (getLanguage lang)) coUsers'
+            mapM_ (crawlContributorToUser lm hops) coUsers'
+
+crawlContributorToUser :: LookupMap -> Int -> Contributor -> IO()
+crawlContributorToUser lm hops c = do
+    let name = untagName $ simpleUserLogin $ fromJust $ contributorToSimpleUser c
+    crawlUserToRepos lm name $ hops - 1
 
 crawlEngine :: LookupMap -> CrawlInfo -> IO()
-crawlEngine lm ci@CrawlInfo{..} = do
-    let hops = uHops $ cUser ci
-    if hops > 0 then
-        crawlOnUser v ci
-    else
-        do
-        logAction "Crawler" "Repos" "Complete"
-        return ()
+crawlEngine lm ci@CrawlInfo{..} = crawlUserToRepos lm cUserName cHops

@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-04 23:45:07.1976516 UTC
+2017-04-12 14:48:32.3159684 UTC
 
 interface Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Boltery 8001
-  interface hash: 61a0202962098ac0eb1f8032a5ef4ba4
-  ABI hash: a74eed944d77779df3475513b0a9f03a
+  interface hash: d7a854467a90604ccdaf7713f29fb7bc
+  ABI hash: 7c183b1894e8322d9b898d9f26a163f1
   export-list hash: 3b3ab39a5af724b278c3ff0ad76817c2
   orphan hash: f9b05162acb8bf8637213782dd8ae556
   flag hash: 1d5c0f6e259a5ef24c7454935ca733fb
@@ -275,8 +275,8 @@ family instance modules: Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Common
                          vector-0.11.0.0@vector-0.11.0.0-BEDZb5o2QOhGbIm6ky7rl6:Data.Vector.Unboxed.Base
                          vector-instances-3.3.1@vector-instances-3.3.1-I6TdtGyV4ig2RKtxblZRcS:Data.Vector.Instances
                          zlib-0.6.1.2@zlib-0.6.1.2-4CWLN1T27kOJhNvXgy46ZV:Codec.Compression.Zlib.Stream
-import  -/  Common 062ebcde786e386de99285de4d9e4743
-  exports: f7f3a68aba283cb225cd58774d1ca198
+import  -/  Common f254b67436148d6262714d4e45819ee2
+  exports: 2b5d66aa0289ed5cec0aabc302cea494
   Edge 42d680aa4d47565cd2a958b27f3856cd
   Edge 0425c321b21ea0f346891b541dc22f20
   Graph 5dae96db798b0668cb4d5f1767e229f1
@@ -668,7 +668,7 @@ b4513520b9fb196a71e0efafdce16637
     -> [(Data.Text.Internal.Text, a)]
     -> Data.Map.Base.Map Data.Text.Internal.Text a
   {- Arity: 3, Strictness: <L,U><S,1*U><S,1*U>, Inline: [0] -}
-649a9eae0f1c92337732be1a9d847265
+4e69be36de4bd0ddbd7f6ee4a739feb4
   boltCreateGraph ::
     Data.Text.Internal.Text -> GHC.Types.IO Common.Graph
   {- Arity: 2, Strictness: <L,U><S,U>,
@@ -677,7 +677,7 @@ b4513520b9fb196a71e0efafdce16637
                   `cast`
                 (<Data.Text.Internal.Text>_R
                  ->_R Sym (GHC.Types.N:IO[0] <Common.Graph>_R)) -}
-98a25f675f44c41b08f83f9cadef269c
+4fa7c5d96514884f1b0e392ced4fc58f
   boltCreateGraph1 ::
     Data.Text.Internal.Text
     -> GHC.Prim.State# GHC.Prim.RealWorld
@@ -787,14 +787,14 @@ e233b02c8cd9b9ab0044612fa0caf46b
 edd2b909c6d5ad3772532787d25fb2a4
   boltCreateGraph8 :: Data.Text.Internal.Text
   {- Unfolding: (Data.Text.Show.unpackCString# "neo4j"#) -}
-16f83f35dcea598399e67e2a55b24c8c
+fe507455f6fe2e74c73cfd4e021bfb89
   boltCypherExtractLink :: Data.Text.Internal.Text
   {- Unfolding: (Data.Text.Show.unpackCString#
-                   "MATCH (n) WHERE n.name = {username}OPTIONAL MATCH path=(n)-[*1..2]-(c) WITH rels(path) AS rels UNWIND rels AS rel WITH DISTINCT rel RETURN startnode(rel).name as parent, endnode(rel).name as child, type(rel) as type"#) -}
-9f6a2597361621eadcf6c309f21ce58f
+                   "MATCH (n) WHERE n.name = {username}OPTIONAL MATCH path=(n)-[*..2]-(c) WITH rels(path) AS rels UNWIND rels AS rel WITH DISTINCT rel RETURN startnode(rel).name as parent, endnode(rel).name as child, type(rel) as type"#) -}
+00e566814816dbed33ac7bb4bb9ba87b
   boltCypherExtractNode :: Data.Text.Internal.Text
   {- Unfolding: (Data.Text.Show.unpackCString#
-                   "MATCH (n) WHERE n.name = {username} OPTIONAL MATCH path=(n)-[*1..2]-(c) RETURN DISTINCT c.name as name, HEAD(LABELS(c)) as group"#) -}
+                   "MATCH (n) WHERE n.name = {username} OPTIONAL MATCH path=(n)-[*..2]-(c) RETURN DISTINCT c.name as name, HEAD(LABELS(c)) as group"#) -}
 fa9acff7da1cf3bf93d92b0243a1aa8b
   boltCypherLanguage :: Data.Text.Internal.Text
   {- Unfolding: (Data.Text.Show.unpackCString#
@@ -1207,7 +1207,7 @@ a055cd75ad343edb89e6ce2b3d44a066
                         ipv2 of ds5 { (#,#) ipv4 ipv5 ->
                  (# ipv4,
                     GHC.List.null @ Database.Bolt.Record.Record ipv3 #) } } } } } }) -}
-4c5c431066e9bec2b125cc2a106781d2
+283be73ce51b1d2da3b7baa457e3d923
   boltStoreExtractLink ::
     Data.Text.Internal.Text
     -> GHC.Types.IO [Database.Bolt.Record.Record]
@@ -1217,7 +1217,7 @@ a055cd75ad343edb89e6ce2b3d44a066
                   `cast`
                 (<Data.Text.Internal.Text>_R
                  ->_R Sym (GHC.Types.N:IO[0] <[Database.Bolt.Record.Record]>_R)) -}
-a9813cb62e0b4bdb4d7d9ae17368b158
+f48ebd4432f8a5a9dad8663d4382db60
   boltStoreExtractLink1 ::
     Data.Text.Internal.Text
     -> GHC.Prim.State# GHC.Prim.RealWorld
@@ -1231,7 +1231,7 @@ a9813cb62e0b4bdb4d7d9ae17368b158
                    Boltery.boltCypherExtractLink
                    (Boltery.boltParamsExtract u)
                    eta) -}
-8b696b4007be50bac4000edcda8d01bf
+91b7e6748c747f46125b528655f3849d
   boltStoreExtractNode ::
     Data.Text.Internal.Text
     -> GHC.Types.IO [Database.Bolt.Record.Record]
@@ -1241,7 +1241,7 @@ a9813cb62e0b4bdb4d7d9ae17368b158
                   `cast`
                 (<Data.Text.Internal.Text>_R
                  ->_R Sym (GHC.Types.N:IO[0] <[Database.Bolt.Record.Record]>_R)) -}
-4566ad645f4a3dd4d4a562a561eec20c
+1dc98ea3b6966aeb693a6b82470c0ca1
   boltStoreExtractNode1 ::
     Data.Text.Internal.Text
     -> GHC.Prim.State# GHC.Prim.RealWorld

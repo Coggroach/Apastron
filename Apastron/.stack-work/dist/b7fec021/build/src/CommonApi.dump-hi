@@ -1,12 +1,12 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-12 14:48:30.8380676 UTC
+2017-04-12 17:40:42.4999358 UTC
 
 interface Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:CommonApi 8001
-  interface hash: 83b0ff290c03ed2f9919c14741ac4512
-  ABI hash: f80713ca94112a893f06629ca0b814f9
-  export-list hash: 6307adf4f870ab3dd50bcf7ca1eecea3
-  orphan hash: c0a9f78ccb7a8d90d1a22746f9268a1f
+  interface hash: 5eb0e612c613e808a377b72c189cd4df
+  ABI hash: 53f8561b6b831e3bf4f38aba62c6afd1
+  export-list hash: c222257aba1b7ab2af25255984cc1193
+  orphan hash: 4a753c24bf06c9d76806cbe533505f9b
   flag hash: a217a46c836dcaeea502143f74cc1a8a
   sig of: Nothing
   used TH splices: False
@@ -17,9 +17,7 @@ exports:
   CommonApi.crawlerClientKill
   CommonApi.crawlerIdentity
   CommonApi.searchApi
-  CommonApi.searchClientEdges
   CommonApi.searchClientGraph
-  CommonApi.searchClientVertices
   CommonApi.searchIdentity
   CommonApi.ApiHandler
   CommonApi.CrawlerApi
@@ -173,21 +171,21 @@ family instance modules: Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Common
                          zlib-0.6.1.2@zlib-0.6.1.2-4CWLN1T27kOJhNvXgy46ZV:Codec.Compression.Zlib.Stream
 import  -/  Common f254b67436148d6262714d4e45819ee2
   exports: 2b5d66aa0289ed5cec0aabc302cea494
-  Edge 0425c321b21ea0f346891b541dc22f20
   Graph 0425c321b21ea0f346891b541dc22f20
   Identity de79f92e724fdcfe665ed811f24d06d1
   Identity 609da3ac4842d3c5a259400cd11eeab8
   Response eb41a6a83060bdda51878d39d72490b7
   User 969939e3e5cedaf008d247eca3d1833d
-  Vertex f532a46e9a6a1570c3793944e901fb85
 import  -/  aeson-1.0.2.1@aeson-1.0.2.1-IWZLPncKUtsCKiJwRHsVV2:Data.Aeson 0482e5c3d1fd2c40596720d9051f3add
 import  -/  base-4.9.0.0:Data.Proxy cd322f0ddd49030d3ff2e9f13621539a
+import  -/  base-4.9.0.0:GHC.Base dd8044a8d640eee51828c17c476a6ba7
 import  -/  base-4.9.0.0:GHC.Generics cdf72cc575895201800451f77c6e6810
 import  -/  base-4.9.0.0:Prelude 2d9cd8b0ec3d728f62b734df888d2e34
 import  -/  ghc-prim-0.5.0.0:GHC.Types 7378e41b7749213c8c88ceb6b0665d4c
 import  -/  http-client-0.4.31.2@http-client-0.4.31.2-6gyf7twhhmv8yfbRVNkl4Z:Network.HTTP.Client 7efdeaf13b646bc90b9c711f77bcc9f3
 import  -/  servant-0.9.1.1@servant-0.9.1.1-BMzPHFjspLnD38uAz6wSUb:Servant.API 58034960611853d9b300556fe318efde
 import  -/  servant-0.9.1.1@servant-0.9.1.1-BMzPHFjspLnD38uAz6wSUb:Servant.API.Alternative 0c34682dd52d819d832ebaecb39da1f4
+import  -/  servant-0.9.1.1@servant-0.9.1.1-BMzPHFjspLnD38uAz6wSUb:Servant.API.Capture c52c0b2275b9e8378bd4811092627339
 import  -/  servant-0.9.1.1@servant-0.9.1.1-BMzPHFjspLnD38uAz6wSUb:Servant.API.ContentTypes ca65d57ece702d7f31a00450fde05ce8
 import  -/  servant-0.9.1.1@servant-0.9.1.1-BMzPHFjspLnD38uAz6wSUb:Servant.API.ReqBody e858c6ff9ceb72796d9c4eb8d3954d3c
 import  -/  servant-0.9.1.1@servant-0.9.1.1-BMzPHFjspLnD38uAz6wSUb:Servant.API.Sub 503e5ed3c3d3eeadc8f5d1fc2b08ce6f
@@ -199,29 +197,6 @@ import  -/  servant-server-0.9.1.1@servant-server-0.9.1.1-DE2J1HrS99GJcT3WTSVjFf
 import  -/  transformers-0.5.2.0@transformers-0.5.2.0:Control.Monad.Trans.Except 7818a7c6346c90815c8b961a98146fb3
 import  -/  wai-3.2.1.1@wai-3.2.1.1-GVNFJ2NUhhADT18B8nh1gg:Network.Wai 6802161fda2a254e932e92defc21d045
 import  -/  warp-3.2.11@warp-3.2.11-3f0GdBy4N7PBe7H9xN4yrg:Network.Wai.Handler.Warp f948cbb820285834bfca6dd50d8dff9a
-50a6a20984de7c890d3071390db52bbf
-  $s$fFromJSON[] ::
-    Data.Aeson.Types.FromJSON.FromJSON [Common.Vertex]
-  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
-     Unfolding: DFun:.
-                  @ [Common.Vertex]
-                  (Data.Aeson.Types.FromJSON.$dmfromJSONKeyList_$cparseJSON
-                     @ Common.Vertex
-                     Common.$fFromJSONVertex)
-                  (Data.Aeson.Types.FromJSON.$fFromJSONKey[]_$cparseJSONList
-                     @ Common.Vertex
-                     Common.$fFromJSONVertex) -}
-18e7daae362220a00af4a54a0e640c15
-  $s$fFromJSON[]1 :: Data.Aeson.Types.FromJSON.FromJSON [Common.Edge]
-  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
-     Unfolding: DFun:.
-                  @ [Common.Edge]
-                  (Data.Aeson.Types.FromJSON.$dmfromJSONKeyList_$cparseJSON
-                     @ Common.Edge
-                     Common.$fFromJSONEdge)
-                  (Data.Aeson.Types.FromJSON.$fFromJSONKey[]_$cparseJSONList
-                     @ Common.Edge
-                     Common.$fFromJSONEdge) -}
 ae7de40284c7153bb2c87d05b0ab4db9
   $s$fMimeRenderTYPEJSONa_$sencode ::
     Common.User -> Data.ByteString.Lazy.Internal.ByteString
@@ -260,42 +235,6 @@ f4ef314ccb5bdcdedd8b2b8fc4bb4274
                      @ Common.Graph
                      Common.$fFromJSONGraph)
                   CommonApi.$s$fMimeUnrenderTYPEJSONa_$s$fMimeUnrenderTYPEJSONa_$cmimeUnrender1 -}
-81b30802220da5f7a097f7474fb2c79f
-  $s$fMimeUnrenderTYPEJSONa2 ::
-    Servant.API.ContentTypes.MimeUnrender
-      Servant.API.ContentTypes.JSON [Common.Vertex]
-  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
-     Unfolding: DFun:.
-                  @ *
-                  @ Servant.API.ContentTypes.JSON
-                  @ [Common.Vertex]
-                  (Servant.API.ContentTypes.$fMimeUnrenderTYPEJSONa_$cp1MimeUnrender
-                     @ [Common.Vertex]
-                     CommonApi.$s$fMimeUnrenderTYPEJSONa_$dFromJSON)
-                  CommonApi.$s$fMimeUnrenderTYPEJSONa_$s$fMimeUnrenderTYPEJSONa_$cmimeUnrender2 -}
-31012f775b2b17ac3816b7247bcb3230
-  $s$fMimeUnrenderTYPEJSONa3 ::
-    Servant.API.ContentTypes.MimeUnrender
-      Servant.API.ContentTypes.JSON [Common.Edge]
-  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
-     Unfolding: DFun:.
-                  @ *
-                  @ Servant.API.ContentTypes.JSON
-                  @ [Common.Edge]
-                  (Servant.API.ContentTypes.$fMimeUnrenderTYPEJSONa_$cp1MimeUnrender
-                     @ [Common.Edge]
-                     CommonApi.$s$fMimeUnrenderTYPEJSONa_$dFromJSON1)
-                  CommonApi.$s$fMimeUnrenderTYPEJSONa_$s$fMimeUnrenderTYPEJSONa_$cmimeUnrender3 -}
-203a2cafee098940e1dd80580014b31d
-  $s$fMimeUnrenderTYPEJSONa_$dFromJSON ::
-    Data.Aeson.Types.FromJSON.FromJSON [Common.Vertex]
-  {- Strictness: m,
-     Unfolding: InlineRule (0, True, True) CommonApi.$s$fFromJSON[] -}
-4c797ab15e19b1e5214547ed3985dafa
-  $s$fMimeUnrenderTYPEJSONa_$dFromJSON1 ::
-    Data.Aeson.Types.FromJSON.FromJSON [Common.Edge]
-  {- Strictness: m,
-     Unfolding: InlineRule (0, True, True) CommonApi.$s$fFromJSON[]1 -}
 65130abccc73852b9128cc5bf43f3965
   $s$fMimeUnrenderTYPEJSONa_$s$fMimeUnrenderTYPEJSONa_$cmimeUnrender ::
     Data.Proxy.Proxy Servant.API.ContentTypes.JSON
@@ -322,43 +261,83 @@ f4ef314ccb5bdcdedd8b2b8fc4bb4274
                    @ Common.Graph
                    Common.$fFromJSONGraph
                    eta) -}
-7c1d3efd4f9b63cb08a6cc6165be61bb
-  $s$fMimeUnrenderTYPEJSONa_$s$fMimeUnrenderTYPEJSONa_$cmimeUnrender2 ::
-    Data.Proxy.Proxy Servant.API.ContentTypes.JSON
-    -> Data.ByteString.Lazy.Internal.ByteString
-    -> Data.Either.Either GHC.Base.String [Common.Vertex]
-  {- Arity: 2, Strictness: <L,A><S,1*U>,
-     Unfolding: InlineRule (1, True, True)
-                (\ (ds :: Data.Proxy.Proxy Servant.API.ContentTypes.JSON)
-                   (eta :: Data.ByteString.Lazy.Internal.ByteString) ->
-                 Servant.API.ContentTypes.eitherDecodeLenient
-                   @ [Common.Vertex]
-                   CommonApi.$s$fMimeUnrenderTYPEJSONa_$dFromJSON
-                   eta) -}
-43a5198cb97e099d0e4d645beada3017
-  $s$fMimeUnrenderTYPEJSONa_$s$fMimeUnrenderTYPEJSONa_$cmimeUnrender3 ::
-    Data.Proxy.Proxy Servant.API.ContentTypes.JSON
-    -> Data.ByteString.Lazy.Internal.ByteString
-    -> Data.Either.Either GHC.Base.String [Common.Edge]
-  {- Arity: 2, Strictness: <L,A><S,1*U>,
-     Unfolding: InlineRule (1, True, True)
-                (\ (ds :: Data.Proxy.Proxy Servant.API.ContentTypes.JSON)
-                   (eta :: Data.ByteString.Lazy.Internal.ByteString) ->
-                 Servant.API.ContentTypes.eitherDecodeLenient
-                   @ [Common.Edge]
-                   CommonApi.$s$fMimeUnrenderTYPEJSONa_$dFromJSON1
-                   eta) -}
-61afdfc2ac37e96ea3feb7a8af2255d0
+e0f2fab2637f8602e406fab5a9ea6bdd
   $sclient11 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "graph"#) -}
-6f3a32a94416cae3f9b5e14bcd0c1522
+  {- Unfolding: (GHC.CString.unpackAppendCString#
+                   "/"#
+                   CommonApi.$sclient12) -}
+834243b1d41abd2ff67ec4b931115117
   $sclient12 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "edges"#) -}
-8febdd99e81a89305ed1c765e011d7ab
-  $sclient13 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "vertices"#) -}
-284864aa273307d576e20a5184389466
-  $sclient3 ::
+  {- Unfolding: (GHC.CString.unpackCString# "init"#) -}
+7c78b48354825a1062a6e97b1262103e
+  $sclient2 ::
+    Data.Proxy.Proxy
+      (Servant.API.Verbs.Verb
+         'Network.HTTP.Types.Method.GET
+         200
+         '[Servant.API.ContentTypes.JSON]
+         Common.Graph)
+    -> Servant.Common.Req.Req
+    -> Servant.Client.Client
+         (Servant.API.Verbs.Verb
+            'Network.HTTP.Types.Method.GET
+            200
+            '[Servant.API.ContentTypes.JSON]
+            Common.Graph)
+  {- Arity: 2, Strictness: <S,1*H><L,1*U(U,U,U,A,U)>,
+     Unfolding: InlineRule (2, True, False)
+                (\ (w3 :: Data.Proxy.Proxy
+                            (Servant.API.Verbs.Verb
+                               'Network.HTTP.Types.Method.GET
+                               200
+                               '[Servant.API.ContentTypes.JSON]
+                               Common.Graph))
+                   (w4 :: Servant.Common.Req.Req) ->
+                 case w3 of w5 { Data.Proxy.Proxy ->
+                 Servant.Client.$w$cclientWithRoute8
+                   @ Network.HTTP.Types.Method.StdMethod
+                   @ Servant.API.ContentTypes.JSON
+                   @ Common.Graph
+                   @ 'Network.HTTP.Types.Method.GET
+                   @ '[Servant.API.ContentTypes.JSON]
+                   @ '[]
+                   @ 200
+                   CommonApi.$s$fMimeUnrenderTYPEJSONa1
+                   Servant.API.Verbs.$fReflectMethodStdMethodGET_$creflectMethod
+                     `cast`
+                   (Sym (Servant.API.Verbs.N:ReflectMethod[0]
+                             <Network.HTTP.Types.Method.StdMethod>_N
+                             <'Network.HTTP.Types.Method.GET>_N))
+                   CommonApi.$sclient_$d~~
+                     `cast`
+                   (Sym (Data.Type.Equality.N:~[0]
+                             <[*]>_N) <'[Servant.API.ContentTypes.JSON]>_N <'[Servant.API.ContentTypes.JSON]>_N)
+                   (Data.Proxy.Proxy
+                      @ *
+                      @ (Servant.API.Verbs.Verb
+                           'Network.HTTP.Types.Method.GET
+                           200
+                           '[Servant.API.ContentTypes.JSON]
+                           Common.Graph))
+                   w4 }) -}
+1840f9b8c4e64a31e0bde133fce4eb8c
+  $sclient3 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackAppendCString#
+                   "/"#
+                   CommonApi.$sclient4) -}
+a976331cc3c3d9f17ce5f2c1b92d8d8c
+  $sclient4 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "graph"#) -}
+3f567048769f3e6d41f85675647ca6ea
+  $sclient8 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackAppendCString#
+                   "/"#
+                   CommonApi.$sclient9) -}
+9892d38e91614ef6299eeaf5a0566878
+  $sclient9 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "kill"#) -}
+8709f8b21a369ad129192eab0e8b3dc8
+  $sclient_$d~~ ::
     '[Servant.API.ContentTypes.JSON]
     GHC.Types.~~ '[Servant.API.ContentTypes.JSON]
   {- HasNoCafRefs, Strictness: m,
@@ -368,22 +347,6 @@ f4ef314ccb5bdcdedd8b2b8fc4bb4274
                    @ '[Servant.API.ContentTypes.JSON]
                    @ '[Servant.API.ContentTypes.JSON]
                    @~ <'[Servant.API.ContentTypes.JSON]>_N) -}
-317fd8e0759a3fe0b1e302b8234157bc
-  $sclient4 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackAppendCString#
-                   "/"#
-                   CommonApi.$sclient5) -}
-6171bb4bc740c4a07969e6f60a5dd90a
-  $sclient5 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "kill"#) -}
-4ed148865840b421372c737675a0001b
-  $sclient7 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackAppendCString#
-                   "/"#
-                   CommonApi.$sclient8) -}
-ba965f9c93eababae97265e03d4c8432
-  $sclient8 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "init"#) -}
 e8d7f3f198b6f17fceb94f605a210eda
   $trModule :: GHC.Types.Module
   {- HasNoCafRefs, Strictness: m,
@@ -417,25 +380,19 @@ f64a7135e78ed4e240cfdcd99928279a
                                                       Servant.API.Sub.:> Servant.API.Verbs.Post
                                                                            '[Servant.API.ContentTypes.JSON]
                                                                            Common.Response))
-d7a66b33ff7580fa4b3cc710b5dcae94
+c7ef4c7fd4456048c23d2d6c471e8965
   type SearchApi =
-    ("vertices"
-     Servant.API.Sub.:> Servant.API.Verbs.Get
-                          '[Servant.API.ContentTypes.JSON] [Common.Vertex])
-    Servant.API.Alternative.:<|> (("edges"
-                                   Servant.API.Sub.:> Servant.API.Verbs.Get
-                                                        '[Servant.API.ContentTypes.JSON]
-                                                        [Common.Edge])
-                                  Servant.API.Alternative.:<|> ("graph"
-                                                                Servant.API.Sub.:> Servant.API.Verbs.Get
-                                                                                     '[Servant.API.ContentTypes.JSON]
-                                                                                     Common.Graph))
+    "graph"
+    Servant.API.Sub.:> (Servant.API.Capture.Capture
+                          "username" GHC.Base.String
+                        Servant.API.Sub.:> Servant.API.Verbs.Get
+                                             '[Servant.API.ContentTypes.JSON] Common.Graph)
 fc0495e6d6fe51cf8ef27954a0dd1905
   crawlerApi :: Data.Proxy.Proxy CommonApi.CrawlerApi
   {- HasNoCafRefs,
      Unfolding: InlineRule (0, True, True)
                 (Data.Proxy.Proxy @ * @ CommonApi.CrawlerApi) -}
-f3a35a104bdaedc1b7c67ea611391bb8
+c805fbed6c135037cfff2666a1659aa0
   crawlerClientInit ::
     Common.User -> Servant.Common.Req.ClientM Common.Response
   {- Arity: 1, Strictness: <L,1*U(U,U,U)>,
@@ -449,7 +406,7 @@ f3a35a104bdaedc1b7c67ea611391bb8
                                <'Network.HTTP.Types.Method.POST>_N
                                <'[Servant.API.ContentTypes.JSON]>_N
                                <200>_N)) -}
-4487be97b4b3ddfb4d2a4288bf3e6897
+d8166c09d27d797b299094ece036b3b6
   crawlerClientInit1 ::
     Common.User
     -> Servant.Client.Client
@@ -474,7 +431,7 @@ f3a35a104bdaedc1b7c67ea611391bb8
                    (Sym (Servant.API.Verbs.N:ReflectMethod[0]
                              <Network.HTTP.Types.Method.StdMethod>_N
                              <'Network.HTTP.Types.Method.POST>_N))
-                   CommonApi.$sclient3
+                   CommonApi.$sclient_$d~~
                      `cast`
                    (Sym (Data.Type.Equality.N:~[0]
                              <[*]>_N) <'[Servant.API.ContentTypes.JSON]>_N <'[Servant.API.ContentTypes.JSON]>_N)
@@ -497,13 +454,13 @@ f3a35a104bdaedc1b7c67ea611391bb8
                           Servant.API.ContentTypes.$fAcceptTYPEJSON1))
                       (GHC.Types.[] @ Network.HTTP.Media.MediaType.Internal.MediaType)
                       (GHC.Types.[] @ (GHC.Base.String, Data.Text.Internal.Text)))) -}
-a4bd409cc4a9d198f8a18d2c6fffc372
+c983d9caf2ac8d4d9a92fad657fd41c3
   crawlerClientInit2 :: [GHC.Types.Char]
   {- Unfolding: (GHC.Base.++
                    @ GHC.Types.Char
                    (GHC.Types.[] @ GHC.Types.Char)
-                   CommonApi.$sclient7) -}
-7c9e6eeae92f213c32e8ef7acc1459f4
+                   CommonApi.$sclient11) -}
+269e7bf7dd05da09d70af769fe48094e
   crawlerClientKill ::
     Common.User -> Servant.Common.Req.ClientM Common.Response
   {- Arity: 1, Strictness: <L,1*U(U,U,U)>,
@@ -517,7 +474,7 @@ a4bd409cc4a9d198f8a18d2c6fffc372
                                <'Network.HTTP.Types.Method.POST>_N
                                <'[Servant.API.ContentTypes.JSON]>_N
                                <200>_N)) -}
-c2c9b1c7dc5413dfcee69a505207f969
+92935e7a89f734ad4eadef00ba03c17c
   crawlerClientKill1 ::
     Common.User
     -> Servant.Client.Client
@@ -542,7 +499,7 @@ c2c9b1c7dc5413dfcee69a505207f969
                    (Sym (Servant.API.Verbs.N:ReflectMethod[0]
                              <Network.HTTP.Types.Method.StdMethod>_N
                              <'Network.HTTP.Types.Method.POST>_N))
-                   CommonApi.$sclient3
+                   CommonApi.$sclient_$d~~
                      `cast`
                    (Sym (Data.Type.Equality.N:~[0]
                              <[*]>_N) <'[Servant.API.ContentTypes.JSON]>_N <'[Servant.API.ContentTypes.JSON]>_N)
@@ -565,12 +522,12 @@ c2c9b1c7dc5413dfcee69a505207f969
                           Servant.API.ContentTypes.$fAcceptTYPEJSON1))
                       (GHC.Types.[] @ Network.HTTP.Media.MediaType.Internal.MediaType)
                       (GHC.Types.[] @ (GHC.Base.String, Data.Text.Internal.Text)))) -}
-61be5cc13feed7f709c15c330ff16ae1
+9027d692fe38871060183ef10c0c96a5
   crawlerClientKill2 :: [GHC.Types.Char]
   {- Unfolding: (GHC.Base.++
                    @ GHC.Types.Char
                    (GHC.Types.[] @ GHC.Types.Char)
-                   CommonApi.$sclient4) -}
+                   CommonApi.$sclient8) -}
 d17d9dcc88752db33300c53b1251c5d1
   crawlerIdentity :: Common.Identity
   {- Strictness: m,
@@ -583,192 +540,70 @@ d17d9dcc88752db33300c53b1251c5d1
 316978f9c17bbdca19485bf1b95fd97e
   crawlerIdentity2 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "localhost"#) -}
-7ad98531a3c2e0f6e0bdf521e81902e7
+bf0de3e9f4ac3276a347116fc1716354
   searchApi :: Data.Proxy.Proxy CommonApi.SearchApi
   {- HasNoCafRefs,
      Unfolding: InlineRule (0, True, True)
                 (Data.Proxy.Proxy @ * @ CommonApi.SearchApi) -}
-95010a928e10c12ec2f9ad7699080d88
-  searchClientEdges :: Servant.Common.Req.ClientM [Common.Edge]
-  {- Arity: 2, Strictness: <L,U><S,U>,
-     Unfolding: InlineRule (0, True, True)
-                CommonApi.searchClientEdges1
-                  `cast`
-                (Trans
-                     (<Servant.Common.Req.ClientEnv>_R
-                      ->_R Trans
-                               (Sym (GHC.Types.N:IO[0]
-                                         <Data.Either.Either
-                                            Servant.Common.Req.ServantError [Common.Edge]>_R))
-                               (Sym (Control.Monad.Trans.Except.N:ExceptT[0]
-                                         <Servant.Common.Req.ServantError>_N
-                                         <GHC.Types.IO>_R
-                                         <[Common.Edge]>_N)))
-                     (Trans
-                          (Sym (Control.Monad.Trans.Reader.N:ReaderT[0]
-                                    <*>_N
-                                    <Servant.Common.Req.ClientEnv>_R
-                                    <Control.Monad.Trans.Except.ExceptT
-                                       Servant.Common.Req.ServantError GHC.Types.IO>_R
-                                    <[Common.Edge]>_N))
-                          (Sym (Servant.Common.Req.N:ClientM[0]) <[Common.Edge]>_N))) -}
-a8ec1449142de66e6182d1ebdb5cd4a6
-  searchClientEdges1 ::
-    Servant.Common.Req.ClientEnv
-    -> GHC.Prim.State# GHC.Prim.RealWorld
-    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
-          Data.Either.Either Servant.Common.Req.ServantError [Common.Edge] #)
-  {- Arity: 2, Strictness: <L,U><S,U>,
-     Unfolding: InlineRule (2, True, False)
-                (\ (eta1 :: Servant.Common.Req.ClientEnv)
-                   (eta2 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
-                 case (CommonApi.searchClientEdges_eta
-                         `cast`
-                       (Trans
-                            (Servant.Common.Req.N:ClientM[0] <([Network.HTTP.Types.Header.Header],
-                                                               [Common.Edge])>_N)
-                            (Control.Monad.Trans.Reader.N:ReaderT[0]
-                                 <*>_N
-                                 <Servant.Common.Req.ClientEnv>_R
-                                 <Control.Monad.Trans.Except.ExceptT
-                                    Servant.Common.Req.ServantError GHC.Types.IO>_R
-                                 <([Network.HTTP.Types.Header.Header], [Common.Edge])>_N))
-                         eta1)
-                        `cast`
-                      (Trans
-                           (Control.Monad.Trans.Except.N:ExceptT[0]
-                                <Servant.Common.Req.ServantError>_N
-                                <GHC.Types.IO>_R
-                                <([Network.HTTP.Types.Header.Header], [Common.Edge])>_N)
-                           (GHC.Types.N:IO[0]
-                                <Data.Either.Either
-                                   Servant.Common.Req.ServantError
-                                   ([Network.HTTP.Types.Header.Header], [Common.Edge])>_R))
-                        eta2 of ds { (#,#) ipv ipv1 ->
-                 (# ipv,
-                    case ipv1 of wild {
-                      Data.Either.Left x
-                      -> Data.Either.Left
-                           @ Servant.Common.Req.ServantError
-                           @ [Common.Edge]
-                           x
-                      Data.Either.Right y
-                      -> Data.Either.Right
-                           @ Servant.Common.Req.ServantError
-                           @ [Common.Edge]
-                           (Data.Tuple.snd
-                              @ [Network.HTTP.Types.Header.Header]
-                              @ [Common.Edge]
-                              y) } #) }) -}
-fcdb00a7ce0bcb6d900444da1f332830
-  searchClientEdges2 :: Servant.Common.Req.Req
-  {- Unfolding: (Servant.Common.Req.Req
-                   CommonApi.searchClientEdges3
-                   (GHC.Types.[]
-                      @ (Data.Text.Internal.Text,
-                         GHC.Base.Maybe Data.Text.Internal.Text))
-                   (GHC.Base.Nothing
-                      @ (Data.ByteString.Lazy.Internal.ByteString,
-                         Network.HTTP.Media.MediaType.Internal.MediaType))
-                   (GHC.Types.[] @ Network.HTTP.Media.MediaType.Internal.MediaType)
-                   (GHC.Types.[] @ (GHC.Base.String, Data.Text.Internal.Text))) -}
-875c8e58c3f9ddfcbf2e09c9287d517a
-  searchClientEdges3 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.Base.++
-                   @ GHC.Types.Char
-                   (GHC.Types.[] @ GHC.Types.Char)
-                   CommonApi.searchClientEdges4) -}
-7e633590341b42a3042038e681e994e4
-  searchClientEdges4 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackAppendCString#
-                   "/"#
-                   CommonApi.$sclient12) -}
-06815bd8c25515e376d2c66b88055ea5
-  searchClientEdges_eta ::
-    Servant.Common.Req.ClientM
-      ([Network.HTTP.Types.Header.Header], [Common.Edge])
-  {- Unfolding: (Servant.Common.Req.performRequestCT
-                   @ Servant.API.ContentTypes.JSON
-                   @ [Common.Edge]
-                   CommonApi.$s$fMimeUnrenderTYPEJSONa3
-                   (Data.Proxy.Proxy @ GHC.Types.* @ Servant.API.ContentTypes.JSON)
-                   Network.HTTP.Types.Method.methodGet
-                   CommonApi.searchClientEdges2) -}
-7ce8fbd60caaa67fde2a199bc2b94564
-  searchClientGraph :: Servant.Common.Req.ClientM Common.Graph
-  {- Arity: 2, Strictness: <L,U><S,U>,
+150b8b8a54bfbce96662b5013708d321
+  searchClientGraph ::
+    GHC.Base.String -> Servant.Common.Req.ClientM Common.Graph
+  {- Arity: 1, Strictness: <L,U>,
      Unfolding: InlineRule (0, True, True)
                 CommonApi.searchClientGraph1
                   `cast`
-                (Trans
-                     (<Servant.Common.Req.ClientEnv>_R
-                      ->_R Trans
-                               (Sym (GHC.Types.N:IO[0]
-                                         <Data.Either.Either
-                                            Servant.Common.Req.ServantError Common.Graph>_R))
-                               (Sym (Control.Monad.Trans.Except.N:ExceptT[0]
-                                         <Servant.Common.Req.ServantError>_N
-                                         <GHC.Types.IO>_R
-                                         <Common.Graph>_N)))
-                     (Trans
-                          (Sym (Control.Monad.Trans.Reader.N:ReaderT[0]
-                                    <*>_N
-                                    <Servant.Common.Req.ClientEnv>_R
-                                    <Control.Monad.Trans.Except.ExceptT
-                                       Servant.Common.Req.ServantError GHC.Types.IO>_R
-                                    <Common.Graph>_N))
-                          (Sym (Servant.Common.Req.N:ClientM[0]) <Common.Graph>_N))) -}
-89a478a5b8a546efddae27826a81e80d
+                (<[GHC.Types.Char]>_R
+                 ->_R Sub (Servant.Client.D:R:ClientTYPEVerb2[0]
+                               <Network.HTTP.Types.Method.StdMethod>_N
+                               <Common.Graph>_N
+                               <'Network.HTTP.Types.Method.GET>_N
+                               <'[Servant.API.ContentTypes.JSON]>_N
+                               <200>_N)) -}
+1053d58b0b42916e4758e222d51ad580
   searchClientGraph1 ::
-    Servant.Common.Req.ClientEnv
-    -> GHC.Prim.State# GHC.Prim.RealWorld
-    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
-          Data.Either.Either Servant.Common.Req.ServantError Common.Graph #)
-  {- Arity: 2, Strictness: <L,U><S,U>,
-     Unfolding: InlineRule (2, True, False)
-                (\ (eta1 :: Servant.Common.Req.ClientEnv)
-                   (eta2 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
-                 case (CommonApi.searchClientGraph_eta
-                         `cast`
-                       (Trans
-                            (Servant.Common.Req.N:ClientM[0] <([Network.HTTP.Types.Header.Header],
-                                                               Common.Graph)>_N)
-                            (Control.Monad.Trans.Reader.N:ReaderT[0]
-                                 <*>_N
-                                 <Servant.Common.Req.ClientEnv>_R
-                                 <Control.Monad.Trans.Except.ExceptT
-                                    Servant.Common.Req.ServantError GHC.Types.IO>_R
-                                 <([Network.HTTP.Types.Header.Header], Common.Graph)>_N))
-                         eta1)
-                        `cast`
-                      (Trans
-                           (Control.Monad.Trans.Except.N:ExceptT[0]
-                                <Servant.Common.Req.ServantError>_N
-                                <GHC.Types.IO>_R
-                                <([Network.HTTP.Types.Header.Header], Common.Graph)>_N)
-                           (GHC.Types.N:IO[0]
-                                <Data.Either.Either
-                                   Servant.Common.Req.ServantError
-                                   ([Network.HTTP.Types.Header.Header], Common.Graph)>_R))
-                        eta2 of ds { (#,#) ipv ipv1 ->
-                 (# ipv,
-                    case ipv1 of wild {
-                      Data.Either.Left x
-                      -> Data.Either.Left
-                           @ Servant.Common.Req.ServantError
-                           @ Common.Graph
-                           x
-                      Data.Either.Right y
-                      -> Data.Either.Right
-                           @ Servant.Common.Req.ServantError
-                           @ Common.Graph
-                           (Data.Tuple.snd
-                              @ [Network.HTTP.Types.Header.Header]
-                              @ Common.Graph
-                              y) } #) }) -}
-f20e29e8a78367a627502623f824cb5f
+    [GHC.Types.Char]
+    -> Servant.Client.Client
+         (Servant.API.Verbs.Verb
+            'Network.HTTP.Types.Method.GET
+            200
+            '[Servant.API.ContentTypes.JSON]
+            Common.Graph)
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (w5 :: [GHC.Types.Char]) ->
+                 Servant.Client.$w$cclientWithRoute1
+                   @ *
+                   @ "username"
+                   @ [GHC.Types.Char]
+                   @ (Servant.API.Verbs.Verb
+                        'Network.HTTP.Types.Method.GET
+                        200
+                        '[Servant.API.ContentTypes.JSON]
+                        Common.Graph)
+                   Web.Internal.HttpApiData.$fToHttpApiData[]
+                   CommonApi.$sclient2
+                     `cast`
+                   (Sym (Servant.Client.N:HasClient[0]
+                             <*>_N
+                             <Servant.API.Verbs.Verb
+                                'Network.HTTP.Types.Method.GET
+                                200
+                                '[Servant.API.ContentTypes.JSON]
+                                Common.Graph>_N))
+                   (Data.Proxy.Proxy
+                      @ *
+                      @ (Servant.API.Capture.Capture "username" [GHC.Types.Char]
+                         Servant.API.Sub.:> Servant.API.Verbs.Verb
+                                              'Network.HTTP.Types.Method.GET
+                                              200
+                                              '[Servant.API.ContentTypes.JSON]
+                                              Common.Graph))
+                   CommonApi.searchClientGraph2
+                   w5) -}
+1c87eb6f11dfefac9fe1397fef2110e5
   searchClientGraph2 :: Servant.Common.Req.Req
-  {- Unfolding: (Servant.Common.Req.Req
+  {- Strictness: m,
+     Unfolding: (Servant.Common.Req.Req
                    CommonApi.searchClientGraph3
                    (GHC.Types.[]
                       @ (Data.Text.Internal.Text,
@@ -778,135 +613,12 @@ f20e29e8a78367a627502623f824cb5f
                          Network.HTTP.Media.MediaType.Internal.MediaType))
                    (GHC.Types.[] @ Network.HTTP.Media.MediaType.Internal.MediaType)
                    (GHC.Types.[] @ (GHC.Base.String, Data.Text.Internal.Text))) -}
-987dcf7a62e7fa27438465ab4b99a1d7
+2256e80bd40f1db83976cf650fb2d425
   searchClientGraph3 :: [GHC.Types.Char]
   {- Unfolding: (GHC.Base.++
                    @ GHC.Types.Char
                    (GHC.Types.[] @ GHC.Types.Char)
-                   CommonApi.searchClientGraph4) -}
-8919285443a59b3789b086d300885520
-  searchClientGraph4 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackAppendCString#
-                   "/"#
-                   CommonApi.$sclient11) -}
-901917ebd647169d4975c2131295d76f
-  searchClientGraph_eta ::
-    Servant.Common.Req.ClientM
-      ([Network.HTTP.Types.Header.Header], Common.Graph)
-  {- Unfolding: (Servant.Common.Req.performRequestCT
-                   @ Servant.API.ContentTypes.JSON
-                   @ Common.Graph
-                   CommonApi.$s$fMimeUnrenderTYPEJSONa1
-                   (Data.Proxy.Proxy @ GHC.Types.* @ Servant.API.ContentTypes.JSON)
-                   Network.HTTP.Types.Method.methodGet
-                   CommonApi.searchClientGraph2) -}
-253e1d01c7c7e013c9117c26b7b2b394
-  searchClientVertices :: Servant.Common.Req.ClientM [Common.Vertex]
-  {- Arity: 2, Strictness: <L,U><S,U>,
-     Unfolding: InlineRule (0, True, True)
-                CommonApi.searchClientVertices1
-                  `cast`
-                (Trans
-                     (<Servant.Common.Req.ClientEnv>_R
-                      ->_R Trans
-                               (Sym (GHC.Types.N:IO[0]
-                                         <Data.Either.Either
-                                            Servant.Common.Req.ServantError [Common.Vertex]>_R))
-                               (Sym (Control.Monad.Trans.Except.N:ExceptT[0]
-                                         <Servant.Common.Req.ServantError>_N
-                                         <GHC.Types.IO>_R
-                                         <[Common.Vertex]>_N)))
-                     (Trans
-                          (Sym (Control.Monad.Trans.Reader.N:ReaderT[0]
-                                    <*>_N
-                                    <Servant.Common.Req.ClientEnv>_R
-                                    <Control.Monad.Trans.Except.ExceptT
-                                       Servant.Common.Req.ServantError GHC.Types.IO>_R
-                                    <[Common.Vertex]>_N))
-                          (Sym (Servant.Common.Req.N:ClientM[0]) <[Common.Vertex]>_N))) -}
-58eff704454fe902fad5aab174de53e1
-  searchClientVertices1 ::
-    Servant.Common.Req.ClientEnv
-    -> GHC.Prim.State# GHC.Prim.RealWorld
-    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
-          Data.Either.Either
-            Servant.Common.Req.ServantError [Common.Vertex] #)
-  {- Arity: 2, Strictness: <L,U><S,U>,
-     Unfolding: InlineRule (2, True, False)
-                (\ (eta1 :: Servant.Common.Req.ClientEnv)
-                   (eta2 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
-                 case (CommonApi.searchClientVertices_eta
-                         `cast`
-                       (Trans
-                            (Servant.Common.Req.N:ClientM[0] <([Network.HTTP.Types.Header.Header],
-                                                               [Common.Vertex])>_N)
-                            (Control.Monad.Trans.Reader.N:ReaderT[0]
-                                 <*>_N
-                                 <Servant.Common.Req.ClientEnv>_R
-                                 <Control.Monad.Trans.Except.ExceptT
-                                    Servant.Common.Req.ServantError GHC.Types.IO>_R
-                                 <([Network.HTTP.Types.Header.Header], [Common.Vertex])>_N))
-                         eta1)
-                        `cast`
-                      (Trans
-                           (Control.Monad.Trans.Except.N:ExceptT[0]
-                                <Servant.Common.Req.ServantError>_N
-                                <GHC.Types.IO>_R
-                                <([Network.HTTP.Types.Header.Header], [Common.Vertex])>_N)
-                           (GHC.Types.N:IO[0]
-                                <Data.Either.Either
-                                   Servant.Common.Req.ServantError
-                                   ([Network.HTTP.Types.Header.Header], [Common.Vertex])>_R))
-                        eta2 of ds { (#,#) ipv ipv1 ->
-                 (# ipv,
-                    case ipv1 of wild {
-                      Data.Either.Left x
-                      -> Data.Either.Left
-                           @ Servant.Common.Req.ServantError
-                           @ [Common.Vertex]
-                           x
-                      Data.Either.Right y
-                      -> Data.Either.Right
-                           @ Servant.Common.Req.ServantError
-                           @ [Common.Vertex]
-                           (Data.Tuple.snd
-                              @ [Network.HTTP.Types.Header.Header]
-                              @ [Common.Vertex]
-                              y) } #) }) -}
-51dda7f44c31bb4e09cce4753fdf2934
-  searchClientVertices2 :: Servant.Common.Req.Req
-  {- Unfolding: (Servant.Common.Req.Req
-                   CommonApi.searchClientVertices3
-                   (GHC.Types.[]
-                      @ (Data.Text.Internal.Text,
-                         GHC.Base.Maybe Data.Text.Internal.Text))
-                   (GHC.Base.Nothing
-                      @ (Data.ByteString.Lazy.Internal.ByteString,
-                         Network.HTTP.Media.MediaType.Internal.MediaType))
-                   (GHC.Types.[] @ Network.HTTP.Media.MediaType.Internal.MediaType)
-                   (GHC.Types.[] @ (GHC.Base.String, Data.Text.Internal.Text))) -}
-4a022148c7faaf2da0d4a799507c99dc
-  searchClientVertices3 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.Base.++
-                   @ GHC.Types.Char
-                   (GHC.Types.[] @ GHC.Types.Char)
-                   CommonApi.searchClientVertices4) -}
-81553a9ec16c93d508580e0fc6471af3
-  searchClientVertices4 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackAppendCString#
-                   "/"#
-                   CommonApi.$sclient13) -}
-b0d64cb70adb76c2edfc6d443c2e5e6a
-  searchClientVertices_eta ::
-    Servant.Common.Req.ClientM
-      ([Network.HTTP.Types.Header.Header], [Common.Vertex])
-  {- Unfolding: (Servant.Common.Req.performRequestCT
-                   @ Servant.API.ContentTypes.JSON
-                   @ [Common.Vertex]
-                   CommonApi.$s$fMimeUnrenderTYPEJSONa2
-                   (Data.Proxy.Proxy @ GHC.Types.* @ Servant.API.ContentTypes.JSON)
-                   Network.HTTP.Types.Method.methodGet
-                   CommonApi.searchClientVertices2) -}
+                   CommonApi.$sclient3) -}
 6162946c0b511fb4105cac528567946e
   searchIdentity :: Common.Identity
   {- Strictness: m,
@@ -916,14 +628,6 @@ b0d64cb70adb76c2edfc6d443c2e5e6a
 2acac471410706e12fbf32f0fd7827f1
   searchIdentity1 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "8081"#) -}
-"SPEC/CommonApi $fFromJSON[] @ Edge" [ALWAYS] forall ($dFromJSON :: Data.Aeson.Types.FromJSON.FromJSON
-                                                                      Common.Edge)
-  Data.Aeson.Types.FromJSON.$fFromJSON[] @ Common.Edge $dFromJSON
-  = CommonApi.$s$fFromJSON[]1
-"SPEC/CommonApi $fFromJSON[] @ Vertex" [ALWAYS] forall ($dFromJSON :: Data.Aeson.Types.FromJSON.FromJSON
-                                                                        Common.Vertex)
-  Data.Aeson.Types.FromJSON.$fFromJSON[] @ Common.Vertex $dFromJSON
-  = CommonApi.$s$fFromJSON[]
 "SPEC/CommonApi $fMimeUnrenderTYPEJSONa @ Graph" [ALWAYS] forall ($dFromJSON :: Data.Aeson.Types.FromJSON.FromJSON
                                                                                   Common.Graph)
   Servant.API.ContentTypes.$fMimeUnrenderTYPEJSONa @ Common.Graph
@@ -934,16 +638,6 @@ b0d64cb70adb76c2edfc6d443c2e5e6a
   Servant.API.ContentTypes.$fMimeUnrenderTYPEJSONa @ Common.Response
                                                    $dFromJSON
   = CommonApi.$s$fMimeUnrenderTYPEJSONa
-"SPEC/CommonApi $fMimeUnrenderTYPEJSONa @ [Edge]" [ALWAYS] forall ($dFromJSON :: Data.Aeson.Types.FromJSON.FromJSON
-                                                                                   [Common.Edge])
-  Servant.API.ContentTypes.$fMimeUnrenderTYPEJSONa @ [Common.Edge]
-                                                   $dFromJSON
-  = CommonApi.$s$fMimeUnrenderTYPEJSONa3
-"SPEC/CommonApi $fMimeUnrenderTYPEJSONa @ [Vertex]" [ALWAYS] forall ($dFromJSON :: Data.Aeson.Types.FromJSON.FromJSON
-                                                                                     [Common.Vertex])
-  Servant.API.ContentTypes.$fMimeUnrenderTYPEJSONa @ [Common.Vertex]
-                                                   $dFromJSON
-  = CommonApi.$s$fMimeUnrenderTYPEJSONa2
 "SPEC/CommonApi $fMimeUnrenderTYPEJSONa_$cmimeUnrender @ Graph" [ALWAYS] forall ($dFromJSON :: Data.Aeson.Types.FromJSON.FromJSON
                                                                                                  Common.Graph)
   Servant.API.ContentTypes.$fMimeUnrenderTYPEJSONa_$cmimeUnrender @ Common.Graph
@@ -954,16 +648,6 @@ b0d64cb70adb76c2edfc6d443c2e5e6a
   Servant.API.ContentTypes.$fMimeUnrenderTYPEJSONa_$cmimeUnrender @ Common.Response
                                                                   $dFromJSON
   = CommonApi.$s$fMimeUnrenderTYPEJSONa_$s$fMimeUnrenderTYPEJSONa_$cmimeUnrender
-"SPEC/CommonApi $fMimeUnrenderTYPEJSONa_$cmimeUnrender @ [Edge]" [ALWAYS] forall ($dFromJSON :: Data.Aeson.Types.FromJSON.FromJSON
-                                                                                                  [Common.Edge])
-  Servant.API.ContentTypes.$fMimeUnrenderTYPEJSONa_$cmimeUnrender @ [Common.Edge]
-                                                                  $dFromJSON
-  = CommonApi.$s$fMimeUnrenderTYPEJSONa_$s$fMimeUnrenderTYPEJSONa_$cmimeUnrender3
-"SPEC/CommonApi $fMimeUnrenderTYPEJSONa_$cmimeUnrender @ [Vertex]" [ALWAYS] forall ($dFromJSON :: Data.Aeson.Types.FromJSON.FromJSON
-                                                                                                    [Common.Vertex])
-  Servant.API.ContentTypes.$fMimeUnrenderTYPEJSONa_$cmimeUnrender @ [Common.Vertex]
-                                                                  $dFromJSON
-  = CommonApi.$s$fMimeUnrenderTYPEJSONa_$s$fMimeUnrenderTYPEJSONa_$cmimeUnrender2
 "SPEC/CommonApi encode @ User" [ALWAYS] forall ($dToJSON :: Data.Aeson.Types.ToJSON.ToJSON
                                                               Common.User)
   Data.Aeson.encode @ Common.User $dToJSON

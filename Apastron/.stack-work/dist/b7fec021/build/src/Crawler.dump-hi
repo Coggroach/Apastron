@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2017-04-12 17:17:27.3905594 UTC
+2017-04-12 17:24:57.6119868 UTC
 
 interface Apastron-0.1.0.0-6p4Hh7PW7PxHJPhuB7hN0A:Crawler [orphan module] [family instance module] 8001
-  interface hash: 104c34b6008d5837c16d2a0aaa9e4b7f
-  ABI hash: 77e3ac3d4d269399826bd726411df8e1
+  interface hash: abd9be202ebaf7e20ea9c40f2f1de7c4
+  ABI hash: 88576226c36abcce28047e91b3aa85fc
   export-list hash: f3965aa3cd097b3e1b0626ea018e6afe
   orphan hash: c1f71747ea8d357250788fc1497e820c
   flag hash: 9193a1108f5073ddaa226dd5af582a94
@@ -3562,7 +3562,100 @@ cb253cad06ed49cbb9b6ee8370000d2d
     -> Data.Map.Base.Map Data.Text.Internal.Text a1
   {- Arity: 5, Strictness: <L,U><L,U><L,U><L,U><S,1*U>,
      Inline: [0] -}
-b41db46e0be883adebc51576ba5f8442
+7e18aaedbcb97f75569cac45339c3a4e
+  $wcrawlEngine ::
+    Crawler.LookupMap
+    -> Data.Text.Internal.Text
+    -> GHC.Prim.Int#
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 4, Strictness: <L,U(U(U))><L,U(U,U,U)><S,U><S,U>,
+     Inline: [0],
+     Unfolding: (\ (w :: Crawler.LookupMap)
+                   (ww :: Data.Text.Internal.Text)
+                   (ww1 :: GHC.Prim.Int#)
+                   (w1 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case Crawler.$wcrawlUserToRepos
+                        w
+                        ww
+                        ww1
+                        w1 of ds1 { (#,#) ipv ipv1 ->
+                 let {
+                   c :: GHC.Base.String
+                   = case ww of wild { Data.Text.Internal.Text dt dt1 dt2 ->
+                     let {
+                       end :: GHC.Prim.Int# = GHC.Prim.+# dt1 dt2
+                     } in
+                     letrec {
+                       $wunfold :: GHC.Prim.Int# -> [GHC.Types.Char]
+                         {- Arity: 1, Strictness: <S,U>, Inline: [0] -}
+                       = \ (ww2 :: GHC.Prim.Int#) ->
+                         case GHC.Prim.tagToEnum#
+                                @ GHC.Types.Bool
+                                (GHC.Prim.>=# ww2 end) of wild1 {
+                           GHC.Types.False
+                           -> case GHC.Prim.indexWord16Array# dt ww2 of r# { DEFAULT ->
+                              case GHC.Prim.tagToEnum#
+                                     @ GHC.Types.Bool
+                                     (GHC.Prim.geWord# r# 55296##) of wild2 {
+                                GHC.Types.False
+                                -> GHC.Types.:
+                                     @ GHC.Types.Char
+                                     (GHC.Types.C# (GHC.Prim.chr# (GHC.Prim.word2Int# r#)))
+                                     ($wunfold (GHC.Prim.+# ww2 1#))
+                                GHC.Types.True
+                                -> case GHC.Prim.tagToEnum#
+                                          @ GHC.Types.Bool
+                                          (GHC.Prim.leWord# r# 56319##) of wild3 {
+                                     GHC.Types.False
+                                     -> GHC.Types.:
+                                          @ GHC.Types.Char
+                                          (GHC.Types.C# (GHC.Prim.chr# (GHC.Prim.word2Int# r#)))
+                                          ($wunfold (GHC.Prim.+# ww2 1#))
+                                     GHC.Types.True
+                                     -> case GHC.Prim.indexWord16Array#
+                                               dt
+                                               (GHC.Prim.+# ww2 1#) of r#1 { DEFAULT ->
+                                        GHC.Types.:
+                                          @ GHC.Types.Char
+                                          (GHC.Types.C#
+                                             (GHC.Prim.chr#
+                                                (GHC.Prim.+#
+                                                   (GHC.Prim.+#
+                                                      (GHC.Prim.uncheckedIShiftL#
+                                                         (GHC.Prim.-#
+                                                            (GHC.Prim.word2Int# r#)
+                                                            55296#)
+                                                         10#)
+                                                      (GHC.Prim.-# (GHC.Prim.word2Int# r#1) 56320#))
+                                                   65536#)))
+                                          ($wunfold (GHC.Prim.+# ww2 2#)) } } } }
+                           GHC.Types.True -> GHC.Types.[] @ GHC.Types.Char }
+                     } in
+                     $wunfold dt1 }
+                 } in
+                 case Crawler.crawlEngine9 c ipv of ds2 { (#,#) ipv2 ipv3 ->
+                 case ipv3 of wild { Crawler.Crawl ds ds3 ->
+                 case ds3 of wild1 {
+                   GHC.Types.False
+                   -> Common.logBoolAction1
+                        GHC.Types.False
+                        Crawler.crawlEngine7
+                        Crawler.crawlEngine8
+                        (GHC.Types.[] @ GHC.Types.Char)
+                        ipv2
+                   GHC.Types.True
+                   -> case Crawler.$wupsertCrawl
+                             c
+                             GHC.Types.False
+                             ipv2 of ds4 { (#,#) ipv4 ipv5 ->
+                      Common.logBoolAction1
+                        GHC.Types.True
+                        Crawler.crawlEngine7
+                        Crawler.crawlEngine8
+                        (GHC.Types.[] @ GHC.Types.Char)
+                        ipv4 } } } } }) -}
+c31469d27c7e9f39cb58dc2a97000adc
   $wcrawlRepoToContributors ::
     Crawler.LookupMap
     -> GHC.Types.Int
@@ -3619,7 +3712,7 @@ b41db46e0be883adebc51576ba5f8442
                  case ipv1 of wild {
                    Data.Either.Left err
                    -> case Common.logError1
-                             Crawler.crawlOnContributor9
+                             Crawler.crawlEngine7
                              (GitHub.Data.Definitions.$fExceptionError_$cshow err)
                              ipv of ds2 { (#,#) ipv2 ipv3 ->
                       (# ipv2, GHC.Tuple.() #) }
@@ -3715,7 +3808,7 @@ b41db46e0be883adebc51576ba5f8442
   $wgo ::
     [[Data.Bson.Field]] -> (# GHC.Base.String, GHC.Types.Bool #)
   {- Arity: 1, Strictness: <S,1*U>, Inline: [0] -}
-de79747dc42415bcd04dc41c84b3750c
+5069df691d1c108f358c82cb0c1eab64
   $winitCrawler ::
     GHC.Base.String
     -> GHC.Prim.State# GHC.Prim.RealWorld
@@ -3726,15 +3819,15 @@ de79747dc42415bcd04dc41c84b3750c
      Unfolding: (\ (ww :: GHC.Base.String)
                    (w :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
                  case Common.logAction1
-                        Crawler.crawlOnContributor9
-                        Crawler.crawlerApp32
-                        Crawler.crawlerApp31
+                        Crawler.crawlEngine7
+                        Crawler.crawlerApp25
+                        Crawler.crawlerApp24
                         w of ds1 { (#,#) ipv ipv1 ->
-                 case Crawler.crawlerApp26 ww ipv of ds2 { (#,#) ipv2 ipv3 ->
+                 case Crawler.crawlEngine9 ww ipv of ds2 { (#,#) ipv2 ipv3 ->
                  case ipv3 of wild { Crawler.Crawl ds ds3 ->
                  case ds3 of wild1 {
-                   GHC.Types.False -> (# ipv2, Crawler.crawlerApp23 #)
-                   GHC.Types.True -> (# ipv2, Crawler.crawlerApp20 #) } } } }) -}
+                   GHC.Types.False -> (# ipv2, Crawler.crawlerApp21 #)
+                   GHC.Types.True -> (# ipv2, Crawler.crawlerApp18 #) } } } }) -}
 33cdeb8b17037739869833bd3c4c84c0
   $wouter ::
     Data.Text.Array.MArray GHC.Prim.RealWorld
@@ -3766,7 +3859,7 @@ fecfec0c14dfe1f9dde7cf955fc43c5c
     -> GHC.Base.Maybe a
   {- Arity: 4, HasNoCafRefs, Strictness: <L,U><L,U><L,U><S,1*U>,
      Inline: [0] -}
-f87adf2a97790720beac48be7ecedad7
+06da506b7e8321a752934dd1a2a9b029
   $wstartCrawl ::
     GHC.Base.String
     -> GHC.Types.Int
@@ -3785,9 +3878,9 @@ f87adf2a97790720beac48be7ecedad7
                          GHC.Prim.catch#
                            @ ()
                            @ GHC.Exception.SomeException
-                           (\ (eta1 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                           (\ (w2 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
                             case ww1 of ww2 { GHC.Types.I# ww3 ->
-                            Crawler.$wcrawlUserToRepos
+                            Crawler.$wcrawlEngine
                               w
                               (case GHC.Magic.runRW#
                                       @ 'GHC.Types.PtrRepLifted
@@ -3805,14 +3898,14 @@ f87adf2a97790720beac48be7ecedad7
                                          ipv }) of ds1 { (#,#) ipv ipv1 ->
                                ipv1 })
                               ww3
-                              eta1 })
+                              w2 })
                            GHC.Conc.Sync.childHandler1
                            eta)
                           `cast`
                         (Sym (GHC.Types.N:IO[0] <()>_R))
                         w1 of ds { (#,#) ipv ipv1 ->
                  (# ipv, GHC.Tuple.() #) }) -}
-c8459d5ca875a5799d680629a250264e
+469685691c76b032219510f2565f190b
   $wupsertCrawl ::
     GHC.Base.String
     -> GHC.Types.Bool
@@ -3823,9 +3916,9 @@ c8459d5ca875a5799d680629a250264e
                    (ww1 :: GHC.Types.Bool)
                    (w :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
                  case Common.logDatabase1
-                        Crawler.crawlOnContributor9
-                        Crawler.crawlerApp30
-                        Crawler.upsertCrawl3
+                        Crawler.crawlEngine7
+                        Crawler.crawlEngine6
+                        Crawler.crawlEngine5
                         ww
                         w of ds1 { (#,#) ipv ipv1 ->
                  case Database.MongoDB.Connection.globalConnectTimeout
@@ -3842,14 +3935,14 @@ c8459d5ca875a5799d680629a250264e
                         MongoDbConnector.connectToDatabase3
                         Database.MongoDB.Connection.defaultPort
                         ipv2 of ds3 { (#,#) ipv4 ipv5 ->
-                 case ((Crawler.upsertCrawl2
-                          Crawler.crawlerApp27
+                 case ((Crawler.crawlEngine4
+                          Crawler.crawlEngine3
                           (GHC.Types.:
                              @ (Database.MongoDB.Query.Selector, Data.Bson.Document,
                                 [Database.MongoDB.Internal.Protocol.UpdateOption])
                              (GHC.Types.:
                                 @ Data.Bson.Field
-                                (case Crawler.crawlerApp28 of dt { Data.Text.Internal.Text ipv6 ipv7 ipv8 ->
+                                (case Crawler.crawlEngine2 of dt { Data.Text.Internal.Text ipv6 ipv7 ipv8 ->
                                  Data.Bson.:= dt (Data.Bson.$fValChar_$cvalList ww) })
                                 (GHC.Types.[] @ Data.Bson.Field),
                               Data.Bson.Generic.$w$cgenericToBSON1
@@ -4159,7 +4252,7 @@ dd374f2ce6e788ecce3ed4265d012312
                    (w3 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
                  case w2 of ww { GHC.Types.I# ww1 ->
                  Crawler.$wcrawlUserToRepos w w1 ww1 w3 }) -}
-8e5f26ea194c43f36d11c2e948ee4fc2
+baa0c133f411adfda0e1c88ef60adfef
   crawlEngine ::
     Crawler.LookupMap -> Crawler.CrawlInfo -> GHC.Types.IO ()
   {- Arity: 3,
@@ -4170,7 +4263,7 @@ dd374f2ce6e788ecce3ed4265d012312
                 (<Crawler.LookupMap>_R
                  ->_R <Crawler.CrawlInfo>_R
                  ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
-e083d866baf6e4d93b69119333f2fdea
+c6acf8609530e754b56698ec65c2f630
   crawlEngine1 ::
     Crawler.LookupMap
     -> Crawler.CrawlInfo
@@ -4178,13 +4271,121 @@ e083d866baf6e4d93b69119333f2fdea
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
   {- Arity: 3,
      Strictness: <L,U(U(U))><S(LLS(S)),1*U(U(U,U,U),A,1*U(U))><S,U>,
+     Inline: INLINE[0],
      Unfolding: InlineRule (3, True, False)
-                (\ (lm :: Crawler.LookupMap)
-                   (ci :: Crawler.CrawlInfo)
-                   (eta :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
-                 case ci of wild { Crawler.CrawlInfo ds ds1 ds2 ->
-                 Crawler.crawlContributorToUser2 lm ds ds2 eta }) -}
-708f92c2fda901133c8c29482e6d8651
+                (\ (w :: Crawler.LookupMap)
+                   (w1 :: Crawler.CrawlInfo)
+                   (w2 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case w1 of ww { Crawler.CrawlInfo ww1 ww2 ww3 ->
+                 case ww3 of ww4 { GHC.Types.I# ww5 ->
+                 Crawler.$wcrawlEngine w ww1 ww5 w2 } }) -}
+5f2d88571cdc5171aa771203a431a72c
+  crawlEngine10 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "find"#) -}
+eb5dbdda9f256081df5fb98965a2eb2b
+  crawlEngine2 :: Data.Bson.Label
+  {- Unfolding: (Data.Text.Show.unpackCString# "cName"#) -}
+41629b609597853d42ac18e5fb29b2cf
+  crawlEngine3 :: Database.MongoDB.Query.Collection
+  {- Unfolding: (Data.Text.Show.unpackCString# "UserCrawlDb"#) -}
+f4cd257300d9ab17584fe266ad4df3c1
+  crawlEngine4 ::
+    Database.MongoDB.Query.Collection
+    -> [(Database.MongoDB.Query.Selector, Data.Bson.Document,
+         [Database.MongoDB.Internal.Protocol.UpdateOption])]
+    -> Database.MongoDB.Query.Action
+         GHC.Types.IO Database.MongoDB.Query.UpdateResult
+  {- Unfolding: (Database.MongoDB.Query.update'
+                   @ GHC.Types.IO
+                   Control.Monad.IO.Class.$fMonadIOIO
+                   GHC.Types.True) -}
+614b6077727f8906497c0dffb40104dd
+  crawlEngine5 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "upsert"#) -}
+f4330fa70b02527243afdd3ed7b35626
+  crawlEngine6 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "UserCrawlDb"#) -}
+2cfed85f6473f91f63c9e51bd3b6e4f2
+  crawlEngine7 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "Crawler"#) -}
+95e940891742db8ee8837b67f286737f
+  crawlEngine8 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "Stopped"#) -}
+b004853ef43dca6c2ae6e5ebd8fd7fb9
+  crawlEngine9 ::
+    GHC.Base.String
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, Crawler.Crawl #)
+  {- Arity: 2, Strictness: <L,U><S,U>,
+     Unfolding: (\ (u :: GHC.Base.String)
+                   (s :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case Common.logDatabase1
+                        Crawler.crawlEngine7
+                        Crawler.crawlEngine6
+                        Crawler.crawlEngine10
+                        u
+                        s of ds1 { (#,#) ipv ipv1 ->
+                 case Database.MongoDB.Connection.globalConnectTimeout
+                        `cast`
+                      (GHC.IORef.N:IORef[0] <Database.MongoDB.Connection.Secs>_N) of wild { GHC.STRef.STRef var# ->
+                 case GHC.Prim.readMutVar#
+                        @ GHC.Prim.RealWorld
+                        @ Database.MongoDB.Connection.Secs
+                        var#
+                        ipv of ds2 { (#,#) ipv2 ipv3 ->
+                 case ipv3 of ww { GHC.Types.D# ww1 ->
+                 case Database.MongoDB.Connection.$wconnect'
+                        ww1
+                        MongoDbConnector.connectToDatabase3
+                        Database.MongoDB.Connection.defaultPort
+                        ipv2 of ds3 { (#,#) ipv4 ipv5 ->
+                 let {
+                   r1 :: Database.MongoDB.Query.MongoContext {- Strictness: m -}
+                   = Database.MongoDB.Query.MongoContext
+                       ipv5
+                       Database.MongoDB.Query.master
+                       MongoDbConnector.connectToDatabase2
+                 } in
+                 case (Database.MongoDB.Query.$wfind
+                         @ GHC.Types.IO
+                         Control.Monad.IO.Class.$fMonadIOIO
+                         Control.Monad.Trans.Control.$fMonadBaseControlIOIO
+                         (GHC.Types.[] @ Database.MongoDB.Internal.Protocol.QueryOption)
+                         (Database.MongoDB.Query.Select
+                            (GHC.Types.:
+                               @ Data.Bson.Field
+                               (case Crawler.crawlEngine2 of dt { Data.Text.Internal.Text ipv6 ipv7 ipv8 ->
+                                Data.Bson.:= dt (Data.Bson.$fValChar_$cvalList u) })
+                               (GHC.Types.[] @ Data.Bson.Field))
+                            Crawler.crawlEngine3)
+                         (GHC.Types.[] @ Data.Bson.Field)
+                         Database.MongoDB.Query.$fSelectQuery1
+                         Database.MongoDB.Query.$fSelectQuery1
+                         (GHC.Types.[] @ Data.Bson.Field)
+                         GHC.Types.False
+                         Database.MongoDB.Query.$fSelectQuery1
+                         (GHC.Types.[] @ Data.Bson.Field)
+                         r1)
+                        `cast`
+                      (GHC.Types.N:IO[0] <Database.MongoDB.Query.Cursor>_R)
+                        ipv4 of ds4 { (#,#) ipv6 ipv7 ->
+                 case ((MongoDbConnector.drainCursor_drainCursor'
+                          ipv7
+                          (GHC.Types.[] @ Data.Bson.Document))
+                         `cast`
+                       (Control.Monad.Trans.Reader.N:ReaderT[0]
+                            <*>_N
+                            <Database.MongoDB.Query.MongoContext>_R
+                            <GHC.Types.IO>_R
+                            <[Data.Bson.Document]>_N)
+                         r1)
+                        `cast`
+                      (GHC.Types.N:IO[0] <[Data.Bson.Document]>_R)
+                        ipv6 of ds5 { (#,#) ipv8 ipv9 ->
+                 (# ipv8,
+                    case Crawler.$wgo ipv9 of ww2 { (#,#) ww3 ww4 ->
+                    Crawler.Crawl ww3 ww4 } #) } } } } } } }) -}
+f2ea0785ca4e70ef34a0dcd94c759ad4
   crawlOnContributor ::
     Crawler.LookupMap
     -> Data.Text.Internal.Text
@@ -4201,7 +4402,7 @@ e083d866baf6e4d93b69119333f2fdea
                  ->_R <Data.Text.Internal.Text>_R
                  ->_R <GitHub.Data.Repos.Contributor>_R
                  ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
-c299fb1b4dcf7d56d40251b314efc4f1
+108ea11fdbfbb11b525d15ce5c6f49f1
   crawlOnContributor1 ::
     Crawler.LookupMap
     -> Data.Text.Internal.Text
@@ -4316,7 +4517,7 @@ c299fb1b4dcf7d56d40251b314efc4f1
                                  ww12
                                  ww18
                                  ipv10 of ds14 { (#,#) ipv12 ipv13 ->
-                          case Crawler.crawlOnContributor10
+                          case Crawler.crawlOnContributor9
                                  (case ipv5 of wild3 {
                                     [] -> GHC.Types.True : ds15 ds16 -> GHC.Types.False })
                                  ds1
@@ -4324,7 +4525,7 @@ c299fb1b4dcf7d56d40251b314efc4f1
                                  (GitHub.Data.Name.N:Name[0] <GitHub.Data.Definitions.User>_P)
                                  lang
                                  ipv12 of ds15 { (#,#) ipv14 ipv15 ->
-                          Crawler.crawlOnContributor10
+                          Crawler.crawlOnContributor9
                             (case ipv11 of wild3 {
                                [] -> GHC.Types.True : ds16 ds17 -> GHC.Types.False })
                             ds1
@@ -4336,7 +4537,7 @@ c299fb1b4dcf7d56d40251b314efc4f1
                       case ipv1 of wild1 {
                         Data.Either.Left err
                         -> case Common.logError1
-                                  Crawler.crawlOnContributor9
+                                  Crawler.crawlEngine7
                                   (GitHub.Data.Definitions.$fExceptionError_$cshow err)
                                   ipv of ds5 { (#,#) ipv2 ipv3 ->
                            $w$j ipv2 }
@@ -4350,38 +4551,13 @@ c299fb1b4dcf7d56d40251b314efc4f1
                    -> case Crawler.crawlOnContributor2
                       ret_ty (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
                       of {} }) -}
-79c6f7db15ce15727b32a895e077af80
-  crawlOnContributor10 ::
-    GHC.Types.Bool
-    -> Data.Text.Internal.Text
-    -> Data.Text.Internal.Text
-    -> GHC.Prim.State# GHC.Prim.RealWorld
-    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
-  {- Arity: 4, Strictness: <L,1*U><L,1*U(U,U,U)><L,1*U(U,U,U)><S,U>,
-     Unfolding: (\ (r :: GHC.Types.Bool)
-                   (a :: Data.Text.Internal.Text)
-                   (b :: Data.Text.Internal.Text)
-                   (eta :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
-                 Common.logBoolAction1
-                   r
-                   Crawler.crawlOnContributor9
-                   Crawler.crawlOnContributor11
-                   (case Data.Text.Show.$w$cshow a of ww { (#,#) ww1 ww2 ->
-                    GHC.Base.++
-                      @ GHC.Types.Char
-                      (GHC.Types.: @ GHC.Types.Char ww1 ww2)
-                      (GHC.CString.unpackAppendCString#
-                         ":"#
-                         (case Data.Text.Show.$w$cshow b of ww4 { (#,#) ww5 ww6 ->
-                          GHC.Types.: @ GHC.Types.Char ww5 ww6 })) })
-                   eta) -}
-ca1b461ea5f0218541811eb6faec335f
-  crawlOnContributor11 :: [GHC.Types.Char]
+245e29209ebc1b8fea9a3d4e78458203
+  crawlOnContributor10 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "Stored Link"#) -}
 d6e486a78baee6ca1b3448f60a0f8a3c
   crawlOnContributor2 :: GHC.Types.IO ()
   {- Strictness: x -}
-5220c138999df9b9882396d4fcf6d84a
+ce5e0a6f64e562cfa743115eee922948
   crawlOnContributor3 ::
     Crawler.LookupMap
     -> GitHub.Data.Definitions.User
@@ -4400,7 +4576,7 @@ d6e486a78baee6ca1b3448f60a0f8a3c
                      (GitHub.Data.Name.N:Name[0] <GitHub.Data.Definitions.User>_P) }
                  } in
                  case Common.logAction1
-                        Crawler.crawlOnContributor9
+                        Crawler.crawlEngine7
                         Crawler.crawlOnContributor8
                         (Data.Text.Show.$fShowText_$cshow name)
                         eta of ds1 { (#,#) ipv ipv1 ->
@@ -4437,7 +4613,7 @@ d6e486a78baee6ca1b3448f60a0f8a3c
                       case Common.logBoolAction1
                              (case ipv7 of wild2 {
                                 [] -> GHC.Types.True : ds8 ds9 -> GHC.Types.False })
-                             Crawler.crawlOnContributor9
+                             Crawler.crawlEngine7
                              Crawler.crawlOnContributor6
                              (Data.Text.Show.$fShowText_$cshow name)
                              ipv8 of ds8 { (#,#) ipv10 ipv11 ->
@@ -4447,7 +4623,7 @@ d6e486a78baee6ca1b3448f60a0f8a3c
                         ipv10 } } } } } } }
                    GHC.Base.Just u
                    -> Common.logAction1
-                        Crawler.crawlOnContributor9
+                        Crawler.crawlEngine7
                         Crawler.crawlOnContributor4
                         (Data.Text.Show.$fShowText_$cshow name)
                         ipv2 } } }) -}
@@ -4484,9 +4660,31 @@ b84b8ca612c936bf74e8aa14ae4ee24d
 25c3a19ace9e1f40f3e329ceef368cb5
   crawlOnContributor8 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "UserName"#) -}
-c9829019aece4b71221ae9f50f6b85b8
-  crawlOnContributor9 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "Crawler"#) -}
+90cc2ef51e3bcaf7cb45b6e1e3c5f99c
+  crawlOnContributor9 ::
+    GHC.Types.Bool
+    -> Data.Text.Internal.Text
+    -> Data.Text.Internal.Text
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 4, Strictness: <L,1*U><L,1*U(U,U,U)><L,1*U(U,U,U)><S,U>,
+     Unfolding: (\ (r :: GHC.Types.Bool)
+                   (a :: Data.Text.Internal.Text)
+                   (b :: Data.Text.Internal.Text)
+                   (eta :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 Common.logBoolAction1
+                   r
+                   Crawler.crawlEngine7
+                   Crawler.crawlOnContributor10
+                   (case Data.Text.Show.$w$cshow a of ww { (#,#) ww1 ww2 ->
+                    GHC.Base.++
+                      @ GHC.Types.Char
+                      (GHC.Types.: @ GHC.Types.Char ww1 ww2)
+                      (GHC.CString.unpackAppendCString#
+                         ":"#
+                         (case Data.Text.Show.$w$cshow b of ww4 { (#,#) ww5 ww6 ->
+                          GHC.Types.: @ GHC.Types.Char ww5 ww6 })) })
+                   eta) -}
 38eceb441aba0faaa50632dfe7c38a45
   crawlOnLanguage ::
     Crawler.LookupMap
@@ -4534,7 +4732,7 @@ a5d26df2abea4c9edba6eec5af0d2432
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
   {- Arity: 4,
      Strictness: <L,U(U(U))><L,U(U,U,U)><L,U(A,U,U,U(U,U,U),A,U,A,A,A,U,A,U,U,U,U(U,U,A,A,A),U,A,A,U,U,U,U,A,A,A,A,A,A,A)><S,U> -}
-5f8d0debf51d7d8ff3231d077fbe54b8
+a14538726c9fee350b0269f032cf8da3
   crawlOnUser ::
     Crawler.LookupMap
     -> GitHub.Data.Definitions.User -> GHC.Types.IO ()
@@ -4546,7 +4744,7 @@ a5d26df2abea4c9edba6eec5af0d2432
                 (<Crawler.LookupMap>_R
                  ->_R <GitHub.Data.Definitions.User>_R
                  ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
-f2bc94e18455465d76bc257a3faf61c7
+6e565b787257ab227a1e3179daaa6def
   crawlRepoToContributors ::
     Crawler.LookupMap
     -> GHC.Types.Int -> GitHub.Data.Repos.Repo -> GHC.Types.IO ()
@@ -4559,7 +4757,7 @@ f2bc94e18455465d76bc257a3faf61c7
                  ->_R <GHC.Types.Int>_R
                  ->_R <GitHub.Data.Repos.Repo>_R
                  ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
-c976d8e81da5bc9b75236e2aa46785dd
+00fa7b2b4ae3f7c0dab6805d2c5385d3
   crawlRepoToContributors1 ::
     Crawler.LookupMap
     -> GHC.Types.Int
@@ -4649,12 +4847,12 @@ ccb31e4c3ab40053620e650f67bef92f
                  ->_R <Data.Text.Internal.Text>_R
                  ->_R <GHC.Types.Int>_R
                  ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
-a6b96b74873daea2f2d1d2699fdceb04
+85e2821c49b4d5a3c11d559e5f47d811
   crawlerApp :: Network.Wai.Application
   {- Arity: 2,
      Unfolding: (Servant.Server.Internal.RoutingApplication.toApplication
                    Crawler.crawlerApp1) -}
-585482e1b5220273dfbfc3cb71c5936e
+e09cb31b5c0977e40ceb85c6e3af3eb9
   crawlerApp1 ::
     Network.Wai.Internal.Request
     -> (Servant.Server.Internal.RoutingApplication.RouteResult
@@ -4674,33 +4872,23 @@ a6b96b74873daea2f2d1d2699fdceb04
                    GHC.Tuple.()
                    eta
                    eta1) -}
-0d8c6ca05211206aa0af91f6df7024bb
-  crawlerApp10 ::
-    Data.Either.Either
-      Servant.Server.Internal.ServantErr.ServantErr Common.Response
-  {- Unfolding: (Data.Either.Right
-                   @ Servant.Server.Internal.ServantErr.ServantErr
-                   @ Common.Response
-                   Crawler.crawlerApp11) -}
-9cfa4a00091ea9ba514851570ac225df
-  crawlerApp11 :: Common.Response
-  {- Unfolding: (Common.Response Crawler.crawlerApp12) -}
-b747987d9d191e738b77365a288d930d
-  crawlerApp12 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "Not Implemented"#) -}
-395c053881454684214cb98aacfd018c
-  crawlerApp13 ::
+a902878b5f4e7ae69494e2f96b86ccef
+  crawlerApp10 :: Common.Response
+  {- Strictness: m,
+     Unfolding: (Common.Response Crawler.crawlEngine8) -}
+0f6b6642906501b580026166efd254fa
+  crawlerApp11 ::
     Servant.Server.Internal.Router.Router'
       () Servant.Server.Internal.RoutingApplication.RoutingApplication
   {- Unfolding: (Servant.Server.Internal.Router.StaticRouter
                    @ ()
                    @ Servant.Server.Internal.RoutingApplication.RoutingApplication
-                   Crawler.crawlerApp14
+                   Crawler.crawlerApp12
                    (GHC.Types.[]
                       @ (()
                          -> Servant.Server.Internal.RoutingApplication.RoutingApplication))) -}
-3d35680b9579f9f2cec522b93c5372b2
-  crawlerApp14 ::
+c7526e3fca50bf866904435053538e43
+  crawlerApp12 ::
     Data.Map.Base.Map
       Data.Text.Internal.Text
       (Servant.Server.Internal.Router.Router'
@@ -4716,7 +4904,7 @@ b747987d9d191e738b77365a288d930d
                         () Servant.Server.Internal.RoutingApplication.RoutingApplication)
                    1#
                    dt
-                   Crawler.crawlerApp15
+                   Crawler.crawlerApp13
                    (Data.Map.Base.Tip
                       @ Data.Text.Internal.Text
                       @ (Servant.Server.Internal.Router.Router'
@@ -4726,8 +4914,8 @@ b747987d9d191e738b77365a288d930d
                       @ (Servant.Server.Internal.Router.Router'
                            ()
                            Servant.Server.Internal.RoutingApplication.RoutingApplication)) } }) -}
-16e8490d1f2ad3b25f74055fb2578eab
-  crawlerApp15 :: Servant.Server.Internal.Router.Router ()
+87ee54fd44e8d298e4a01e007b499748
+  crawlerApp13 :: Servant.Server.Internal.Router.Router ()
   {- Unfolding: (Servant.Server.Internal.$w$croute2
                    @ *
                    @ '[Servant.API.ContentTypes.JSON]
@@ -4763,7 +4951,7 @@ b747987d9d191e738b77365a288d930d
                                               '[Servant.API.ContentTypes.JSON]
                                               Common.Response))
                    Servant.Server.Internal.Context.$WEmptyContext
-                   Crawler.crawlerApp16
+                   Crawler.crawlerApp14
                      `cast`
                    (Servant.Server.Internal.RoutingApplication.Delayed
                       <()>_R
@@ -4778,8 +4966,8 @@ b747987d9d191e738b77365a288d930d
                                 <Control.Monad.Trans.Except.ExceptT
                                    Servant.Server.Internal.ServantErr.ServantErr
                                    GHC.Types.IO>_N)))_R) -}
-beb79e36c7102946c0d610eeb8e3bc55
-  crawlerApp16 ::
+e4b98dc07d4bce30acfeac39086d0b08
+  crawlerApp14 ::
     Servant.Server.Internal.RoutingApplication.Delayed
       ()
       (Servant.Server.Internal.Server
@@ -4838,9 +5026,9 @@ beb79e36c7102946c0d610eeb8e3bc55
                                           ()>_R))
                         (Sym (Servant.Server.Internal.RoutingApplication.N:DelayedIO[0]
                                   <()>_R)))
-                   Crawler.crawlerApp17) -}
-1725c53cdc33ec1c76a0e740be341185
-  crawlerApp17 ::
+                   Crawler.crawlerApp15) -}
+7fe4e1ebbb50cda6414bed292a0c2823
+  crawlerApp15 ::
     ()
     -> ()
     -> ()
@@ -4858,9 +5046,9 @@ beb79e36c7102946c0d610eeb8e3bc55
                    (a1 :: ())
                    (b1 :: ())
                    (req :: Network.Wai.Internal.Request) ->
-                 Crawler.crawlerApp18) -}
-1ab9691fa2b162e96b2e1af43240c67b
-  crawlerApp18 ::
+                 Crawler.crawlerApp16) -}
+26f993e5f3f9aaccbf4c021b2d485f9b
+  crawlerApp16 ::
     Servant.Server.Internal.RoutingApplication.RouteResult
       (Servant.Server.Internal.Server
          ("init"
@@ -4877,7 +5065,7 @@ beb79e36c7102946c0d610eeb8e3bc55
                                              Servant.API.Sub.:> Servant.API.Verbs.Post
                                                                   '[Servant.API.ContentTypes.JSON]
                                                                   Common.Response)))
-                   Crawler.crawlerApp19
+                   Crawler.crawlerApp17
                      `cast`
                    (Trans
                         (<Common.User>_R
@@ -4924,8 +5112,8 @@ beb79e36c7102946c0d610eeb8e3bc55
                                             <Control.Monad.Trans.Except.ExceptT
                                                Servant.Server.Internal.ServantErr.ServantErr
                                                GHC.Types.IO>_N)))))) -}
-82a55b0cc0679594657f3d45ad5f16ad
-  crawlerApp19 ::
+909ad748aa5f2f7b7fc7dd11d54b0b5b
+  crawlerApp17 ::
     Common.User
     -> GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld,
@@ -4937,7 +5125,19 @@ beb79e36c7102946c0d610eeb8e3bc55
                    (w1 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
                  case w of ww { Common.User ww1 ww2 ww3 ->
                  Crawler.$winitCrawler ww1 w1 }) -}
-58d5fb4a1b1d933ed9535f0a4678e5e8
+aae73331662c723d1e4df04d748519ed
+  crawlerApp18 ::
+    Data.Either.Either
+      Servant.Server.Internal.ServantErr.ServantErr Common.Response
+  {- Unfolding: (Data.Either.Right
+                   @ Servant.Server.Internal.ServantErr.ServantErr
+                   @ Common.Response
+                   Crawler.crawlerApp19) -}
+54d9457d73bbca83be0bb5ea6a35dcfd
+  crawlerApp19 :: Common.Response
+  {- Strictness: m,
+     Unfolding: (Common.Response Crawler.crawlerApp20) -}
+7c2d405d07fd4eac02826cbd615c672e
   crawlerApp2 ::
     Servant.Server.Internal.Router.Router'
       () Servant.Server.Internal.RoutingApplication.RoutingApplication
@@ -4948,120 +5148,32 @@ beb79e36c7102946c0d610eeb8e3bc55
                    (GHC.Types.[]
                       @ (()
                          -> Servant.Server.Internal.RoutingApplication.RoutingApplication))) -}
-e335d414c555ec5f7b605d0fe4e10695
-  crawlerApp20 ::
-    Data.Either.Either
-      Servant.Server.Internal.ServantErr.ServantErr Common.Response
-  {- Unfolding: (Data.Either.Right
-                   @ Servant.Server.Internal.ServantErr.ServantErr
-                   @ Common.Response
-                   Crawler.crawlerApp21) -}
-6344b525e5c6d44e8ab3163242456b6b
-  crawlerApp21 :: Common.Response
-  {- Strictness: m,
-     Unfolding: (Common.Response Crawler.crawlerApp22) -}
-2c03e1eb699a4760b152dcd9519150a8
-  crawlerApp22 :: [GHC.Types.Char]
+bd85f54a8abd2f7a242286325dce9d57
+  crawlerApp20 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "Running"#) -}
-b504f6e3c112dfe5e9aab81a8949fb67
-  crawlerApp23 ::
+8950c0a8bee012c21f25a0e5adc69e3a
+  crawlerApp21 ::
     Data.Either.Either
       Servant.Server.Internal.ServantErr.ServantErr Common.Response
   {- Unfolding: (Data.Either.Right
                    @ Servant.Server.Internal.ServantErr.ServantErr
                    @ Common.Response
-                   Crawler.crawlerApp24) -}
-b367a959a4b697896bb0f825f3cecbb0
-  crawlerApp24 :: Common.Response
+                   Crawler.crawlerApp22) -}
+eba06b85045cea86f299ddd27e2cb6a1
+  crawlerApp22 :: Common.Response
   {- Strictness: m,
-     Unfolding: (Common.Response Crawler.crawlerApp25) -}
-1558e923b4fae997d499a4a198c1bd4b
-  crawlerApp25 :: [GHC.Types.Char]
+     Unfolding: (Common.Response Crawler.crawlerApp23) -}
+f3c1d88c45720b9dcb11ab48075c73ab
+  crawlerApp23 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "Completed"#) -}
-af11a2cdf799c1c4cb6022c590bb5d73
-  crawlerApp26 ::
-    GHC.Base.String
-    -> GHC.Prim.State# GHC.Prim.RealWorld
-    -> (# GHC.Prim.State# GHC.Prim.RealWorld, Crawler.Crawl #)
-  {- Arity: 2, Strictness: <L,U><S,U>,
-     Unfolding: (\ (u :: GHC.Base.String)
-                   (s :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
-                 case Common.logDatabase1
-                        Crawler.crawlOnContributor9
-                        Crawler.crawlerApp30
-                        Crawler.crawlerApp29
-                        u
-                        s of ds1 { (#,#) ipv ipv1 ->
-                 case Database.MongoDB.Connection.globalConnectTimeout
-                        `cast`
-                      (GHC.IORef.N:IORef[0] <Database.MongoDB.Connection.Secs>_N) of wild { GHC.STRef.STRef var# ->
-                 case GHC.Prim.readMutVar#
-                        @ GHC.Prim.RealWorld
-                        @ Database.MongoDB.Connection.Secs
-                        var#
-                        ipv of ds2 { (#,#) ipv2 ipv3 ->
-                 case ipv3 of ww { GHC.Types.D# ww1 ->
-                 case Database.MongoDB.Connection.$wconnect'
-                        ww1
-                        MongoDbConnector.connectToDatabase3
-                        Database.MongoDB.Connection.defaultPort
-                        ipv2 of ds3 { (#,#) ipv4 ipv5 ->
-                 let {
-                   r1 :: Database.MongoDB.Query.MongoContext {- Strictness: m -}
-                   = Database.MongoDB.Query.MongoContext
-                       ipv5
-                       Database.MongoDB.Query.master
-                       MongoDbConnector.connectToDatabase2
-                 } in
-                 case (Database.MongoDB.Query.$wfind
-                         @ GHC.Types.IO
-                         Control.Monad.IO.Class.$fMonadIOIO
-                         Control.Monad.Trans.Control.$fMonadBaseControlIOIO
-                         (GHC.Types.[] @ Database.MongoDB.Internal.Protocol.QueryOption)
-                         (Database.MongoDB.Query.Select
-                            (GHC.Types.:
-                               @ Data.Bson.Field
-                               (case Crawler.crawlerApp28 of dt { Data.Text.Internal.Text ipv6 ipv7 ipv8 ->
-                                Data.Bson.:= dt (Data.Bson.$fValChar_$cvalList u) })
-                               (GHC.Types.[] @ Data.Bson.Field))
-                            Crawler.crawlerApp27)
-                         (GHC.Types.[] @ Data.Bson.Field)
-                         Database.MongoDB.Query.$fSelectQuery1
-                         Database.MongoDB.Query.$fSelectQuery1
-                         (GHC.Types.[] @ Data.Bson.Field)
-                         GHC.Types.False
-                         Database.MongoDB.Query.$fSelectQuery1
-                         (GHC.Types.[] @ Data.Bson.Field)
-                         r1)
-                        `cast`
-                      (GHC.Types.N:IO[0] <Database.MongoDB.Query.Cursor>_R)
-                        ipv4 of ds4 { (#,#) ipv6 ipv7 ->
-                 case ((MongoDbConnector.drainCursor_drainCursor'
-                          ipv7
-                          (GHC.Types.[] @ Data.Bson.Document))
-                         `cast`
-                       (Control.Monad.Trans.Reader.N:ReaderT[0]
-                            <*>_N
-                            <Database.MongoDB.Query.MongoContext>_R
-                            <GHC.Types.IO>_R
-                            <[Data.Bson.Document]>_N)
-                         r1)
-                        `cast`
-                      (GHC.Types.N:IO[0] <[Data.Bson.Document]>_R)
-                        ipv6 of ds5 { (#,#) ipv8 ipv9 ->
-                 (# ipv8,
-                    case Crawler.$wgo ipv9 of ww2 { (#,#) ww3 ww4 ->
-                    Crawler.Crawl ww3 ww4 } #) } } } } } } }) -}
-079d18be7a55259e55cbe85751af3f2e
-  crawlerApp27 :: Database.MongoDB.Query.Collection
-  {- Unfolding: (Data.Text.Show.unpackCString# "UserCrawlDb"#) -}
-b31af95c4be9f0462ae0bf2a44003a57
-  crawlerApp28 :: Data.Bson.Label
-  {- Unfolding: (Data.Text.Show.unpackCString# "cName"#) -}
-bf0e411a9e73f7a64d256da45b583739
-  crawlerApp29 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "find"#) -}
-0f415577137f76e83355c66950650fb4
+904a93f7768cb90b1da82faf5965dede
+  crawlerApp24 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "Creating Crawler Request"#) -}
+6e806d8bdb096de14e379809354ca153
+  crawlerApp25 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "Request"#) -}
+a05b0ec5dd4eaf0ba961a5d5af1947ed
   crawlerApp3 ::
     Data.Map.Base.Map
       Data.Text.Internal.Text
@@ -5088,17 +5200,7 @@ bf0e411a9e73f7a64d256da45b583739
                       @ (Servant.Server.Internal.Router.Router'
                            ()
                            Servant.Server.Internal.RoutingApplication.RoutingApplication)) } }) -}
-5523bbde4fda25bb54430b676d494e70
-  crawlerApp30 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "UserCrawlDb"#) -}
-2b7658194978a4be2a24c10c6dce6843
-  crawlerApp31 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString#
-                   "Creating Crawler Request"#) -}
-7022e19130162768fb5691917dd5bdc6
-  crawlerApp32 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "Request"#) -}
-5041b03cc9a9e73096cfc96425b48e11
+7ceb47c8b3e63ffcbb21d088a904bf4b
   crawlerApp4 :: Servant.Server.Internal.Router.Router ()
   {- Unfolding: (Servant.Server.Internal.$w$croute2
                    @ *
@@ -5150,7 +5252,7 @@ bf0e411a9e73f7a64d256da45b583739
                                 <Control.Monad.Trans.Except.ExceptT
                                    Servant.Server.Internal.ServantErr.ServantErr
                                    GHC.Types.IO>_N)))_R) -}
-b6f85083f6c080d23fa367713a71a604
+9bcf4d3730ab98e46bcc50b4e39212ab
   crawlerApp5 ::
     Servant.Server.Internal.RoutingApplication.Delayed
       ()
@@ -5211,7 +5313,7 @@ b6f85083f6c080d23fa367713a71a604
                         (Sym (Servant.Server.Internal.RoutingApplication.N:DelayedIO[0]
                                   <()>_R)))
                    Crawler.crawlerApp6) -}
-0515cde6de7b37afdae480db90091959
+077282f1ac2d7f3f525dcd02ee44eabd
   crawlerApp6 ::
     ()
     -> ()
@@ -5231,7 +5333,7 @@ b6f85083f6c080d23fa367713a71a604
                    (b1 :: ())
                    (req :: Network.Wai.Internal.Request) ->
                  Crawler.crawlerApp7) -}
-fcbfe53880f8cb0d7c30158a6d63c2cd
+9f8b895e77b3cf0cf445257709040033
   crawlerApp7 ::
     Servant.Server.Internal.RoutingApplication.RouteResult
       (Servant.Server.Internal.Server
@@ -5296,35 +5398,46 @@ fcbfe53880f8cb0d7c30158a6d63c2cd
                                             <Control.Monad.Trans.Except.ExceptT
                                                Servant.Server.Internal.ServantErr.ServantErr
                                                GHC.Types.IO>_N)))))) -}
-d1f0de96d78463148432fe8e99cfec42
+50fde3830831a852a5eade7f0a3fefc7
   crawlerApp8 ::
     Common.User
     -> GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld,
           Data.Either.Either
             Servant.Server.Internal.ServantErr.ServantErr Common.Response #)
-  {- Arity: 2, Strictness: <L,A>,
-     Unfolding: InlineRule (1, True, True)
-                (\ (u :: Common.User)
-                   (eta :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
-                 Crawler.crawlerApp9 eta) -}
-f191c03583d4c6fc96ad20bc643eb722
+  {- Arity: 2, Strictness: <L,1*U(1*U,A,A)><S,U>,
+     Unfolding: (\ (u :: Common.User)
+                   (s :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 let {
+                   c :: GHC.Base.String
+                   = case u of wild { Common.User ds1 ds2 ds3 -> ds1 }
+                 } in
+                 case Crawler.crawlEngine9 c s of ds1 { (#,#) ipv ipv1 ->
+                 case ipv1 of wild { Crawler.Crawl ds ds2 ->
+                 case ds2 of wild1 {
+                   GHC.Types.False -> (# ipv, Crawler.crawlerApp9 #)
+                   GHC.Types.True
+                   -> case Crawler.$wupsertCrawl
+                             c
+                             GHC.Types.False
+                             ipv of ds3 { (#,#) ipv2 ipv3 ->
+                      (# ipv2, Crawler.crawlerApp9 #) } } } }) -}
+6891c27191d76864151262d6c9063baa
   crawlerApp9 ::
-    GHC.Prim.State# GHC.Prim.RealWorld
-    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
-          Data.Either.Either
-            Servant.Server.Internal.ServantErr.ServantErr Common.Response #)
-  {- Arity: 1, Strictness: <S,U>,
-     Unfolding: (\ (s :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
-                 (# s, Crawler.crawlerApp10 #)) -}
-9074aab8e20a07fb5591f107ff8ba33e
+    Data.Either.Either
+      Servant.Server.Internal.ServantErr.ServantErr Common.Response
+  {- Unfolding: (Data.Either.Right
+                   @ Servant.Server.Internal.ServantErr.ServantErr
+                   @ Common.Response
+                   Crawler.crawlerApp10) -}
+351f1785add300d2fc85f43c7912479e
   crawlerApp_r :: Servant.Server.Internal.Router.Router ()
   {- Unfolding: (Servant.Server.Internal.Router.choice
                    @ ()
                    @ Servant.Server.Internal.RoutingApplication.RoutingApplication
-                   Crawler.crawlerApp13
+                   Crawler.crawlerApp11
                    Crawler.crawlerApp2) -}
-c8eee590acb1076f66ca8982dfcc5a50
+5868e7849873dfc7624e4bf2d0ad1b18
   crawlerServer ::
     Servant.Server.Internal.Server CommonApi.CrawlerApi
   {- Strictness: m,
@@ -5421,7 +5534,7 @@ c8eee590acb1076f66ca8982dfcc5a50
                                     <Control.Monad.Trans.Except.ExceptT
                                        Servant.Server.Internal.ServantErr.ServantErr
                                        GHC.Types.IO>_N)))) -}
-c98fd461025be22e797e41c1307db483
+e0aabec3c2c89ccb1bb178dd3273db39
   crawlerServer1 ::
     (Common.User -> CommonApi.ApiHandler Common.Response)
     Servant.API.Alternative.:<|> (Common.User
@@ -5430,7 +5543,7 @@ c98fd461025be22e797e41c1307db483
      Unfolding: (Servant.API.Alternative.:<|>
                    @ (Common.User -> CommonApi.ApiHandler Common.Response)
                    @ (Common.User -> CommonApi.ApiHandler Common.Response)
-                   Crawler.crawlerApp19
+                   Crawler.crawlerApp17
                      `cast`
                    (<Common.User>_R
                     ->_R Trans
@@ -5464,11 +5577,11 @@ c98fd461025be22e797e41c1307db483
      Unfolding: InlineRule (1, True, False)
                 (\ (ds :: Crawler.LookupMap) ->
                  case ds of wild { Crawler.LookupMap ds1 -> ds1 }) -}
-65ca363e3b29b694b48d278b6da65704
+1ca5d6df5a74fbfe168f391e0567e417
   findCrawl :: GHC.Base.String -> GHC.Types.IO Crawler.Crawl
   {- Arity: 2, Strictness: <L,U><S,U>,
      Unfolding: InlineRule (0, True, True)
-                Crawler.crawlerApp26
+                Crawler.crawlEngine9
                   `cast`
                 (<GHC.Base.String>_R
                  ->_R Sym (GHC.Types.N:IO[0] <Crawler.Crawl>_R)) -}
@@ -5486,11 +5599,11 @@ c98fd461025be22e797e41c1307db483
                  ->_R <Data.Text.Internal.Text>_R
                  ->_R Sym (GHC.Conc.Sync.N:STM[0]
                                <GHC.Base.Maybe GHC.Base.String>_R)) -}
-d1ee3b6a56fe35ea8b8c5855c97492aa
+2f47218ed8b411c2f4de99bbc3f770f0
   initCrawler :: Common.User -> CommonApi.ApiHandler Common.Response
   {- Arity: 2, Strictness: <S,1*U(U,A,A)><S,U>,
      Unfolding: InlineRule (0, True, True)
-                Crawler.crawlerApp19
+                Crawler.crawlerApp17
                   `cast`
                 (<Common.User>_R
                  ->_R Trans
@@ -5502,9 +5615,9 @@ d1ee3b6a56fe35ea8b8c5855c97492aa
                                     <Servant.Server.Internal.ServantErr.ServantErr>_N
                                     <GHC.Types.IO>_R
                                     <Common.Response>_N))) -}
-e3af73e876bf8efce29db10bc943f086
+8f0835f2c1faf84568cfee2fa538e040
   killCrawler :: Common.User -> CommonApi.ApiHandler Common.Response
-  {- Arity: 2, Strictness: <L,A>,
+  {- Arity: 2, Strictness: <L,1*U(1*U,A,A)><S,U>,
      Unfolding: InlineRule (0, True, True)
                 Crawler.crawlerApp8
                   `cast`
@@ -5518,7 +5631,7 @@ e3af73e876bf8efce29db10bc943f086
                                     <Servant.Server.Internal.ServantErr.ServantErr>_N
                                     <GHC.Types.IO>_R
                                     <Common.Response>_N))) -}
-629ae36cada5a7ba23eca04db4e87871
+58ebb0e2ced7f3d29d8097ec2448a7a4
   logLinkAction ::
     GHC.Types.Bool
     -> Data.Text.Internal.Text
@@ -5526,28 +5639,28 @@ e3af73e876bf8efce29db10bc943f086
     -> GHC.Types.IO ()
   {- Arity: 4, Strictness: <L,1*U><L,1*U(U,U,U)><L,1*U(U,U,U)><S,U>,
      Unfolding: InlineRule (0, True, True)
-                Crawler.crawlOnContributor10
+                Crawler.crawlOnContributor9
                   `cast`
                 (<GHC.Types.Bool>_R
                  ->_R <Data.Text.Internal.Text>_R
                  ->_R <Data.Text.Internal.Text>_R
                  ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
-3a218881b57cceb92440bd1e51d17212
+9c535c5539ec0dd53d4637135a58face
   mkCrawler :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <S,U>,
      Unfolding: InlineRule (0, True, True)
                 Crawler.mkCrawler1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
-61eda4be31fc77fe8746f32606035fd2
+89daf607970cc8ecf87b813a1c327336
   mkCrawler1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
   {- Arity: 1, Strictness: <S,U>,
      Unfolding: (\ (s :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
                  case Common.logHeading1
-                        Crawler.crawlOnContributor9
+                        Crawler.crawlEngine7
                         s of ds1 { (#,#) ipv ipv1 ->
                  case Common.logAction1
-                        Crawler.crawlOnContributor9
+                        Crawler.crawlEngine7
                         Crawler.mkCrawler6
                         Crawler.mkCrawler4
                         ipv of ds2 { (#,#) ipv2 ipv3 ->
@@ -5667,7 +5780,7 @@ db7cac54fdfb15206eca2ef094b00ef9
                       (GHC.Conc.Sync.TVar
                          @ (Data.Map.Base.Map Data.Text.Internal.Text GHC.Base.String)
                          ipv1) #) }) -}
-70a920511ca831ae99c73d65458f1c94
+0ad61fe38e0c9f197d8e117e4f6dab21
   startCrawl ::
     Crawler.Crawl
     -> Common.User -> Crawler.LookupMap -> GHC.Types.IO ()
@@ -5680,7 +5793,7 @@ db7cac54fdfb15206eca2ef094b00ef9
                  ->_R <Common.User>_R
                  ->_R <Crawler.LookupMap>_R
                  ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
-a1cf463625feccd41baa47ea27269e10
+69b9c941f600e77db3a304e142250b52
   startCrawl1 ::
     Crawler.Crawl
     -> Common.User
@@ -5698,14 +5811,14 @@ a1cf463625feccd41baa47ea27269e10
                  case w of ww { Crawler.Crawl ww1 ww2 ->
                  case w1 of ww3 { Common.User ww4 ww5 ww6 ->
                  Crawler.$wstartCrawl ww1 ww6 w2 w3 } }) -}
-54924ad88334d2c9ea1fe9032585ef18
+fabe67053543ae2b9edc67046eee616b
   upsertCrawl :: Crawler.Crawl -> GHC.Types.IO ()
   {- Arity: 2, Strictness: <S,1*U(U,U)><S,U>,
      Unfolding: InlineRule (0, True, True)
                 Crawler.upsertCrawl1
                   `cast`
                 (<Crawler.Crawl>_R ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
-447507f87ca7fa63a45ad3691a30ab72
+ddd1b37d4fdc5c5e7546e21a920ab950
   upsertCrawl1 ::
     Crawler.Crawl
     -> GHC.Prim.State# GHC.Prim.RealWorld
@@ -5716,21 +5829,7 @@ a1cf463625feccd41baa47ea27269e10
                    (w1 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
                  case w of ww { Crawler.Crawl ww1 ww2 ->
                  Crawler.$wupsertCrawl ww1 ww2 w1 }) -}
-20af9ef8864c677c8812a60147c35362
-  upsertCrawl2 ::
-    Database.MongoDB.Query.Collection
-    -> [(Database.MongoDB.Query.Selector, Data.Bson.Document,
-         [Database.MongoDB.Internal.Protocol.UpdateOption])]
-    -> Database.MongoDB.Query.Action
-         GHC.Types.IO Database.MongoDB.Query.UpdateResult
-  {- Unfolding: (Database.MongoDB.Query.update'
-                   @ GHC.Types.IO
-                   Control.Monad.IO.Class.$fMonadIOIO
-                   GHC.Types.True) -}
-70127c74f0a72f0b2d65bdcd00cb9810
-  upsertCrawl3 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "upsert"#) -}
-d52334a197b9c8a2c08cd95f1db40b02
+bb0474be9c2dbe0b60302b2416998a14
   upsertCrawlWhenTrue ::
     GHC.Base.String -> GHC.Types.IO GHC.Types.Bool
   {- Arity: 2, Strictness: <L,U><S,U>,
@@ -5739,7 +5838,7 @@ d52334a197b9c8a2c08cd95f1db40b02
                   `cast`
                 (<GHC.Base.String>_R
                  ->_R Sym (GHC.Types.N:IO[0] <GHC.Types.Bool>_R)) -}
-baec2ecfe499f1c674929d050e839734
+a039ffb74117eadd1f7c676c219d7bd7
   upsertCrawlWhenTrue1 ::
     GHC.Base.String
     -> GHC.Prim.State# GHC.Prim.RealWorld
@@ -5747,7 +5846,7 @@ baec2ecfe499f1c674929d050e839734
   {- Arity: 2, Strictness: <L,U><S,U>,
      Unfolding: (\ (c :: GHC.Base.String)
                    (s :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
-                 case Crawler.crawlerApp26 c s of ds1 { (#,#) ipv ipv1 ->
+                 case Crawler.crawlEngine9 c s of ds1 { (#,#) ipv ipv1 ->
                  case ipv1 of wild { Crawler.Crawl ds ds2 ->
                  case ds2 of wild1 {
                    GHC.Types.False -> (# ipv, GHC.Types.False #)

@@ -110,7 +110,9 @@ initCrawler user@(Common.User n t h) = liftIO $ do
             return (Common.Response "Started")
 
 killCrawler :: Common.User -> ApiHandler Common.Response
-killCrawler u = return (Common.Response "Not Implemented")
+killCrawler u = liftIO $ do
+    upsertCrawlWhenTrue $ uName u
+    return (Common.Response "Stopped")
 
 -----------------------------------------
 --  Db Functions
@@ -258,4 +260,7 @@ crawlContributorToUser lm hops c = do
     crawlUserToRepos lm name $ hops - 1
 
 crawlEngine :: LookupMap -> CrawlInfo -> IO()
-crawlEngine lm ci@CrawlInfo{..} = crawlUserToRepos lm cUserName cHops
+crawlEngine lm ci@CrawlInfo{..} = do
+    crawlUserToRepos lm cUserName cHops
+    status <- upsertCrawlWhenTrue $ unpack cUserName
+    logBoolAction status "Crawler" "Stopped" ""

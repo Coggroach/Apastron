@@ -245,12 +245,12 @@
   (major1) == 3 && (major2) <  2 || \
   (major1) == 3 && (major2) == 2 && (minor) <= 11)
 
-/* tool alex-3.2.1 */
-#define TOOL_VERSION_alex "3.2.1"
+/* tool alex-3.1.7 */
+#define TOOL_VERSION_alex "3.1.7"
 #define MIN_TOOL_VERSION_alex(major1,major2,minor) (\
   (major1) <  3 || \
-  (major1) == 3 && (major2) <  2 || \
-  (major1) == 3 && (major2) == 2 && (minor) <= 1)
+  (major1) == 3 && (major2) <  1 || \
+  (major1) == 3 && (major2) == 1 && (minor) <= 7)
 
 /* tool cpphs-1.20.2 */
 #define TOOL_VERSION_cpphs "1.20.2"

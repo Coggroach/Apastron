@@ -80,7 +80,7 @@ mkSearch :: IO ()
 mkSearch = do
     logHeading "Search"
     logAction "Search" "Starting" $ "on: " ++ getIdentitySafeString searchIdentity
-    writeJSForAPI searchApi jquery scriptPath
+    --writeJSForAPI searchApi jquery scriptPath
     run (getIdentityPort searchIdentity) searchApp
 
 getGraph :: String -> ApiHandler Common.Graph

@@ -1,0 +1,14 @@
+flags: {}
+extra-package-dbs: []
+packages:
+- '.'
+extra-deps:
+- aeson-0.11.3.0
+- foundation-0.0.7
+- hoauth2-0.5.9
+- http-client-0.4.31.2
+- http-client-tls-0.2.4.1
+- http-conduit-2.1.11
+- yesod-auth-oauth2-0.2.2
+- load-env-0.1.1
+resolver: lts-8.11

@@ -1,0 +1,34 @@
+<div .ui.container>
+    <script type="text/javascript" src="https://d3js.org/d3.v4.js">
+
+    <style>
+      .links line {
+        stroke: #999;
+        stroke-opacity: 0.6;
+      }
+
+      .nodes circle {
+        stroke: #fff;
+        stroke-width: 1.5px;
+      }
+
+    <h1>
+      Access granted!
+    <body>
+      <p>
+        This page is protected and access is allowed only for authenticated users.
+
+      <p>
+        Your data is protected with us <strong><span class="username">#{show nm}</span></strong>!
+
+      <p>
+        We queried github with your auth token to get your account creation date. It's #{show createdAt}!
+
+     <input type="button" value="Social Graph" id="MyButton" onclick="GetSocialGraph(#{show nm});">
+     <input type="button" value="Language Graph" id="MyButton2" onclick="GetLanguageGraph();">
+     <input type="button" value="Favourite Graph" id="MyButton3" onclick="GetFavouriteGraph();">
+
+    <svg width="1200" height="1000">
+      <script type="text/javascript">
+        d3.select("body").append("p").text("This is a paragraph generated on the fly by D3!");//TODO write code
+        

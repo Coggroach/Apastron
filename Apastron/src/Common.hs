@@ -24,22 +24,27 @@ import            Data.Text
 -----------------------------------------
 
 data Vertex = Vertex {
-    vId :: String,
-    vGroup :: String
+    id :: String,
+    group :: String
 } deriving (Generic, Eq, Show, ToJSON, FromJSON, ToBSON, FromBSON)
 
 instance FromBSON String
 instance ToBSON String
 
 data Edge = Edge {
-    eParent :: String,
-    eChild :: String,
-    eData :: String
+    source :: String,
+    target :: String,
+    value :: String
 } deriving (Generic, Eq, Show, ToJSON, FromJSON, ToBSON, FromBSON)
 
 data Graph = Graph {
-    gVertices :: [Vertex],
-    gEdges :: [Edge]
+    nodes :: [Vertex],
+    links :: [Edge]
+} deriving (Generic, Eq, Show, ToJSON, FromJSON)
+
+data Languages = Languages {
+    languages :: [String],
+    frequencies :: [Int]
 } deriving (Generic, Eq, Show, ToJSON, FromJSON)
 
 -----------------------------------------

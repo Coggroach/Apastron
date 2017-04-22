@@ -71,7 +71,9 @@ scriptPath = "scripts/api.js"
 
 searchServer :: Server SearchApi
 searchServer = 
-    getGraph
+    getGraph :<|>
+    getLanguages :<|>
+    getFavourite
 
 searchApp :: Application
 searchApp = serve searchApi searchServer
@@ -80,10 +82,19 @@ mkSearch :: IO ()
 mkSearch = do
     logHeading "Search"
     logAction "Search" "Starting" $ "on: " ++ getIdentitySafeString searchIdentity
-    --writeJSForAPI searchApi jquery scriptPath
     run (getIdentityPort searchIdentity) searchApp
 
 getGraph :: String -> ApiHandler Common.Graph
 getGraph username = liftIO $ do
     logAction "Search" "Fetching" "Graph"
     boltCreateGraph $ Data.Text.pack username
+
+getLanguages :: ApiHandler Common.Languages
+getLanguages = liftIO $ do
+    logAction "Search" "Fetching" "Languages"
+    boltCreateLanguages
+
+getFavourite :: ApiHandler Common.Graph
+getFavourite = liftIO $ do
+    logAction "Search" "Fetching" "Favourite"
+    boltCreateFavourite

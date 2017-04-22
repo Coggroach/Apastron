@@ -28,7 +28,9 @@ import            GitHub.Data.Definitions
 import            GitHub.Endpoints.Repos
 import            GitHub.Endpoints.Users
 import            GitHub.Internal.Prelude
+import            Prelude
 import            Common
+import            Control.Monad
 
 -----------------------------------------
 --  Variables
@@ -54,6 +56,14 @@ boltGetRecords c p = do
     let config = Database.Bolt.def { Database.Bolt.user = "neo4j", Database.Bolt.password = "Coggroach" }
     pipe <- Database.Bolt.connect config
     records <- Database.Bolt.run pipe $ Database.Bolt.queryP c p
+    Database.Bolt.close pipe
+    return records
+
+boltGetRecordsQuery :: Text -> IO [Database.Bolt.Record]
+boltGetRecordsQuery c = do
+    let config = Database.Bolt.def { Database.Bolt.user = "neo4j", Database.Bolt.password = "Coggroach" }
+    pipe <- Database.Bolt.connect config
+    records <- Database.Bolt.run pipe $ Database.Bolt.query c
     Database.Bolt.close pipe
     return records
 
@@ -86,6 +96,21 @@ boltRecordToEdge r = do
     g :: Text <- (r `Database.Bolt.at` "type") >>= Database.Bolt.exact
     return (Common.Edge (Data.Text.unpack p) (Data.Text.unpack c) (Data.Text.unpack g))
 
+boltRecordToUser :: Database.Bolt.Record -> IO String
+boltRecordToUser r = do
+    l :: Text <- (r `Database.Bolt.at` "name") >>= Database.Bolt.exact
+    return $ Data.Text.unpack l
+
+boltRecordToLanguage :: Database.Bolt.Record -> IO String
+boltRecordToLanguage r = do
+    l :: Text <- (r `Database.Bolt.at` "language") >>= Database.Bolt.exact
+    return $ Data.Text.unpack l
+
+boltRecordToFrequency :: Database.Bolt.Record -> IO Int
+boltRecordToFrequency r = do
+    f :: Int <- (r `Database.Bolt.at` "frequency") >>= Database.Bolt.exact
+    return f
+
 boltCreateGraph :: Text -> IO Common.Graph
 boltCreateGraph t = do
     recordNodes <- boltStoreExtractNode t
@@ -93,6 +118,52 @@ boltCreateGraph t = do
     vertices <- mapM boltRecordToVertex recordNodes
     edges <- mapM boltRecordToEdge recordLinks
     return (Common.Graph vertices edges)
+
+boltCreateLanguages :: IO Common.Languages
+boltCreateLanguages = do
+    recordLanguages <- boltStoreExtractLanguages
+    languages <- mapM boltRecordToLanguage recordLanguages
+    frequencies <- mapM boltRecordToFrequency recordLanguages
+    return (Common.Languages languages frequencies)
+
+boltRecordToFavouriteEdge :: Database.Bolt.Record -> IO Common.Edge
+boltRecordToFavouriteEdge r = do
+    n :: Text <- (r `Database.Bolt.at` "name") >>= Database.Bolt.exact
+    l :: Text <- (r `Database.Bolt.at` "language") >>= Database.Bolt.exact
+    return (Common.Edge (Data.Text.unpack n) (Data.Text.unpack l) "2")
+
+boltRecordLanguageToFavouriteVertex :: Database.Bolt.Record -> IO Common.Vertex
+boltRecordLanguageToFavouriteVertex r = do
+    n :: Text <- (r `Database.Bolt.at` "name") >>= Database.Bolt.exact
+    return (Common.Vertex (Data.Text.unpack n) "1")
+
+boltRecordUserToFavouriteVertex :: Database.Bolt.Record -> IO Common.Vertex
+boltRecordUserToFavouriteVertex r = do
+    n :: Text <- (r `Database.Bolt.at` "name") >>= Database.Bolt.exact
+    return (Common.Vertex (Data.Text.unpack n) "0")
+
+filterFavouriteEdges :: [Common.Edge] -> [Common.Edge] -> [Common.Edge]
+filterFavouriteEdges first second = do
+    let e = Prelude.head first
+    if Data.List.null first then second
+    else
+        if Prelude.not (Prelude.any (\n -> source n == source e ) second) then filterFavouriteEdges (Prelude.drop 1 first) (e : second)
+        else filterFavouriteEdges (Prelude.drop 1 first) second
+
+boltCreateFavourite :: IO Common.Graph
+boltCreateFavourite = do
+    logDatabase "Boltery" "Neo4j" "find" ""
+    records <- boltStoreExtractFavourite
+    users <- boltGetRecordsQuery $ Data.Text.pack "MATCH (n:User) RETURN n.userLogin as name LIMIT 250"
+    languages <- boltGetRecordsQuery $ Data.Text.pack "MATCH (n:Language) RETURN n.name as name LIMIT 25"
+    logAction "Boltery" "sorting" " edges"
+    edges <- mapM boltRecordToFavouriteEdge records
+    let newEdges = filterFavouriteEdges edges []
+    logAction "Boltery" "adding" " vertices"
+    newUsers <- mapM boltRecordUserToFavouriteVertex users
+    newLanguages <- mapM boltRecordLanguageToFavouriteVertex languages
+    logAction "Boltery" "creating" " graph"
+    return (Common.Graph (newUsers ++ newLanguages) newEdges)
 
 -----------------------------------------
 --  Data Extractions
@@ -123,6 +194,27 @@ boltParamsExtract u = Data.Map.fromList [("username", Database.Bolt.T u)]
 
 boltStoreExtractLink :: Text -> IO [Database.Bolt.Record]
 boltStoreExtractLink u = boltGetRecords boltCypherExtractLink $ boltParamsExtract u
+
+boltCypherExtractLanguages :: Text
+boltCypherExtractLanguages =
+    Data.Text.pack $
+    "MATCH (n)-[r:RepoLanguageLink]->(x)" ++
+    " RETURN x.name as language," ++
+    " COUNT(r) as frequency ORDER BY COUNT(r) DESC LIMIT 20"
+
+boltStoreExtractLanguages :: IO [Database.Bolt.Record]
+boltStoreExtractLanguages = boltGetRecordsQuery boltCypherExtractLanguages
+
+boltCypherExtractFavourite :: Text
+boltCypherExtractFavourite =
+    Data.Text.pack $
+    "MATCH (n:User)-[i:UserRepoCollabLink]-" ++
+    "(l:Repo)-[:RepoLanguageLink]-(h:Language)" ++
+    " RETURN n.userLogin as name, h.name as language," ++
+    " SUM(i.commits) as frequency ORDER BY SUM(i.commits) DESC LIMIT 250"
+
+boltStoreExtractFavourite :: IO [Database.Bolt.Record]
+boltStoreExtractFavourite = boltGetRecordsQuery boltCypherExtractFavourite
 
 -----------------------------------------
 --   Store User
@@ -311,7 +403,7 @@ boltParamsUserRepoCollabLink :: Text -> Text -> Int -> Map Text Database.Bolt.Va
 boltParamsUserRepoCollabLink u l c
     = Data.Map.fromList [
         ("userLogin", Database.Bolt.T u),
-        ("language", Database.Bolt.T l),
+        ("repoHtmlUrl", Database.Bolt.T l),
         ("commits", Database.Bolt.I c)]
 
 boltStoreUserRepoCollabLink :: Text -> Text -> Int -> IO Bool

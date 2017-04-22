@@ -1,0 +1,248 @@
+function GetSocialGraph(username) {
+    d3.select("svg").selectAll("*").remove();
+    var responsei = $.ajax({
+        url: "http://127.0.0.1:8081/graph/".concat(username),
+        type: "get",
+        contentType: "text/plain",
+        dataType: "json",
+        crossDomain:true,
+        success: function( response ) {
+            console.log(response);
+            var nodeMap = {};
+
+            function findValue(array, value) {
+                for(var i = 0; i<array.length; i++) {
+                    if(array[i].id === value) 
+                        return i;
+                 }
+                 return -1;
+            };
+            
+            var svg = d3.select("svg"),
+                width = +svg.attr("width"),
+                height = +svg.attr("height");
+
+            var color = d3.scaleOrdinal(d3.schemeCategory20);
+
+            var simulation = d3.forceSimulation()
+                .force("link", d3.forceLink().id(function(d) { return d.id; }))
+                .force("charge", d3.forceManyBody())
+                .force("center", d3.forceCenter(width / 2, height / 2));
+
+            var link = svg.append("g")
+                .attr("class", "links")
+                .selectAll("line")
+                .data(response.links)
+                .enter().append("line")
+                .attr("stroke-width", function(d) { return 1.5; });
+
+            var node = svg.append("g")
+                .attr("class", "nodes")
+                .selectAll("circle")
+                .data(response.nodes)
+                .enter().append("circle")
+                .attr("r", 10)
+                .attr("fill", function(d) { return color(d.group); })
+                .call(d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended));
+
+            node.append("title")
+                .text(function(d) { return d.id; });
+
+            simulation
+                .nodes(response.nodes)
+                .on("tick", ticked);
+
+            simulation.force("link")
+                .links(response.links);
+
+            function ticked() {
+                link
+                    .attr("x1", function(d) { return d.source.x; })
+                    .attr("y1", function(d) { return d.source.y; })
+                    .attr("x2", function(d) { return d.target.x; })
+                    .attr("y2", function(d) { return d.target.y; });
+
+                node
+                    .attr("cx", function(d) { return d.x; })
+                    .attr("cy", function(d) { return d.y; });
+              }
+
+            function dragstarted(d) {
+              if (!d3.event.active) 
+                simulation.alphaTarget(0.3).restart();
+              d.fx = d.x;
+              d.fy = d.y;
+            }
+            function dragged(d) {
+              d.fx = d3.event.x;
+              d.fy = d3.event.y;
+            }
+            function dragended(d) {
+              if (!d3.event.active) 
+                simulation.alphaTarget(0);
+              d.fx = null;
+              d.fy = null;
+            }
+        },
+        error: function( status ) {
+          console.log("failed");
+        }
+    })
+}
+
+function GetFavouriteGraph() {
+    d3.select("svg").selectAll("*").remove();
+    var responsei = $.ajax({
+        url: "http://127.0.0.1:8081/favourite",
+        type: "get",
+        contentType: "text/plain",
+        dataType: "json",
+        crossDomain:true,
+        success: function( response ) {
+            console.log(response);
+            var nodeMap = {};
+
+            function findValue(array, value) {
+                for(var i = 0; i<array.length; i++) {
+                    if(array[i].id === value) 
+                        return i;
+                 }
+                 return -1;
+            };
+            
+            var svg = d3.select("svg"),
+                width = 400,
+                height = 400;
+
+            var color = d3.scaleOrdinal(d3.schemeCategory20);
+
+            var simulation = d3.forceSimulation()
+                .force("link", d3.forceLink().id(function(d) { return d.id; }))
+                .force("charge", d3.forceManyBody())
+                .force("center", d3.forceCenter(width / 2, height / 2));
+
+            var link = svg.append("g")
+                .attr("class", "links")
+                .selectAll("line")
+                .data(response.links)
+                .enter().append("line")
+                .attr("stroke-width", function(d) { return 1.5; });
+
+            var node = svg.append("g")
+                .attr("class", "nodes")
+                .selectAll("circle")
+                .data(response.nodes)
+                .enter().append("circle")
+                .attr("r", 10)
+                .attr("fill", function(d) { return color(d.group); })
+                .call(d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended));
+
+            node.append("title")
+                .text(function(d) { return d.id; });
+
+            simulation
+                .nodes(response.nodes)
+                .on("tick", ticked);
+
+            simulation.force("link")
+                .links(response.links);
+
+            function ticked() {
+                link
+                    .attr("x1", function(d) { return d.source.x; })
+                    .attr("y1", function(d) { return d.source.y; })
+                    .attr("x2", function(d) { return d.target.x; })
+                    .attr("y2", function(d) { return d.target.y; });
+
+                node
+                    .attr("cx", function(d) { return d.x; })
+                    .attr("cy", function(d) { return d.y; });
+              }
+
+            function dragstarted(d) {
+              if (!d3.event.active) 
+                simulation.alphaTarget(0.3).restart();
+              d.fx = d.x;
+              d.fy = d.y;
+            }
+            function dragged(d) {
+              d.fx = d3.event.x;
+              d.fy = d3.event.y;
+            }
+            function dragended(d) {
+              if (!d3.event.active) 
+                simulation.alphaTarget(0);
+              d.fx = null;
+              d.fy = null;
+            }
+        },
+        error: function( status ) {
+          console.log("failed");
+        }
+    })
+}
+
+function GetLanguageGraph() {
+    d3.select("svg").selectAll("*").remove();
+    var responsei = $.ajax({
+        url: "http://localhost:8081/language",
+        type: "get",
+        contentType: "text/plain",
+        dataType: "json",
+        crossDomain:true,
+        success: function( datar ) {
+            console.log(datar)
+            var data = []
+            for(var i = 0; i < datar.languages.length; i++) {
+                data[i] = {language: (datar.languages[i]), frequency: (datar.frequencies[i])}
+            }
+
+            var svg = d3.select("svg"),
+                margin = {top: 20, right: 20, bottom: 30, left: 40},
+                width = +svg.attr("width") - margin.left - margin.right,
+                height = +svg.attr("height") - margin.top - margin.bottom;
+
+            var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
+                y = d3.scaleLinear().rangeRound([height, 0]);
+
+            var g = svg.append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+            x.domain(data.map(function(d) { return d.language; }));
+            y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+
+            g.append("g")
+                .attr("class", "axis axis--x")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x));
+
+            g.append("g")
+                .attr("class", "axis axis--y")
+                .call(d3.axisLeft(y).ticks(10))
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", "0.71em")
+                .attr("text-anchor", "end")
+                .text("Frequency");
+
+            g.selectAll("bar")
+                .data(data)
+                .enter().append("rect")
+                .attr("class", "bar")
+                .attr("x", function(d) { return x(d.language); })
+                .attr("y", function(d) { return y(d.frequency); })
+                .attr("width", x.bandwidth())
+                .attr("height", function(d) { return height - y(d.frequency); });
+          },
+          error: function( status ) {
+            console.log("failed");
+          }
+  })
+}

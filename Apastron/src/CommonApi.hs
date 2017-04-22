@@ -43,26 +43,32 @@ type ApiHandler = ExceptT ServantErr IO
 
 type CrawlerApi = 
     "init" :> ReqBody '[JSON] Common.User :> Post '[JSON] Common.Response :<|>
-    "kill" :> ReqBody '[JSON] Common.User :> Post '[JSON] Common.Response
+    "kill" :> ReqBody '[JSON] Common.User :> Post '[JSON] Common.Response :<|>
+    "token" :> Capture "u" String :> Capture "t" String :> Get '[JSON] Common.Response
 
 crawlerApi :: Proxy CrawlerApi
 crawlerApi = Proxy
 
 crawlerClientInit :: Common.User -> ClientM Common.Response
 crawlerClientKill :: Common.User -> ClientM Common.Response
+crawlerClientToken :: String -> String -> ClientM Common.Response
 
-crawlerClientInit :<|> crawlerClientKill = Servant.Client.client crawlerApi
+crawlerClientInit :<|> crawlerClientKill :<|> crawlerClientToken = Servant.Client.client crawlerApi
 
 -----------------------------------------
 --  Search
 -----------------------------------------
 
 type SearchApi =
-    "graph" :> Capture "username" String :> Get '[JSON] Common.Graph
+    "graph" :> Capture "username" String :> Get '[JSON] Common.Graph :<|>
+    "language" :> Get '[JSON] Common.Languages :<|>
+    "favourite" :> Get '[JSON] Common.Graph
 
 searchApi :: Proxy SearchApi
 searchApi = Proxy
 
 searchClientGraph :: String -> ClientM Common.Graph
+searchClientLanguages :: ClientM Common.Languages
+searchClientFavourite :: ClientM Common.Graph
 
-searchClientGraph = Servant.Client.client searchApi
+searchClientGraph :<|> searchClientLanguages :<|> searchClientFavourite = Servant.Client.client searchApi

@@ -11,11 +11,11 @@ Start Crawler and Search before Glewy.
 
 Graphs (also found on Profile):
 
-![alt tag](https://github.com/Coggroach/Apastron/booty/SocialGraphCoggroach.png)
+![](https://github.com/Coggroach/Apastron/blob/master/booty/SocialGraphCoggroach.png)
 
-![alt tag](https://github.com/Coggroach/Apastron/booty/LanguageGraph.hs)
+![](https://github.com/Coggroach/Apastron/blob/master/booty/LanguageGraph.png)
 
-![alt tag](https://github.com/Coggroach/Apastron/booty/UserLanguageGraph.hs)
+![](https://github.com/Coggroach/Apastron/blob/master/booty/UserLanguageGraph.png)
 
-![alt tag](https://github.com/Coggroach/Apastron/booty/UserFavouriteGraph.hs)
+![](https://github.com/Coggroach/Apastron/blob/master/booty/UserFavouriteGraph.png)
 

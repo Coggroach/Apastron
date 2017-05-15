@@ -1,6 +1,10 @@
 # Apastron
 CS7009  
 
+Requirements:  
+MongoDb  
+Neo4j  
+
 Apastron:  
 -Crawler: (Port 8080) stack exec Apastron-exe 0  
 -Search: (Port 8081) stack exec Apastron-exe 1  
